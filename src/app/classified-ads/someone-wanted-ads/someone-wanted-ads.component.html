@@ -1,0 +1,28 @@
+<mat-list class="ad-list">
+  <mat-list-item class="ad-list-item" routerLink="{{ad.id}}"
+                 *ngFor="let ad of ads">
+    <span *ngIf="!getProfileImageLink()" class="material-icons fallback-profile-icon">
+      account_circle
+    </span>
+    <img *ngIf="getProfileImageLink()" [src]="getProfileImageLink()" alt="profile image"
+         height="150px"
+         width="150px"/>
+    <div fxLayout="column" fxFlex class="ad-item-content">
+      <div fxLayout>
+        <span class="profile-name">Pseudonim</span>
+        <span class="profile-expects">&nbsp;oczekuje:&nbsp;</span>
+        <span fxFlex>...chips... {{ad.id}}</span>
+        <span fxFlexAlign="baseline"
+              class="ad-posted-date ad-opacity-element"> {{ad.publishedDate | date: 'dd.MM.yyyy'}}</span>
+      </div>
+      <div fxFlex class="ad-description">{{ad.description}}</div>
+      <div fxLayoutAlign="space-between" class="ad-opacity-element">
+        <span class="user-type-and-genres">UżytkownikTyp (gatunki)</span>
+        <span>
+          {{ad.location}}
+          <span fxFlex class="material-icons location-icon">place</span>
+        </span>
+      </div>
+    </div>
+  </mat-list-item>
+</mat-list>

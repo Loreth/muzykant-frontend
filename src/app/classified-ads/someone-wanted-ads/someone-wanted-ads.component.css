@@ -1,0 +1,53 @@
+.ad-list .mat-list-item {
+  color: black;
+  background-color: #FFFFFF;
+  height: 160px;
+  margin: 10px 0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+
+.ad-list::ng-deep .mat-list-item-content {
+  padding-left: 0 !important;
+}
+
+.fallback-profile-icon {
+  font-size: 160px;
+  color: #e12b38;
+}
+
+.ad-item-content {
+  padding: 10px 0;
+  height: 100%;
+}
+
+.profile-name {
+  font-size: 18px;
+}
+
+.profile-expects {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.user-type-and-genres {
+  letter-spacing: 0.05em;
+}
+
+.ad-opacity-element {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.ad-description {
+  padding: 10px 0;
+}
+
+.location-icon {
+  opacity: 0.85;
+  margin-right: -0.2em;
+}
+
+.ad-posted-date {
+  line-height: normal;
+  font-size: 14px;
+}

@@ -1,0 +1,25 @@
+.mat-tab-nav-bar {
+  border-bottom: 0;
+}
+
+.mat-tab-label-active {
+  opacity: 1 !important;
+  color: #a70012 !important;
+}
+
+.mat-tab-link:hover {
+  color: #e12b38;
+  opacity: 74%;
+}
+
+.mat-tab-link {
+  color: #000000;
+  font-size: 16px;
+  opacity: 74%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+:host ::ng-deep .mat-ink-bar {
+  background-color: #a70012 !important;
+}
