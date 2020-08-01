@@ -1,7 +1,7 @@
 .ad-list .mat-list-item {
   color: black;
-  background-color: #FFFFFF;
-  height: 160px;
+  background-color: white;
+  height: auto;
   margin: 10px 0;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 10px;
@@ -18,7 +18,7 @@
 
 .ad-item-content {
   padding: 10px 0;
-  height: 100%;
+  min-height: 160px;
 }
 
 .profile-name {
@@ -28,10 +28,11 @@
 .profile-expects {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.6);
+  margin-right: 8px;
 }
 
 .user-type-and-genres {
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
 }
 
 .ad-opacity-element {
@@ -39,7 +40,16 @@
 }
 
 .ad-description {
-  padding: 10px 0;
+  margin: 15px 0 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.ad-no-description-info {
+  opacity: 60%;
 }
 
 .location-icon {
@@ -48,6 +58,25 @@
 }
 
 .ad-posted-date {
-  line-height: normal;
-  font-size: 14px;
+  font-size: 13px;
 }
+
+.ad-chip {
+  font-size: 13px;
+  padding: 0 8px;
+  margin: 5px;
+  border-radius: 12px;
+}
+
+.instrument-chip {
+  background-color: rgba(252, 193, 51, 0.85);
+}
+
+.genre-chip {
+  background-color: rgba(225, 43, 56, 0.7);
+}
+
+.personal-chip {
+  background-color: rgba(62, 182, 80, 0.85);
+}
+

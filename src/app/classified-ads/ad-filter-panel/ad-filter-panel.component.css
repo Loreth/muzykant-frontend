@@ -1,0 +1,42 @@
+.filter-panel {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  margin-top: 18px;
+  margin-right: 10px;
+}
+
+.wanted-filters {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+}
+
+.looking-filters {
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+mat-form-field.mat-form-field {
+  font-size: 14px;
+  /*line-height: normal;*/
+}
+
+mat-expansion-panel-header.mat-expansion-panel-header {
+  padding: 0 16px;
+}
+
+:host ::ng-deep .mat-expansion-panel-body {
+  padding: 0 16px;
+}
+
+:host ::ng-deep .mat-form-field-infix {
+  padding: 0.5em;
+}
+
+:host ::ng-deep .mat-form-field-label {
+
+}
+
+/*:host .mat-expansion-panel-header-title {*/
+/*  font-size: 16px;*/
+/*}*/

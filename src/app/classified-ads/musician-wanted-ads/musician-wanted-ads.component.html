@@ -1,4 +1,7 @@
 <div fxLayout="row">
-  <div fxFlex="20%"></div>
-  <app-someone-wanted-ads fxFlex="0 1 1024px"></app-someone-wanted-ads>
+  <div fxFlex="20%">
+    <app-ad-filter-panel fxFlexAlign="end"></app-ad-filter-panel>
+  </div>
+  <app-someone-wanted-ads [adsWithChips]="adsWithChips"
+                          fxFlex="0 1 1024px"></app-someone-wanted-ads>
 </div>

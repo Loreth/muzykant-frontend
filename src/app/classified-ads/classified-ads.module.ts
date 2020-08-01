@@ -12,6 +12,11 @@ import {MatListModule} from '@angular/material/list';
 import {SharedModule} from '../shared/shared.module';
 import {SomeoneWantedAdsComponent} from './someone-wanted-ads/someone-wanted-ads.component';
 import {MatIconModule} from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
+import { AdFilterPanelComponent } from './ad-filter-panel/ad-filter-panel.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,8 @@ import {MatIconModule} from '@angular/material/icon';
     BandWantedAdsComponent,
     MusicianWantedAdsComponent,
     JamSessionAdsComponent,
-    SomeoneWantedAdsComponent
+    SomeoneWantedAdsComponent,
+    AdFilterPanelComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +34,11 @@ import {MatIconModule} from '@angular/material/icon';
     MatTabsModule,
     MatListModule,
     SharedModule,
-    MatIconModule
+    MatIconModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class ClassifiedAdsModule {
