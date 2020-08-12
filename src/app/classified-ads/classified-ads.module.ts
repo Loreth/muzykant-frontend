@@ -13,10 +13,16 @@ import {SharedModule} from '../shared/shared.module';
 import {SomeoneWantedAdsComponent} from './someone-wanted-ads/someone-wanted-ads.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
-import { AdFilterPanelComponent } from './ad-filter-panel/ad-filter-panel.component';
+import {AdFilterPanelComponent} from './ad-filter-panel/ad-filter-panel.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {ChipListAutocompleteInputComponent} from './ad-filter-panel/chip-list-autocomplete-input/chip-list-autocomplete-input.component';
+import {GenreChipInputComponent} from './ad-filter-panel/genre-chip-input/genre-chip-input.component';
+import {InstrumentChipInputComponent} from './ad-filter-panel/instrument-chip-input/instrument-chip-input.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,10 @@ import {MatInputModule} from '@angular/material/input';
     MusicianWantedAdsComponent,
     JamSessionAdsComponent,
     SomeoneWantedAdsComponent,
-    AdFilterPanelComponent
+    AdFilterPanelComponent,
+    ChipListAutocompleteInputComponent,
+    GenreChipInputComponent,
+    InstrumentChipInputComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +47,10 @@ import {MatInputModule} from '@angular/material/input';
     MatChipsModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatCheckboxModule
   ]
 })
 export class ClassifiedAdsModule {

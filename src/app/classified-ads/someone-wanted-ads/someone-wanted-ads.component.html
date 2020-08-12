@@ -1,6 +1,7 @@
 <mat-list class="ad-list">
   <mat-list-item routerLink="{{adWithChips.ad.id}}"
-                 *ngFor="let adWithChips of adsWithChips">
+                 *ngFor="let adWithChips of adsWithChips"
+                 appMaterialElevation [defaultElevation]="0" raisedElevation="4">
     <span *ngIf="!getProfileImageLink()" class="material-icons fallback-profile-icon">
       account_circle
     </span>

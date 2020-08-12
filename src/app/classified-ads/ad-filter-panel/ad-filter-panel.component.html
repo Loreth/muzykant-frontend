@@ -6,13 +6,18 @@
           Poszukiwany
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Lokalizacja</mat-label>
-          <input matInput placeholder="Lokalizacja">
-<!--          <mat-icon matPrefix>search</mat-icon>-->
-        </mat-form-field>
-      </p>
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>place</mat-icon>
+        <mat-label>Lokalizacja</mat-label>
+        <input matInput placeholder="Lokalizacja">
+      </mat-form-field>
+      <app-genre-chip-input></app-genre-chip-input>
+      <app-instrument-chip-input></app-instrument-chip-input>
+      <section class="gender-section">
+        <span class="gender-section-label">Płeć<br></span>
+        <mat-checkbox class="gender-element">Kobieta</mat-checkbox>
+        <mat-checkbox class="gender-element">Mężczyzna</mat-checkbox>
+      </section>
     </mat-expansion-panel>
     <mat-expansion-panel expanded class="mat-elevation-z0 looking-filters">
       <mat-expansion-panel-header>

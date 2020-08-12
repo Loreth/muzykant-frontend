@@ -1,3 +1,3 @@
-export class Identifiable<ID> {
+export interface Identifiable<ID> {
   id: ID;
 }

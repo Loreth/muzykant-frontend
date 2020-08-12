@@ -1,3 +1,5 @@
+@import url(../chip.css);
+
 .ad-list .mat-list-item {
   color: black;
   background-color: white;
@@ -6,6 +8,11 @@
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 10px;
 }
+
+.ad-list .mat-list-item:hover {
+  cursor: pointer;
+}
+
 
 .ad-list::ng-deep .mat-list-item-content {
   padding-left: 0 !important;
@@ -62,21 +69,10 @@
 }
 
 .ad-chip {
+  color: rgba(0, 0, 0, 0.87);
   font-size: 13px;
-  padding: 0 8px;
+  padding: 0 10px;
   margin: 5px;
   border-radius: 12px;
-}
-
-.instrument-chip {
-  background-color: rgba(252, 193, 51, 0.85);
-}
-
-.genre-chip {
-  background-color: rgba(225, 43, 56, 0.7);
-}
-
-.personal-chip {
-  background-color: rgba(62, 182, 80, 0.85);
 }
 

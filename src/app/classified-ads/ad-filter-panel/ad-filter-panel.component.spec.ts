@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdFilterPanelComponent } from './ad-filter-panel.component';
+import {AdFilterPanelComponent} from './ad-filter-panel.component';
 
 describe('AdFilterPanelComponent', () => {
   let component: AdFilterPanelComponent;
@@ -8,7 +8,7 @@ describe('AdFilterPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdFilterPanelComponent ]
+      declarations: [AdFilterPanelComponent]
     })
     .compileComponents();
   }));

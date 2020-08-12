@@ -1,4 +1,4 @@
-export interface Genre {
-  id: number;
-  name: string;
+import {Nameable} from './nameable.model';
+
+export interface Genre extends Nameable<number> {
 }
