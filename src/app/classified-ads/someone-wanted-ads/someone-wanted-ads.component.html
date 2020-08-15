@@ -1,18 +1,20 @@
 <mat-list class="ad-list">
   <mat-list-item routerLink="{{adWithChips.ad.id}}"
-                 *ngFor="let adWithChips of adsWithChips"
-                 appMaterialElevation [defaultElevation]="0" raisedElevation="4">
-    <span *ngIf="!getProfileImageLink()" class="material-icons fallback-profile-icon">
-      account_circle
-    </span>
-    <img *ngIf="getProfileImageLink()" [src]="getProfileImageLink()" alt="profile image"
-         height="150px"
-         width="150px"/>
+                 *ngFor="let adWithChips of adsWithChips$ | async"
+                 appMaterialElevation defaultElevation="0" raisedElevation="4">
+    <div class="profile-image">
+      <span *ngIf="!getProfileImageLink()" class="material-icons fallback-profile-icon">
+        account_circle
+      </span>
+      <img *ngIf="getProfileImageLink()" [src]="getProfileImageLink()" alt="profile image"
+           height="150px"
+           width="150px"/>
+    </div>
     <div fxLayout="column" fxFlex class="ad-item-content">
       <div fxLayout fxFlex>
-        <span class="profile-name">Pseudonim</span>
-        <span class="profile-expects">&nbsp;oczekuje:</span>
-        <mat-chip-list fxFlex>
+        <mat-chip-list class="test" fxFlex>
+          <span class="profile-name">{{adWithChips.ad.userDisplayName}}</span>
+          <span class="profile-expects">&nbsp;oczekuje:</span>
           <mat-basic-chip disableRipple class="ad-chip" [ngClass]="chip.cssClass"
                           *ngFor="let chip of adWithChips.chips">
             {{chip.label | capitalize}}
@@ -27,7 +29,11 @@
         <span *ngIf="!adWithChips.ad.description" class="ad-no-description-info">Brak treści ogłoszenia.</span>
       </div>
       <div fxLayoutAlign="space-between" class="ad-opacity-element">
-        <span class="user-type-and-genres">UżytkownikTyp (gatunki)</span>
+        <span class="user-type-and-genres">{{localizeUserType(adWithChips.ad.userType)}}
+          <span *ngIf=adWithChips.ad.userGenres>
+            ({{mapGenresToGenreNames(adWithChips.ad.userGenres).join(', ')}})
+          </span>
+        </span>
         <span>
           {{adWithChips.ad.location}}
           <span fxFlex class="material-icons location-icon">place</span>

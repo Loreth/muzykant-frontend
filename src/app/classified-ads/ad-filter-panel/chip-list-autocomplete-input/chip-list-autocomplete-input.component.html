@@ -1,11 +1,11 @@
 <mat-form-field appearance="outline">
-  <mat-icon matPrefix>{{labelIcon}}</mat-icon>
+  <mat-icon matPrefix class="md-18">{{labelIcon}}</mat-icon>
   <mat-label>{{label}}</mat-label>
   <input matInput
          [placeholder]="placeholder"
          #itemInput
          #trigger
-         [formControl]="formControl"
+         [formControl]="inputFormControl"
          [matAutocomplete]="auto"
          [matChipInputFor]="chipList"
          (keydown.backspace)="onBackspaceKeydownHideAutocomplete()">

@@ -1,31 +1,80 @@
 <div class="filter-panel">
-  <mat-accordion multi="true" displayMode="flat">
-    <mat-expansion-panel expanded class="mat-elevation-z0 wanted-filters">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Poszukiwany
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-form-field appearance="outline">
-        <mat-icon matPrefix>place</mat-icon>
-        <mat-label>Lokalizacja</mat-label>
-        <input matInput placeholder="Lokalizacja">
-      </mat-form-field>
-      <app-genre-chip-input></app-genre-chip-input>
-      <app-instrument-chip-input></app-instrument-chip-input>
-      <section class="gender-section">
-        <span class="gender-section-label">Płeć<br></span>
-        <mat-checkbox class="gender-element">Kobieta</mat-checkbox>
-        <mat-checkbox class="gender-element">Mężczyzna</mat-checkbox>
-      </section>
-    </mat-expansion-panel>
-    <mat-expansion-panel expanded class="mat-elevation-z0 looking-filters">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Poszukujący
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>I'm visible because I am open</p>
-    </mat-expansion-panel>
-  </mat-accordion>
+  <form [formGroup]="adFiltersForm" (ngSubmit)="onSubmit()">
+    <mat-accordion multi="true" displayMode="flat">
+      <mat-expansion-panel expanded class="mat-elevation-z0 wanted-filters" formGroupName="wanted">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Poszukiwany
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix class="md-18">domain</mat-icon>
+          <mat-label>Województwo</mat-label>
+          <mat-select class="voivodeship-name" multiple formControlName="voivodeship">
+            <mat-option class="mat-accent voivodeship-name" *ngFor="let voivodeship of voivodeships$ | async"
+                        [value]="voivodeship">{{voivodeship.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix class="md-18">place</mat-icon>
+          <mat-label>Lokalizacja</mat-label>
+          <input matInput placeholder="Lokalizacja" formControlName="location">
+        </mat-form-field>
+        <app-genre-chip-input formControlName="genres"></app-genre-chip-input>
+        <app-instrument-chip-input formControlName="instruments"></app-instrument-chip-input>
+
+        <section class="gender-section">
+          <span class="section-label">Płeć<br></span>
+          <mat-checkbox class="gender-element" formControlName="genderFemale">
+            Kobieta
+          </mat-checkbox>
+          <mat-checkbox class="gender-element" formControlName="genderMale">
+            Mężczyzna
+          </mat-checkbox>
+        </section>
+
+        <span class="section-label">Wiek<br></span>
+        <section fxLayout="row">
+          <span class="slider-value slider-min-value"
+                fxFlexAlign="center">{{sliderValues?.min}}
+          </span>
+          <app-mat-range-slider
+            formControlName="ageRange"
+            class="slider"
+            fxFlex
+            thumbLabel
+            (input)="sliderValues = $event.value">
+          </app-mat-range-slider>
+          <span class="slider-value slider-max-value" fxFlexAlign="center">
+          {{sliderValues?.max}}<span *ngIf="sliderValues.max == 100">+</span>
+          </span>
+        </section>
+      </mat-expansion-panel>
+      <mat-divider></mat-divider>
+      <mat-expansion-panel expanded class="mat-elevation-z0 looking-filters"
+                           formGroupName="looking">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Poszukujący
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="looking-filters-content">
+          <section>
+            <span class="section-label">Typ użytkownika<br></span>
+            <mat-checkbox class="gender-element" formControlName="musicianUser">Muzyk</mat-checkbox>
+            <mat-checkbox class="gender-element" formControlName="bandUser">Zespół</mat-checkbox>
+            <mat-checkbox class="gender-element" formControlName="regularUser">Zwykły</mat-checkbox>
+          </section>
+          <section fxLayoutAlign="row">
+            <span class="section-label">Oferta komercyjna</span>
+            <mat-slide-toggle formControlName="commercial"></mat-slide-toggle>
+          </section>
+          <app-genre-chip-input formControlName="genres"></app-genre-chip-input>
+          <app-instrument-chip-input formControlName="instruments"></app-instrument-chip-input>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <button type="submit">Submit</button>
+  </form>
 </div>

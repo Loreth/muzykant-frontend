@@ -23,6 +23,9 @@ import {ChipListAutocompleteInputComponent} from './ad-filter-panel/chip-list-au
 import {GenreChipInputComponent} from './ad-filter-panel/genre-chip-input/genre-chip-input.component';
 import {InstrumentChipInputComponent} from './ad-filter-panel/instrument-chip-input/instrument-chip-input.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatInputModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ]
 })
 export class ClassifiedAdsModule {

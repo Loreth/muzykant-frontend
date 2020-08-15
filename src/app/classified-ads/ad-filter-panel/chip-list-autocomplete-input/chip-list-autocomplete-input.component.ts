@@ -1,33 +1,50 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {MatAutocompleteSelectedEvent, MatAutocompleteTrigger} from '@angular/material/autocomplete';
 import {map, startWith} from 'rxjs/operators';
 import {Nameable} from '../../../shared/models/nameable.model';
+import {RestService} from '../../../shared/services/rest.service';
 
 @Component({
   templateUrl: './chip-list-autocomplete-input.component.html',
-  styleUrls: ['./chip-list-autocomplete-input.component.css']
+  styleUrls: ['./chip-list-autocomplete-input.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ChipListAutocompleteInputComponent),
+      multi: true
+    }
+  ]
 })
-export class ChipListAutocompleteInputComponent<ID, T extends Nameable<ID>> {
-  @Input() items: T[];
+export class ChipListAutocompleteInputComponent<ID, T extends Nameable<ID>> implements ControlValueAccessor, OnInit {
+  items: T[];
   @Input() placeholder: string;
   @Input() label: string;
   @Input() labelIcon: string;
   @Input() chipCssClass: string;
 
-  formControl = new FormControl();
+  inputFormControl = new FormControl();
   filteredItems: Observable<T[]>;
   selectedItems: T[] = [];
 
   @ViewChild('itemInput') itemInput: ElementRef<HTMLInputElement>;
   @ViewChild('trigger', {read: MatAutocompleteTrigger}) matAutocompleteTrigger: MatAutocompleteTrigger;
 
-  constructor() {
-    this.filteredItems = this.formControl.valueChanges.pipe(
-      startWith(''),
-      map(value => typeof value === 'string' ? value : value.name),
-      map(name => name ? this._filterItems(name) : this.items.slice()));
+  constructor(private service: RestService<T, ID>) {
+  }
+
+  ngOnInit(): void {
+    this.service.getDtosPage(0, 2000, ['name']).subscribe(
+      page => {
+        this.items = page.content;
+
+        this.filteredItems = this.inputFormControl.valueChanges.pipe(
+          startWith(''),
+          map(value => typeof value === 'string' ? value : value.name),
+          map(name => name ? this._filterItems(name) : this.items));
+      }
+    );
   }
 
   remove(item: T): void {
@@ -35,6 +52,7 @@ export class ChipListAutocompleteInputComponent<ID, T extends Nameable<ID>> {
     if (index >= 0) {
       this.selectedItems.splice(index, 1);
     }
+    this.propagateChange(this.selectedItems);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -44,7 +62,8 @@ export class ChipListAutocompleteInputComponent<ID, T extends Nameable<ID>> {
       this.selectedItems.push(viewValue);
     }
     this.itemInput.nativeElement.value = '';
-    this.formControl.setValue('');
+    this.inputFormControl.setValue('');
+    this.propagateChange(this.selectedItems);
   }
 
   private _filterItems(name: string): T[] {
@@ -56,6 +75,22 @@ export class ChipListAutocompleteInputComponent<ID, T extends Nameable<ID>> {
   public onBackspaceKeydownHideAutocomplete(): void {
     if (!this.itemInput || this.itemInput.nativeElement.value === '') {
       this.matAutocompleteTrigger.closePanel();
+    }
+  }
+
+  propagateChange = (_: any) => {
+  };
+
+  registerOnChange(fn: any): void {
+    this.propagateChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+  }
+
+  writeValue(obj: T[]): void {
+    if (obj !== null && obj !== undefined) {
+      this.selectedItems = obj;
     }
   }
 }

@@ -2,8 +2,13 @@ import {Observable, of} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {Identifiable} from '../models/identifiable.model';
+import {Page} from '../models/pagination/page';
+import {AbstractControl} from '@angular/forms';
 
 export abstract class RestService<T extends Identifiable<ID>, ID> {
+  private static readonly DEFAULT_PAGE = 0;
+  private static readonly DEFAULT_PAGE_SIZE = 20;
+
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
@@ -11,11 +16,21 @@ export abstract class RestService<T extends Identifiable<ID>, ID> {
   protected constructor(private http: HttpClient, private endpointUrl: string) {
   }
 
-  getDtos(): Observable<T[]> {
-    return this.http.get<T[]>(this.endpointUrl)
+  getDtosPage(page: number = RestService.DEFAULT_PAGE,
+              pageSize: number = RestService.DEFAULT_PAGE_SIZE,
+              sortFields?: string[]): Observable<Page<T>> {
+    let httpParams = new HttpParams()
+    .set('page', page.toString())
+    .set('size', pageSize.toString());
+
+    if (sortFields) {
+      httpParams = httpParams.set('sort', sortFields.toString());
+    }
+
+    return this.http.get<Page<T>>(this.endpointUrl, {params: httpParams})
     .pipe(
-      tap(_ => console.log('fetched Dtos from' + this.endpointUrl)),
-      catchError(this.handleError<T[]>('getDtos', []))
+      tap(x => console.log(`fetched ${x.content.length} Dtos from ${this.endpointUrl}?${httpParams.toString()}`)),
+      catchError(this.handleError<Page<T>>('getDtos', new Page()))
     );
   }
 
@@ -52,15 +67,26 @@ export abstract class RestService<T extends Identifiable<ID>, ID> {
     );
   }
 
-  searchDtos(httpParams: HttpParams): Observable<T[]> {
-    return this.http.get<T[]>(this.endpointUrl, {params: httpParams}).pipe(
-      tap(x => x.length ?
-        console.log(`found dtos matching "${httpParams}"`) :
-        console.log(`no dtos matching "${httpParams}"`)),
-      catchError(this.handleError<T[]>('searchDtos', []))
+  searchDtos(searchForm: AbstractControl, page: number, pageSize: number, sortFields?: string[]): Observable<Page<T>> {
+    const searchUrl = `${this.endpointUrl}/search`;
+    let searchParams = this.searchFormToParams(searchForm);
+    searchParams = searchParams
+    .set('page', page.toString())
+    .set('size', pageSize.toString());
+
+    if (sortFields) {
+      searchParams = searchParams.set('sort', sortFields.toString());
+    }
+
+    return this.http.get<Page<T>>(searchUrl, {params: searchParams}).pipe(
+      tap(x => x.size ?
+        console.log(`found ${x.content.length} dtos under "${this.endpointUrl}?${searchParams}"`) :
+        console.log(`no dtos under "${this.endpointUrl}?${searchParams}"`)),
+      catchError(this.handleError<Page<T>>('searchDtos', new Page()))
     );
   }
 
+  protected abstract searchFormToParams(searchForm: AbstractControl): HttpParams;
 
   private handleError<U>(operation = 'operation', result?: U): (error: any) => Observable<U> {
     return (error: any): Observable<U> => {

@@ -1,7 +1,8 @@
 <div fxLayout="row">
-  <div fxFlex="20%">
-    <app-ad-filter-panel fxFlexAlign="end"></app-ad-filter-panel>
+  <div fxFlex="1 0 25%" fxLayout="row" fxLayoutAlign="end">
+    <app-ad-filter-panel (changedFilters)="onChangedFilters($event)" fxFlex="0 1 350px"></app-ad-filter-panel>
   </div>
-  <app-someone-wanted-ads [adsWithChips]="adsWithChips" fxFlex="0 1 1024px">
+  <app-someone-wanted-ads [adsWithChips$]="adsWithChips$" fxFlex="0 1 1024px">
   </app-someone-wanted-ads>
+  <div fxFlex="0 100 25%"></div>
 </div>
