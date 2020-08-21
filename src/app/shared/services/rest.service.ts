@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {Identifiable} from '../models/identifiable.model';
 import {Page} from '../models/pagination/page';
-import {AbstractControl} from '@angular/forms';
 
 export abstract class RestService<T extends Identifiable<ID>, ID> {
   private static readonly DEFAULT_PAGE = 0;
@@ -13,7 +12,7 @@ export abstract class RestService<T extends Identifiable<ID>, ID> {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  protected constructor(private http: HttpClient, private endpointUrl: string) {
+  protected constructor(protected http: HttpClient, protected endpointUrl: string) {
   }
 
   getDtosPage(page: number = RestService.DEFAULT_PAGE,
@@ -67,28 +66,7 @@ export abstract class RestService<T extends Identifiable<ID>, ID> {
     );
   }
 
-  searchDtos(searchForm: AbstractControl, page: number, pageSize: number, sortFields?: string[]): Observable<Page<T>> {
-    const searchUrl = `${this.endpointUrl}/search`;
-    let searchParams = this.searchFormToParams(searchForm);
-    searchParams = searchParams
-    .set('page', page.toString())
-    .set('size', pageSize.toString());
-
-    if (sortFields) {
-      searchParams = searchParams.set('sort', sortFields.toString());
-    }
-
-    return this.http.get<Page<T>>(searchUrl, {params: searchParams}).pipe(
-      tap(x => x.size ?
-        console.log(`found ${x.content.length} dtos under "${this.endpointUrl}?${searchParams}"`) :
-        console.log(`no dtos under "${this.endpointUrl}?${searchParams}"`)),
-      catchError(this.handleError<Page<T>>('searchDtos', new Page()))
-    );
-  }
-
-  protected abstract searchFormToParams(searchForm: AbstractControl): HttpParams;
-
-  private handleError<U>(operation = 'operation', result?: U): (error: any) => Observable<U> {
+  protected handleError<U>(operation = 'operation', result?: U): (error: any) => Observable<U> {
     return (error: any): Observable<U> => {
       console.error(error);
       console.log(`${operation} failed: ${error.message}`);

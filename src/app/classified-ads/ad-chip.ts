@@ -1,7 +1,8 @@
 export enum ChipCssClass {
   INSTRUMENT = 'instrument-chip',
   GENRE = 'genre-chip',
-  PERSONAL = 'personal-chip'
+  GENDER = 'gender-chip',
+  AGE = 'age-chip'
 }
 
 export class AdChip {

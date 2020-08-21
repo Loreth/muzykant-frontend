@@ -12,18 +12,26 @@ body {
 
 .material-icons.md-18 {
   font-size: 18px;
+  height: 1em;
+  width: 1em;
 }
 
 .material-icons.md-24 {
   font-size: 24px;
+  height: 1em;
+  width: 1em;
 }
 
 .material-icons.md-36 {
   font-size: 36px;
+  height: 1em;
+  width: 1em;
 }
 
 .material-icons.md-48 {
   font-size: 48px;
+  height: 1em;
+  width: 1em;
 }
 
 mat-form-field.mat-form-field {

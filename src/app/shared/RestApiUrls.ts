@@ -19,5 +19,5 @@ export const VOCAL_TECHNIQUE = '/vocal-techniques';
 export const VOIVODESHIP = '/voivodeships';
 
 export function getEndpointUrl(endpoint: string): string {
-  return API_BASE_URL + ':' + API_PORT  + endpoint;
+  return API_BASE_URL + ':' + API_PORT + endpoint;
 }

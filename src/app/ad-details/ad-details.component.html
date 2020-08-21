@@ -1,0 +1,106 @@
+<div fxLayout="row" *ngIf="(adWithChips$ | async) as adWithChips">
+  <div fxFlex="0 100 25%"></div>
+  <div fxFlex="0 1 1024px" class="ad-details-container" fxLayout="row">
+    <mat-card appMaterialElevation class="user-card" fxFlex>
+      <mat-card-header>
+        <mat-card-title>{{adWithChips.ad.userDisplayName}}</mat-card-title>
+        <mat-card-subtitle>{{localizeUserType(adWithChips.ad.userType)}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-icon svgIcon="user_circle" *ngIf="!adWithChips.ad.userProfileImageLink" color="accent"
+                class="fallback-profile-icon">
+      </mat-icon>
+      <img mat-card-image *ngIf="adWithChips.ad.userProfileImageLink"
+           [src]="adWithChips.ad.userProfileImageLink"
+           alt="Zdjęcie profilowe użytkownika">
+      <mat-card-content *ngIf="postingUser$ | async as postingUser" class="card-content">
+        <p fxLayoutAlign="start center">
+          <mat-icon class="md-18">domain</mat-icon>
+          {{postingUser.voivodeship.name | capitalize}}
+        </p>
+        <p fxLayoutAlign="start center">
+          <mat-icon class="md-18">place</mat-icon>
+          {{postingUser.city | capitalize}}
+        </p>
+        <p *ngIf="getJoinedNames(postingUser.genres) as joinedGenres" fxLayoutAlign="start center">
+          <mat-icon class="md-18">music_note</mat-icon>
+          {{joinedGenres}}
+        </p>
+        <p *ngIf="getJoinedNames(postingUser.instruments) as joinedInstruments"
+           fxLayoutAlign="start center">
+          <mat-icon class="md-18">mic</mat-icon>
+          {{joinedInstruments}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="space-around  center">
+        <button [disabled]="true" mat-icon-button matTooltip="Soundcloud">
+          <mat-icon svgIcon="soundcloud"></mat-icon>
+        </button>
+        <button [disabled]="true" mat-icon-button matTooltip="YouTube">
+          <mat-icon svgIcon="youtube"></mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div class="ad-info" fxFlex>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <h2>{{getAdHeaderName(adWithChips.ad.adType)}}
+          <mat-icon class="commercial-icon" *ngIf="adWithChips.ad.commercial"
+                    matTooltip="Oferta komercyjna">
+            monetization_on
+          </mat-icon>
+        </h2>
+        <button (click)="navigateBack()" mat-icon-button color="primary" aria-label="Wróć">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+      <mat-list>
+        <mat-list-item>
+          <span class="row-name">Data publikacji</span>
+          {{adWithChips.ad.publishedDate | date: 'dd.MM.yyyy'}}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <div *ngIf="genreChips?.length">
+          <mat-list-item><span class="row-name">Gatunki</span>
+            <mat-chip-list class="chip-list">
+              <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
+                              *ngFor="let chip of genreChips">
+                {{chip.label | capitalize}}
+              </mat-basic-chip>
+            </mat-chip-list>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="instrumentChips?.length">
+          <mat-list-item><span class="row-name">Instrumenty</span>
+            <mat-chip-list class="chip-list">
+              <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
+                              *ngFor="let chip of instrumentChips">
+                {{chip.label | capitalize}}
+              </mat-basic-chip>
+            </mat-chip-list>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="genderChip">
+          <mat-list-item><span class="row-name">Płeć</span>
+            <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="genderChip.cssClass">
+              {{genderChip.label | capitalize}}
+            </mat-basic-chip>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="ageChip">
+          <mat-list-item><span class="row-name">Wiek</span>
+            <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="ageChip.cssClass">
+              {{ageChip.label | capitalize}}
+            </mat-basic-chip>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-list>
+      <p class="ad-description">{{adWithChips.ad.description}}</p>
+      <button mat-raised-button color="primary">Wyślij wiadomość</button>
+    </div>
+  </div>
+  <div fxFlex="0 100 25%"></div>
+</div>

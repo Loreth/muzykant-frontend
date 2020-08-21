@@ -1,5 +1,5 @@
 <div class="filter-panel">
-  <form [formGroup]="adFiltersForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="adFiltersForm">
     <mat-accordion multi="true" displayMode="flat">
       <mat-expansion-panel expanded class="mat-elevation-z0 wanted-filters" formGroupName="wanted">
         <mat-expansion-panel-header>
@@ -10,8 +10,9 @@
         <mat-form-field appearance="outline">
           <mat-icon matPrefix class="md-18">domain</mat-icon>
           <mat-label>Województwo</mat-label>
-          <mat-select class="voivodeship-name" multiple formControlName="voivodeship">
-            <mat-option class="mat-accent voivodeship-name" *ngFor="let voivodeship of voivodeships$ | async"
+          <mat-select class="voivodeship-name" multiple formControlName="voivodeships">
+            <mat-option class="mat-accent voivodeship-name"
+                        *ngFor="let voivodeship of voivodeships$ | async"
                         [value]="voivodeship">{{voivodeship.name}}
             </mat-option>
           </mat-select>
@@ -24,31 +25,33 @@
         <app-genre-chip-input formControlName="genres"></app-genre-chip-input>
         <app-instrument-chip-input formControlName="instruments"></app-instrument-chip-input>
 
-        <section class="gender-section">
-          <span class="section-label">Płeć<br></span>
-          <mat-checkbox class="gender-element" formControlName="genderFemale">
-            Kobieta
-          </mat-checkbox>
-          <mat-checkbox class="gender-element" formControlName="genderMale">
-            Mężczyzna
-          </mat-checkbox>
-        </section>
+        <section *ngIf="wantedUserType == 'MUSICIAN'">
+          <section class="gender-section">
+            <span class="section-label">Płeć<br></span>
+            <mat-checkbox class="gender-element" formControlName="genderFemale">
+              Kobieta
+            </mat-checkbox>
+            <mat-checkbox class="gender-element" formControlName="genderMale">
+              Mężczyzna
+            </mat-checkbox>
+          </section>
 
-        <span class="section-label">Wiek<br></span>
-        <section fxLayout="row">
+          <span class="section-label">Wiek<br></span>
+          <section fxLayout="row">
           <span class="slider-value slider-min-value"
                 fxFlexAlign="center">{{sliderValues?.min}}
           </span>
-          <app-mat-range-slider
-            formControlName="ageRange"
-            class="slider"
-            fxFlex
-            thumbLabel
-            (input)="sliderValues = $event.value">
-          </app-mat-range-slider>
-          <span class="slider-value slider-max-value" fxFlexAlign="center">
+            <app-mat-range-slider
+              formControlName="ageRange"
+              class="slider"
+              fxFlex
+              thumbLabel
+              (input)="sliderValues = $event.value">
+            </app-mat-range-slider>
+            <span class="slider-value slider-max-value" fxFlexAlign="center">
           {{sliderValues?.max}}<span *ngIf="sliderValues.max == 100">+</span>
           </span>
+          </section>
         </section>
       </mat-expansion-panel>
       <mat-divider></mat-divider>
@@ -75,6 +78,5 @@
         </div>
       </mat-expansion-panel>
     </mat-accordion>
-    <button type="submit">Submit</button>
   </form>
 </div>

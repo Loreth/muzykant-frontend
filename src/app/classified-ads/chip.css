@@ -6,6 +6,10 @@
   background-color: rgba(225, 43, 56, 0.65);
 }
 
-.personal-chip {
+.gender-chip {
+  background-color: rgba(62, 182, 80, 0.85);
+}
+
+.age-chip {
   background-color: rgba(62, 182, 80, 0.85);
 }

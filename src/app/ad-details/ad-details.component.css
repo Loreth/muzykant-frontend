@@ -1,0 +1,80 @@
+@import url(../classified-ads/chip.css);
+
+.ad-details-container, .user-card {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+
+mat-card-header, .mat-card-image:hover {
+  cursor: pointer;
+}
+
+.ad-details-container {
+  padding: 16px;
+}
+
+.user-card {
+  margin-right: 16px;
+  max-width: 265px;
+}
+
+.fallback-profile-icon {
+  width: 100%;
+  height: auto;
+}
+
+.row-name {
+  min-width: 170px;
+}
+
+.ad-chip {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 13px;
+  padding: 0.07em 0.8em;
+  margin: 5px 8px 5px 0;
+  border-radius: 12px;
+}
+
+:host ::ng-deep .mat-chip-list-wrapper {
+  margin: 0;
+}
+
+.chip-list {
+  outline: none;
+}
+
+.ad-description {
+  margin: 16px;
+}
+
+:host .mat-list-item {
+  font-size: 15px;
+  height: auto;
+  padding: 6px 0;
+}
+
+.ad-info h2 {
+  margin: 0 16px;
+}
+
+:host ::ng-deep .mat-card-header-text {
+  margin: 0;
+}
+
+mat-card-content {
+  font-size: 14px;
+}
+
+.card-content mat-icon {
+  padding-right: 8px;
+}
+
+.card-content p {
+  margin-bottom: 8px;
+}
+
+.commercial-icon {
+  vertical-align: middle;
+  color: rgba(0, 0, 0, 0.7);
+}

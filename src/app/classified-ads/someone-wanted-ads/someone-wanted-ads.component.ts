@@ -2,6 +2,11 @@ import {Component, Input} from '@angular/core';
 import {AdWithChips} from '../ad-with-chips';
 import {Genre} from '../../shared/models/genre.model';
 import {Subject} from 'rxjs';
+import {AdChip, ChipCssClass} from '../ad-chip';
+import {Ad} from '../../shared/models/ad.model';
+import {UserType} from '../../shared/models/UserType';
+import {AdType} from '../../shared/models/AdType';
+import {LocalizationUtils} from '../../shared/localization-utils';
 
 @Component({
   selector: 'app-someone-wanted-ads',
@@ -11,28 +16,39 @@ import {Subject} from 'rxjs';
 export class SomeoneWantedAdsComponent {
   @Input() adsWithChips$: Subject<AdWithChips[]>;
 
-  getProfileImageLink(): string {
-    return null;
-  }
+  public static makeAdChips(ad: Ad): AdChip[] {
+    const adChips: AdChip[] = [];
 
-  localizeUserType(userType: string): string {
-    let localizedUserType: string;
-    switch (userType) {
-      case 'MUSICIAN':
-        localizedUserType = 'Muzyk';
-        break;
-      case 'BAND':
-        localizedUserType = 'Zespół';
-        break;
-      case 'REGULAR':
-        localizedUserType = 'Zwykły';
-        break;
+    if (ad.preferredGenres) {
+      for (const genre of ad.preferredGenres) {
+        adChips.push(new AdChip(genre.name, ChipCssClass.GENRE));
+      }
+    }
+    if (ad.preferredInstruments) {
+      for (const instrument of ad.preferredInstruments) {
+        adChips.push(new AdChip(instrument.name, ChipCssClass.INSTRUMENT));
+      }
     }
 
-    return localizedUserType;
+    return adChips;
   }
 
   mapGenresToGenreNames(genres: Genre[]): string[] {
     return genres.map(genre => genre.name);
+  }
+
+  mapAdTypeToRoutingPath(adType: AdType): string {
+    switch (adType) {
+      case AdType.MUSICIAN_WANTED:
+        return '/ads/musician-wanted/';
+      case AdType.BAND_WANTED:
+        return '/ads/band-wanted';
+      case AdType.JAM_SESSION:
+        return '/ads/jam-session';
+    }
+  }
+
+  localizeUserType(userType: UserType): string {
+    return LocalizationUtils.localizeUserType(userType);
   }
 }

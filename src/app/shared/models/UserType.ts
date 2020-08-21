@@ -1,5 +1,5 @@
 export enum UserType {
-  MUSICIAN,
-  BAND,
-  REGULAR
+  MUSICIAN = 'MUSICIAN',
+  BAND = 'BAND',
+  REGULAR = 'REGULAR'
 }

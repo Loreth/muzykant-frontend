@@ -17,6 +17,14 @@ import {MusiciansComponent} from './musicians/musicians.component';
 import {BandsComponent} from './bands/bands.component';
 import {MatListModule} from '@angular/material/list';
 import {HttpClientModule} from '@angular/common/http';
+import {AdDetailsComponent} from './ad-details/ad-details.component';
+import {MatCardModule} from '@angular/material/card';
+import {MusicianWantedAdDetailsComponent} from './ad-details/musician-wanted-ad-details/musician-wanted-ad-details.component';
+import {BandWantedAdDetailsComponent} from './ad-details/band-wanted-ad-details/band-wanted-ad-details.component';
+import {JamSessionAdDetailsComponent} from './ad-details/jam-session-ad-details/jam-session-ad-details.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {SharedModule} from './shared/shared.module';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -24,7 +32,11 @@ import {HttpClientModule} from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     MusiciansComponent,
-    BandsComponent
+    BandsComponent,
+    AdDetailsComponent,
+    MusicianWantedAdDetailsComponent,
+    BandWantedAdDetailsComponent,
+    JamSessionAdDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +50,11 @@ import {HttpClientModule} from '@angular/common/http';
     MatButtonModule,
     MatTabsModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatChipsModule,
+    SharedModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

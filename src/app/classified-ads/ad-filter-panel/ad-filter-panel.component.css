@@ -27,6 +27,10 @@ mat-form-field.mat-form-field {
   width: 100%;
 }
 
+:host ::ng-deep .mat-form-field-prefix {
+  padding-right: 4px;
+}
+
 mat-expansion-panel-header.mat-expansion-panel-header {
   padding: 0 16px;
 }
