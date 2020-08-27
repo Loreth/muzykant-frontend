@@ -34,9 +34,10 @@ import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatRippleModule} from '@angular/material/core';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import {SignUpComponent} from './sign-up/sign-up.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatMenuModule,
     MatRippleModule,
     MatGridListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

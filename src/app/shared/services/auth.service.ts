@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {getEndpointUrl, LOGIN} from '../rest-api-urls';
+import {getEndpointUrl, LOGIN, SIGN_UP} from '../rest-api-urls';
 import {LoginRequest} from '../models/login-request.model';
 import {SignUpRequest} from '../models/sign-up-request.model';
 import {TokenStorageService} from './token-storage.service';
@@ -30,8 +30,10 @@ export class AuthService {
     TokenStorageService.signOut();
   }
 
-  signUp(signUpRequest: SignUpRequest<any>, endpointUrl: string): Observable<any> {
-    return this.http.post(endpointUrl, signUpRequest);
+  signUp(signUpRequest: SignUpRequest): Observable<HttpResponse<any>> {
+    return this.http.post<any>(getEndpointUrl(SIGN_UP), signUpRequest, {observe: 'response'}).pipe(
+      tap(() => console.log(`Attempted to sign up ${signUpRequest.email}`))
+    );
   }
 
   isLoggedIn(): boolean {

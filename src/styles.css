@@ -48,3 +48,13 @@ mat-form-field.mat-form-field {
 .inline-element {
   display: inline !important;
 }
+
+.mat-form-field-prefix .material-icons-outlined, .mat-form-field-suffix .material-icons-outlined {
+  font-size: 150%;
+  line-height: 1.125;
+}
+
+.snackbar {
+  background-color: #e12b38;
+  color: white;
+}

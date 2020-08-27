@@ -1,7 +1,9 @@
-import {User} from './user';
-
-export interface SignUpRequest<T extends User> {
-  username: string;
+export class SignUpRequest {
+  email: string;
   password: string;
-  user: T;
+
+  constructor(email: string, password: string) {
+    this.email = email;
+    this.password = password;
+  }
 }
