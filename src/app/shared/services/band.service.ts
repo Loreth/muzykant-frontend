@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BAND, getEndpointUrl} from '../RestApiUrls';
+import {BAND, getEndpointUrl} from '../rest-api-urls';
 import {HttpClient} from '@angular/common/http';
 import {RestService} from './rest.service';
 import {Band} from '../models/band.model';

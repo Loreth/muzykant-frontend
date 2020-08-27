@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BAND_WANTED_AD, getEndpointUrl} from '../RestApiUrls';
+import {BAND_WANTED_AD, getEndpointUrl} from '../rest-api-urls';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {AbstractControl} from '@angular/forms';
 import {BandWantedAd} from '../models/band-wanted-ad.model';

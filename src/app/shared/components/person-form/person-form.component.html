@@ -1,0 +1,41 @@
+<ng-container [formGroup]="personForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Imie</mat-label>
+    <input matInput formControlName="firstName" required>
+    <mat-error *ngIf="firstName.errors?.required">
+      Imie {{requiredMessage}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Nazwisko</mat-label>
+    <input matInput formControlName="lastName" required>
+    <mat-error *ngIf="lastName.errors?.required">
+      Nazwisko {{requiredMessage}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Pseudonim</mat-label>
+    <input matInput formControlName="pseudo">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Data urodzenia</mat-label>
+    <input matInput [matDatepicker]="picker" [max]="maxBirthdate"
+           formControlName="birthdate" required>
+    <mat-datepicker-toggle class="datepicker-toggle" matSuffix
+                           [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker color="accent"></mat-datepicker>
+    <mat-error *ngIf="birthdate.errors?.required">
+      Data urodzenia {{requiredMessage}} (d/m/rrrr)
+    </mat-error>
+    <mat-error *ngIf="birthdate.errors?.matDatepickerMax">
+      Użytkownik musi mieć co najmniej 13 lat)
+    </mat-error>
+  </mat-form-field>
+  <div class="gender-section">
+    <label class="gender-label">Płeć:</label>
+    <mat-radio-group formControlName="gender">
+      <mat-radio-button value="F">Kobieta</mat-radio-button>
+      <mat-radio-button value="M">Mężczyzna</mat-radio-button>
+    </mat-radio-group>
+  </div>
+</ng-container>

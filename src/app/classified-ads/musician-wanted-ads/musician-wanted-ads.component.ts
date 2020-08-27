@@ -26,7 +26,7 @@ export class MusicianWantedAdsComponent implements OnInit {
   public static makeAdChips(ad: MusicianWantedAd): AdChip[] {
     const adChips: AdChip[] = SomeoneWantedAdsComponent.makeAdChips(ad);
 
-    if (ad.preferredGender === 'K') {
+    if (ad.preferredGender === 'F') {
       adChips.push(new AdChip('Kobieta', ChipCssClass.GENDER));
     } else if (ad.preferredGender === 'M') {
       adChips.push(new AdChip('Mężczyzna', ChipCssClass.GENDER));

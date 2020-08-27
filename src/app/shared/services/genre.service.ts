@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {GENRE, getEndpointUrl} from '../RestApiUrls';
+import {GENRE, getEndpointUrl} from '../rest-api-urls';
 import {HttpClient} from '@angular/common/http';
 import {RestService} from './rest.service';
 import {Genre} from '../models/genre.model';

@@ -1,11 +1,5 @@
 @import url(../classified-ads/chip.css);
 
-.ad-details-container, .user-card {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 10px;
-}
-
 mat-card-header, .mat-card-image:hover {
   cursor: pointer;
 }
@@ -17,6 +11,7 @@ mat-card-header, .mat-card-image:hover {
 .user-card {
   margin-right: 16px;
   max-width: 265px;
+  border-radius: 10px;
 }
 
 .fallback-profile-icon {

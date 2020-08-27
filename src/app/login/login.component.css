@@ -1,0 +1,38 @@
+.login-card {
+  padding: 16px;
+  font-size: 14px;
+  height: 70vh;
+}
+
+mat-form-field {
+  width: 350px;
+}
+
+.login-button {
+  width: 200px;
+  margin-bottom: 32px;
+  margin-top: 8px;
+}
+
+.opacity-icon {
+  margin-right: 16px;
+  opacity: 0.5;
+}
+
+.link {
+  color: #e12b38;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.sign-up-divider {
+  margin: 16px 0;
+  width: 80%;
+}
+
+.mat-form-field {
+  margin-bottom: 4px;
+}

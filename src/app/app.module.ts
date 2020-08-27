@@ -25,6 +25,18 @@ import {JamSessionAdDetailsComponent} from './ad-details/jam-session-ad-details/
 import {MatChipsModule} from '@angular/material/chips';
 import {SharedModule} from './shared/shared.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {LoginComponent} from './login/login.component';
+import {JwtModule} from '@auth0/angular-jwt';
+import {TokenStorageService} from './shared/services/token-storage.service';
+import {API_BASE_URL, LOGIN} from './shared/rest-api-urls';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatRippleModule} from '@angular/material/core';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -36,7 +48,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     AdDetailsComponent,
     MusicianWantedAdDetailsComponent,
     BandWantedAdDetailsComponent,
-    JamSessionAdDetailsComponent
+    JamSessionAdDetailsComponent,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -51,10 +65,24 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTabsModule,
     MatListModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: TokenStorageService.getToken,
+        allowedDomains: [API_BASE_URL],
+        disallowedRoutes: [API_BASE_URL + LOGIN]
+      }
+    }),
     MatCardModule,
     MatChipsModule,
     SharedModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatRippleModule,
+    MatGridListModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

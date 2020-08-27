@@ -1,9 +1,6 @@
 @import url(../chip.css);
 
 .filter-panel {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 10px;
   margin-top: 18px;
   margin-right: 10px;
 }

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {getEndpointUrl, JAM_SESSION_AD} from '../RestApiUrls';
+import {getEndpointUrl, JAM_SESSION_AD} from '../rest-api-urls';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {AbstractControl} from '@angular/forms';
 import {MusicianWantedAdService} from './musician-wanted-ad.service';

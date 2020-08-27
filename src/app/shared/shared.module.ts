@@ -5,18 +5,39 @@ import {MaterialElevationDirective} from './directives/material-elevation.direct
 import {MatRangeSliderComponent} from './components/mat-range-slider/mat-range-slider.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
+import {PersonFormComponent} from './components/person-form/person-form.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
-  declarations: [CapitalizePipe, MaterialElevationDirective, MatRangeSliderComponent],
+  declarations: [CapitalizePipe,
+    MaterialElevationDirective,
+    MatRangeSliderComponent,
+    PersonFormComponent],
   exports: [
     CapitalizePipe,
     MaterialElevationDirective,
-    MatRangeSliderComponent
+    MatRangeSliderComponent,
+    PersonFormComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatSliderModule
+    MatSliderModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
+  providers: [
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class SharedModule {

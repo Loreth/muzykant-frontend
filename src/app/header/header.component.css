@@ -1,4 +1,5 @@
 header {
+  width: 100%;
   color: white;
   position: sticky;
   top: 0;
@@ -15,7 +16,6 @@ header {
 
 .mat-tab-link:hover {
   color: #ff6562;
-  opacity: 74%;
 }
 
 .mat-tab-label-active {
@@ -28,17 +28,45 @@ header {
 
 .nav-container {
   height: 100%;
+  margin-right: 24px;
 }
 
 :host ::ng-deep .mat-ink-bar {
   height: 3px !important;
 }
 
-.user-icon {
-  margin-left: 64px;
-  color: #e12b38;
+.user-dropdown-menu {
+  vertical-align: middle;
+  user-select: none;
+}
+
+.user-dropdown-menu:hover {
+  cursor: pointer;
+  color: #ff6562;
+}
+
+.profile-text {
+  margin-left: 6px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dropdown-icon {
+  margin-top: 2px;
 }
 
 .logo-image {
-  height: 54px;
+  height: 50px;
 }
+
+.logo-image:hover {
+  cursor: pointer;
+}
+
+.login-button .mat-flat-button {
+  font-weight: 600;
+}
+
+/*::ng-deep .profile-menu + * .cdk-overlay-pane > div.mat-menu-panel {*/
+/*  border-radius: 10px;*/
+/*}*/

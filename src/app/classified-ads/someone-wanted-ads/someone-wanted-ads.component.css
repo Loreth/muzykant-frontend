@@ -2,15 +2,13 @@
 
 .ad-list .mat-list-item {
   color: black;
-  background-color: white;
   height: auto;
   margin: 10px 0;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 10px;
 }
 
 .ad-list .mat-list-item:hover {
   cursor: pointer;
+  background-color: white;
 }
 
 .ad-list::ng-deep .mat-list-item-content {

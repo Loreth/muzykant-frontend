@@ -1,0 +1,15 @@
+mat-radio-button {
+  margin: 0 12px;
+}
+
+.gender-section {
+  margin-bottom: 16px;
+}
+
+.gender-label {
+  vertical-align: middle;
+}
+
+:host ::ng-deep .datepicker-toggle .mat-icon-button {
+  display: inline-block !important;
+}

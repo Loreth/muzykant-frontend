@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {getEndpointUrl, MUSICIAN} from '../RestApiUrls';
+import {getEndpointUrl, MUSICIAN} from '../rest-api-urls';
 import {HttpClient} from '@angular/common/http';
 import {RestService} from './rest.service';
 import {Musician} from '../models/musician.model';

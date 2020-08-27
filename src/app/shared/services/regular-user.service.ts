@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {getEndpointUrl, REGULAR_USER} from '../RestApiUrls';
+import {getEndpointUrl, REGULAR_USER} from '../rest-api-urls';
 import {HttpClient} from '@angular/common/http';
 import {RestService} from './rest.service';
 import {RegularUser} from '../models/regular-user.model';

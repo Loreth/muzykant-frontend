@@ -5,7 +5,7 @@
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <img src="../../assets/img/muzykant_logo.webp" alt="logo" class="logo-image">
+    <img routerLink="" src="../../assets/img/muzykant_logo.webp" alt="logo" class="logo-image">
     <div fxLayout="row" fxFlex fxLayoutAlign="end">
       <div class="nav-container" fxHide.xs>
         <nav mat-tab-nav-bar disableRipple color="accent">
@@ -17,9 +17,38 @@
           </a>
         </nav>
       </div>
-      <span fxFlexAlign="center" class="material-icons md-48 user-icon">
-      account_circle
-      </span>
+      <div fxFlexAlign="center">
+        <span *ngIf="!isUserLoggedIn()" class="login-button">
+          <button routerLink="login" mat-flat-button color="accent">
+            Zaloguj się <mat-icon>login</mat-icon>
+          </button>
+        </span>
+        <div matRipple *ngIf="isUserLoggedIn()">
+          <div [matMenuTriggerFor]="userMenu" class="user-dropdown-menu" fxLayout="row"
+               fxLayoutAlign="space-around center">
+            <mat-icon class="md-36"
+                      color="accent">
+              account_circle
+            </mat-icon>
+            <span class="profile-text">Konto</span>
+            <mat-icon class="md-24 dropdown-icon">expand_more</mat-icon>
+          </div>
+          <mat-menu #userMenu="matMenu" backdropClass="profile-menu">
+            <a mat-menu-item routerLink="/account">
+              <mat-icon color="accent">account_circle</mat-icon>
+              <span>Moje konto</span>
+            </a>
+            <a mat-menu-item [routerLink]="linkName">
+              <mat-icon color="accent">public</mat-icon>
+              <span>Mój profil</span>
+            </a>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon color="accent">power_settings_new</mat-icon>
+              <span>Wyloguj</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
     </div>
   </mat-toolbar>
 </header>

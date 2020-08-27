@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {getEndpointUrl, INSTRUMENT} from '../RestApiUrls';
+import {getEndpointUrl, INSTRUMENT} from '../rest-api-urls';
 import {HttpClient} from '@angular/common/http';
 import {RestService} from './rest.service';
 import {Instrument} from '../models/instrument.model';

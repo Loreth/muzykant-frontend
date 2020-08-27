@@ -5,9 +5,13 @@ import {MusiciansComponent} from './musicians/musicians.component';
 import {MusicianWantedAdDetailsComponent} from './ad-details/musician-wanted-ad-details/musician-wanted-ad-details.component';
 import {BandWantedAdDetailsComponent} from './ad-details/band-wanted-ad-details/band-wanted-ad-details.component';
 import {JamSessionAdDetailsComponent} from './ad-details/jam-session-ad-details/jam-session-ad-details.component';
+import {LoginComponent} from './login/login.component';
+import {SignUpComponent} from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'ads', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'sign-up', component: SignUpComponent},
   {path: 'ads', loadChildren: () => import('./classified-ads/classified-ads.module').then(m => m.ClassifiedAdsModule)},
   {path: 'musicians', component: MusiciansComponent},
   {path: 'bands', component: BandsComponent},

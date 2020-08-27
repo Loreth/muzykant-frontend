@@ -3,6 +3,7 @@ export const API_BASE_URL = 'http://localhost';
 export const ID = '/{id}';
 export const SEARCH = '/search';
 export const SIGN_UP = '/sign-up';
+export const LOGIN = '/login';
 
 export const BAND = '/bands';
 export const MUSICIAN = '/musicians';

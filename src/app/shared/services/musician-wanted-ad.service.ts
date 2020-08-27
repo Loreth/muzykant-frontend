@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {getEndpointUrl, MUSICIAN_WANTED_AD} from '../RestApiUrls';
+import {getEndpointUrl, MUSICIAN_WANTED_AD} from '../rest-api-urls';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {MusicianWantedAd} from '../models/musician-wanted-ad.model';
 import {AbstractControl} from '@angular/forms';
@@ -104,7 +104,7 @@ export class MusicianWantedAdService extends RestSearchService<MusicianWantedAd,
     } else if (male) {
       httpParams = httpParams.append('preferredGender', 'M');
     } else if (female) {
-      httpParams = httpParams.append('preferredGender', 'K');
+      httpParams = httpParams.append('preferredGender', 'F');
     }
 
     return httpParams;

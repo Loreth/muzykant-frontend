@@ -37,3 +37,14 @@ body {
 mat-form-field.mat-form-field {
   line-height: normal;
 }
+
+.app-card {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.inline-element {
+  display: inline !important;
+}
