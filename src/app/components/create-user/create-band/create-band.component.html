@@ -1,0 +1,33 @@
+<form [formGroup]="bandForm" (ngSubmit)="onSubmit()"
+      fxLayout="column">
+  <mat-form-field appearance="outline">
+    <mat-label>Nazwa zespołu</mat-label>
+    <input matInput formControlName="name" required name="bandName">
+    <mat-error *ngIf="name.errors?.required">
+      Nazwa zespołu {{requiredMessage}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Rok założenia</mat-label>
+    <input matInput formControlName="formationYear" name="formationYear">
+    <mat-error
+      *ngIf="formationYear.errors?.min || formationYear.errors?.max">
+      Rok założenia musi znajdować się w zakresie 1900-{{currentYear}}
+    </mat-error>
+    <mat-error
+      *ngIf="formationYear.errors?.pattern && !(formationYear.errors?.min || formationYear.errors?.max)">
+      Podaj poprawny rok
+    </mat-error>
+  </mat-form-field>
+  <app-user-form [voivodeships$]="voivodeships$"
+                 [parentSubmittedStatus]="formSubmittedStatus"
+                 fxLayout="column"
+                 formControlName="user">
+  </app-user-form>
+
+  <button type="submit" class="create-user-button" mat-flat-button color="accent"
+          fxFlexAlign="center">
+    Dokończ rejestrację
+    <mat-icon>how_to_reg</mat-icon>
+  </button>
+</form>

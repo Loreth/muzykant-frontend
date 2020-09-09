@@ -1,41 +1,51 @@
 <ng-container [formGroup]="personForm">
   <mat-form-field appearance="outline">
     <mat-label>Imie</mat-label>
-    <input matInput formControlName="firstName" required>
+    <input matInput formControlName="firstName" required name="firstName">
     <mat-error *ngIf="firstName.errors?.required">
       Imie {{requiredMessage}}
     </mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Nazwisko</mat-label>
-    <input matInput formControlName="lastName" required>
+    <input matInput formControlName="lastName" required name="lastName">
     <mat-error *ngIf="lastName.errors?.required">
       Nazwisko {{requiredMessage}}
     </mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Pseudonim</mat-label>
-    <input matInput formControlName="pseudo">
+    <input matInput formControlName="pseudo" name="pseudo">
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Data urodzenia</mat-label>
-    <input matInput [matDatepicker]="picker" [max]="maxBirthdate"
-           formControlName="birthdate" required>
+    <input matInput [matDatepicker]="picker" [max]="maxBirthdate" [min]="minBirthdate"
+           formControlName="birthdate" required name="birthdate">
     <mat-datepicker-toggle class="datepicker-toggle" matSuffix
                            [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker color="accent"></mat-datepicker>
     <mat-error *ngIf="birthdate.errors?.required">
-      Data urodzenia {{requiredMessage}} (d/m/rrrr)
+      Data urodzenia {{requiredMessage}} (format D.MM.RRRR)
     </mat-error>
     <mat-error *ngIf="birthdate.errors?.matDatepickerMax">
-      Użytkownik musi mieć co najmniej 13 lat)
+      Użytkownik musi mieć co najmniej 13 lat
+    </mat-error>
+    <mat-error *ngIf="birthdate.errors?.matDatepickerMin">
+      Rok urodzenia nie może być mniejszy niż 1900
     </mat-error>
   </mat-form-field>
   <div class="gender-section">
-    <label class="gender-label">Płeć:</label>
-    <mat-radio-group formControlName="gender">
-      <mat-radio-button value="F">Kobieta</mat-radio-button>
+    <label class="gender-label">Płeć *:</label>
+    <mat-radio-group formControlName="gender" required
+                     [class]="(gender.errors?.required)?genderClass:''">
+      <mat-radio-button [style]="" value="F">Kobieta</mat-radio-button>
       <mat-radio-button value="M">Mężczyzna</mat-radio-button>
+      <div class="error-container">
+        <mat-error class="gender-validation-error"
+                   *ngIf="(parentSubmittedStatus | async) && gender.errors?.required">
+          Płeć {{requiredMessage}}
+        </mat-error>
+      </div>
     </mat-radio-group>
   </div>
 </ng-container>

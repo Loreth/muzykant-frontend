@@ -11,18 +11,21 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [CapitalizePipe,
     MaterialElevationDirective,
     MatRangeSliderComponent,
-    PersonFormComponent],
+    PersonFormComponent,
+    UserFormComponent],
   exports: [
     CapitalizePipe,
     MaterialElevationDirective,
     MatRangeSliderComponent,
-    PersonFormComponent
+    PersonFormComponent,
+    UserFormComponent
   ],
   imports: [
     CommonModule,
@@ -33,11 +36,10 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatCheckboxModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatSelectModule
   ],
   providers: [
-    MatDatepickerModule,
-    MatNativeDateModule
+    MatDatepickerModule
   ]
 })
 export class SharedModule {

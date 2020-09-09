@@ -1,0 +1,32 @@
+<ng-container [formGroup]="userForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Województwo</mat-label>
+    <mat-select formControlName="voivodeship" required>
+      <mat-option *ngFor="let voivo of voivodeships$ | async" [value]="voivo">
+        {{voivo.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="voivodeship.errors?.required">
+      Województwo {{requiredMessage}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Miasto</mat-label>
+    <input matInput formControlName="city" name="city">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Nazwa profilu</mat-label>
+    <input matInput formControlName="linkName" required name="linkName">
+    <mat-hint>Widoczna tylko w linku (np. localhost:4200/users/<strong>moj_profil</strong>)
+    </mat-hint>
+    <mat-error *ngIf="linkName.errors?.required">
+      Nazwa profilu {{requiredMessage}}
+    </mat-error>
+    <mat-error *ngIf="linkName.errors?.pattern">
+      Nazwa może zawierać tylko małe litery, cyfry i _
+    </mat-error>
+    <mat-error *ngIf="linkName.errors?.uniqueLinkName">
+      Ta nazwa profilu jest już zajęta
+    </mat-error>
+  </mat-form-field>
+</ng-container>

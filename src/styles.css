@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "app/shared/chip.css";
 
 html, body {
   height: 100%;
@@ -57,4 +58,14 @@ mat-form-field.mat-form-field {
 .snackbar {
   background-color: #e12b38;
   color: white;
+}
+
+simple-snack-bar span {
+  margin: auto;
+  text-align: center;
+}
+
+.form-prefix-icon {
+  margin-right: 16px;
+  opacity: 0.5;
 }

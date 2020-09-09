@@ -1,0 +1,30 @@
+<div fxLayout="row" fxLayoutAlign="center">
+  <div fxFlex="0 1 1024px" class="app-card confirm-email-card" fxLayout="column"
+       fxLayoutAlign="start center">
+    <ng-container *ngIf="!awaitingConfirmation">
+      <span [class]="confirmedSuccessfully?'confirmed-success-icon':'confirmed-failure-icon'">
+        <mat-icon class="result-icon" *ngIf="confirmedSuccessfully">check_circle_outline</mat-icon>
+        <mat-icon class="result-icon" *ngIf="!confirmedSuccessfully">error_outline</mat-icon>
+      </span>
+
+      <div fxFlex="0 1 auto" class="message-container"
+           [class]="confirmedSuccessfully?'confirmed-success':'confirmed-failure'">
+        {{message}}
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="awaitingConfirmation">
+      <div fxFlex="0 1 auto" class="message-container">
+        {{message}}
+      </div>
+      <button *ngIf="!mailResent" mat-flat-button color="accent" class="resend-button" (click)="resendEmail()">
+        Wyślij wiadomość ponownie
+        <mat-icon>mail</mat-icon>
+      </button>
+      <div *ngIf="mailResent" fxFlex="0 1 auto" class="message-container"
+           [class]="resentSuccessfully?'confirmed-success':'confirmed-failure'">
+        {{resentMessage}}
+      </div>
+    </ng-container>
+  </div>
+</div>

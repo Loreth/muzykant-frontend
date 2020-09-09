@@ -1,0 +1,40 @@
+.confirm-email-card {
+  padding-top: 64px;
+  padding-bottom: 166px;
+  text-align: center;
+}
+
+.confirmed-success {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+
+.confirmed-failure {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+.confirmed-success-icon {
+  color: rgba(0, 255, 0, 0.4);
+}
+
+.confirmed-failure-icon {
+  color: rgba(255, 0, 0, 0.4);
+}
+
+.message-container {
+  margin-top: 16px;
+  width: 70%;
+  white-space: pre;
+  padding: 16px;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.result-icon {
+  font-size: 128px;
+  height: auto;
+  width: auto;
+}
+
+.resend-button {
+  margin-top: 16px;
+}

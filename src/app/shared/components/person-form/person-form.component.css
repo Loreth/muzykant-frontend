@@ -2,14 +2,24 @@ mat-radio-button {
   margin: 0 12px;
 }
 
-.gender-section {
-  margin-bottom: 16px;
-}
-
 .gender-label {
+  color: rgba(0, 0, 0, 0.6);
   vertical-align: middle;
 }
 
 :host ::ng-deep .datepicker-toggle .mat-icon-button {
   display: inline-block !important;
+}
+
+.gender-validation-error {
+  font-size: 75%;
+  padding: 0 1em;
+}
+
+.error-container {
+  height: 20px;
+}
+
+.warn-text {
+  color: #f44336;
 }

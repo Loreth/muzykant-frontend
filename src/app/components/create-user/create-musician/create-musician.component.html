@@ -1,0 +1,18 @@
+<form [formGroup]="musicianForm" (ngSubmit)="onSubmit()"
+      fxLayout="column">
+  <app-person-form [parentSubmittedStatus]="formSubmittedStatus"
+                   fxLayout="column"
+                   formControlName="person">
+  </app-person-form>
+  <app-user-form [voivodeships$]="voivodeships$"
+                 [parentSubmittedStatus]="formSubmittedStatus"
+                 fxLayout="column"
+                 formControlName="user">
+  </app-user-form>
+
+  <button type="submit" class="create-user-button" mat-flat-button color="accent"
+          fxFlexAlign="center">
+    Dokończ rejestrację
+    <mat-icon>how_to_reg</mat-icon>
+  </button>
+</form>

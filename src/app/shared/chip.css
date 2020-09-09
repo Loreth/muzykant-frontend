@@ -1,0 +1,15 @@
+.instrument-chip {
+  background-color: rgba(252, 193, 51, 0.85) !important;
+}
+
+.genre-chip {
+  background-color: rgba(225, 43, 56, 0.65) !important;
+}
+
+.gender-chip {
+  background-color: rgba(62, 182, 80, 0.85) !important;
+}
+
+.age-chip {
+  background-color: rgba(62, 182, 80, 0.85) !important;
+}
