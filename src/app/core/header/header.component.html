@@ -18,13 +18,16 @@
         </nav>
       </div>
       <div fxFlexAlign="center">
-        <span *ngIf="!isUserLoggedIn()" class="login-button">
+        <span *ngIf="!isUserLoggedIn()">
           <button routerLink="login" mat-flat-button color="accent">
             Zaloguj się <mat-icon>login</mat-icon>
           </button>
         </span>
-        <div matRipple *ngIf="isUserLoggedIn()">
-          <div [matMenuTriggerFor]="userMenu" class="user-dropdown-menu" fxLayout="row"
+        <div *ngIf="isUserLoggedIn()" fxLayout="row">
+          <button routerLink="new-ad" mat-flat-button color="accent" class="new-ad-button">
+            Dodaj ogłoszenie <mat-icon>playlist_add</mat-icon>
+          </button>
+          <div matRipple [matMenuTriggerFor]="userMenu" class="user-dropdown-menu" fxLayout="row"
                fxLayoutAlign="space-around center">
             <mat-icon class="md-36"
                       color="accent">

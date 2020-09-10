@@ -62,7 +62,7 @@ export class LoginComponent {
             }
           }
         }, (error: HttpErrorResponse) => {
-          if (error.error.message.includes('User is disabled')) {
+          if (error.error?.message.includes('User is disabled')) {
             console.log('redirecting for disabled user ' + this.email.value);
             this.router.navigate(['/confirm-email'], {queryParams: {email: this.email.value}});
           } else {

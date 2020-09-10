@@ -1,0 +1,64 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <div fxFlex="0 1 1024px" class="app-card sign-up-card" fxLayout="column"
+       fxLayoutAlign="center center">
+    <form class="sign-up-form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()"
+          fxLayout="column">
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" name="muzykant-email">
+        <mat-icon matPrefix class="form-prefix-icon">mail_outlined</mat-icon>
+        <mat-error *ngIf="email.errors?.required">
+          E-mail {{requiredMessage}}
+        </mat-error>
+        <mat-error *ngIf="email.errors?.email">
+          E-mail musi być poprawnym e-mailem
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'">
+        <mat-icon matPrefix class="form-prefix-icon">lock_outlined</mat-icon>
+        <button tabindex="-1"
+                type="button"
+                class="inline-element"
+                mat-icon-button matSuffix
+                (click)="hidePassword = !hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.errors?.required">
+          Hasło {{requiredMessage}}
+        </mat-error>
+        <mat-error *ngIf="password.errors?.minlength">
+          Hasło musi mieć minimum 8 znaków
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Potwierdź hasło</mat-label>
+        <input matInput formControlName="confirmPassword"
+               [type]="hideConfirmPassword ? 'password' : 'text'">
+        <span matPrefix class="material-icons-outlined form-prefix-icon">enhanced_encryption</span>
+        <button tabindex="-1"
+                type="button"
+                class="inline-element"
+                mat-icon-button matSuffix
+                (click)="hideConfirmPassword = !hideConfirmPassword">
+          <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="confirmPassword.errors?.required">
+          Potwierdzenie hasła jest wymagane
+        </mat-error>
+        <mat-error *ngIf="confirmPassword.errors?.minlength">
+          Hasło musi mieć minimum 8 znaków
+        </mat-error>
+        <mat-error *ngIf="confirmPassword.errors?.matching">
+          Podane hasła są różne
+        </mat-error>
+      </mat-form-field>
+      <button type="submit" class="sign-up-button" mat-flat-button color="accent"
+              fxFlexAlign="center">
+        Zarejestruj się
+        <mat-icon>how_to_reg</mat-icon>
+      </button>
+    </form>
+  </div>
+</div>

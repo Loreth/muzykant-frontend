@@ -63,8 +63,12 @@ header {
   cursor: pointer;
 }
 
-.login-button .mat-flat-button {
+header .mat-flat-button {
   font-weight: 600;
+}
+
+.new-ad-button {
+  margin-right: 18px;
 }
 
 /*::ng-deep .profile-menu + * .cdk-overlay-pane > div.mat-menu-panel {*/
