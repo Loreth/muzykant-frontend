@@ -11,7 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { UserFormComponent } from './components/user-form/user-form.component';
+import {UserFormComponent} from './components/user-form/user-form.component';
 import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({

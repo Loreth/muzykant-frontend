@@ -44,7 +44,6 @@ import {CreateUserComponent} from './components/create-user/create-user.componen
 import {CreateMusicianComponent} from './components/create-user/create-musician/create-musician.component';
 import {CreateBandComponent} from './components/create-user/create-band/create-band.component';
 import {CreateRegularUserComponent} from './components/create-user/create-regular-user/create-regular-user.component';
-import {AccountComponent} from './components/account/account.component';
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from '@angular/material-moment-adapter';
 
 @NgModule({
@@ -66,7 +65,6 @@ import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from '@angular/mat
     CreateMusicianComponent,
     CreateBandComponent,
     CreateRegularUserComponent,
-    AccountComponent
   ],
   imports: [
     BrowserModule,

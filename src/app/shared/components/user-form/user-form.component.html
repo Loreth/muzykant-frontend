@@ -3,7 +3,7 @@
     <mat-label>Województwo</mat-label>
     <mat-select formControlName="voivodeship" required>
       <mat-option *ngFor="let voivo of voivodeships$ | async" [value]="voivo">
-        {{voivo.name}}
+        {{voivo.name | capitalize}}
       </mat-option>
     </mat-select>
     <mat-error *ngIf="voivodeship.errors?.required">

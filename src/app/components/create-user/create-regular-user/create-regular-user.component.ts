@@ -33,7 +33,7 @@ export class CreateRegularUserComponent implements OnInit {
   onSubmit(): void {
     this.formSubmittedStatus.next(true);
     if (this.regularUserForm.status === 'PENDING') {
-      this.regularUserForm.statusChanges.subscribe();
+      this.regularUserForm.statusChanges.subscribe(_ => this.doSubmit());
     }
     this.doSubmit();
   }

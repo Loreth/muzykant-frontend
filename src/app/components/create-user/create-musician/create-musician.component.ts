@@ -33,7 +33,7 @@ export class CreateMusicianComponent implements OnInit {
   onSubmit(): void {
     this.formSubmittedStatus.next(true);
     if (this.musicianForm.status === 'PENDING') {
-      this.musicianForm.statusChanges.subscribe();
+      this.musicianForm.statusChanges.subscribe(_ => this.doSubmit());
     }
     this.doSubmit();
   }

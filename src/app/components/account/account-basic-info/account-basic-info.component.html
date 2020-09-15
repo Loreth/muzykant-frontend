@@ -1,0 +1,11 @@
+<div fxLayout="column" fxLayoutAlign="start center">
+  <h2 fxFlexAlign="start">Dane podstawowe</h2>
+  <div [formGroup]="basicInfoForm" class="basic-info-form" fxLayout="column">
+    <app-user-form [voivodeships$]="voivodeships$"
+                   [parentSubmittedStatus]="formSubmittedStatus"
+                   fxLayout="column"
+                   formControlName="user">
+    </app-user-form>
+    <app-person-form fxLayout="column" formControlName="person"></app-person-form>
+  </div>
+</div>

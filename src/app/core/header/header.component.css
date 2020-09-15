@@ -57,6 +57,7 @@ header {
 
 .logo-image {
   height: 50px;
+  -webkit-transform: translateZ(0);
 }
 
 .logo-image:hover {

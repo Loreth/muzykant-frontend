@@ -5,7 +5,8 @@
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <img routerLink="" src="../../../assets/img/muzykant_logo.webp" alt="logo" class="logo-image">
+    <img routerLink="" src="../../../assets/img/muzykant_logo.webp" alt="logo"
+         class="logo-image">
     <div fxLayout="row" fxFlex fxLayoutAlign="end">
       <div class="nav-container" fxHide.xs>
         <nav mat-tab-nav-bar disableRipple color="accent">
@@ -25,7 +26,8 @@
         </span>
         <div *ngIf="isUserLoggedIn()" fxLayout="row">
           <button routerLink="new-ad" mat-flat-button color="accent" class="new-ad-button">
-            Dodaj ogłoszenie <mat-icon>playlist_add</mat-icon>
+            Dodaj ogłoszenie
+            <mat-icon>playlist_add</mat-icon>
           </button>
           <div matRipple [matMenuTriggerFor]="userMenu" class="user-dropdown-menu" fxLayout="row"
                fxLayoutAlign="space-around center">

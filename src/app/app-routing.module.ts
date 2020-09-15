@@ -10,7 +10,6 @@ import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {PageNotFoundComponent} from './core/page-not-found/page-not-found.component';
 import {ConfirmEmailComponent} from './components/confirm-email/confirm-email.component';
 import {CreateUserComponent} from './components/create-user/create-user.component';
-import {AccountComponent} from './components/account/account.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'ads', pathMatch: 'full'},
@@ -18,7 +17,7 @@ const routes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'confirm-email', component: ConfirmEmailComponent},
   {path: 'create-user', component: CreateUserComponent},
-  {path: 'account', component: AccountComponent},
+  {path: 'account', loadChildren: () => import('./components/account/account.module').then(m => m.AccountModule)},
   {path: 'ads', loadChildren: () => import('./components/classified-ads/classified-ads.module').then(m => m.ClassifiedAdsModule)},
   {path: 'musicians', component: MusiciansComponent},
   {path: 'bands', component: BandsComponent},

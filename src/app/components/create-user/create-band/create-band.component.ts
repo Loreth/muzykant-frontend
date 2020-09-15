@@ -45,7 +45,7 @@ export class CreateBandComponent implements OnInit {
   onSubmit(): void {
     this.formSubmittedStatus.next(true);
     if (this.bandForm.status === 'PENDING') {
-      this.bandForm.statusChanges.subscribe();
+      this.bandForm.statusChanges.subscribe(_ => this.doSubmit());
     }
     this.doSubmit();
   }

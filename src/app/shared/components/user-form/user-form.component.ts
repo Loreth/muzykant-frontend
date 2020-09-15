@@ -1,21 +1,20 @@
-import {Component, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {
   AbstractControl,
   AsyncValidator,
   ControlValueAccessor,
   FormBuilder,
-  FormGroupDirective,
   NG_ASYNC_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
   Validators
 } from '@angular/forms';
 import {FIELD_REQUIRED_MSG} from '../../message-constants';
-import {Observable, of} from 'rxjs';
+import {merge, Observable, timer} from 'rxjs';
 import {Voivodeship} from '../../models/voivodeship.model';
 import {UniqueLinkNameValidator} from '../../../core/validators/uniqueLinkNameValidator';
 import {UserService} from '../../../core/services/user.service';
-import {map} from 'rxjs/operators';
+import {filter, map, startWith, take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-form',
@@ -45,7 +44,6 @@ export class UserFormComponent implements ControlValueAccessor, AsyncValidator, 
       asyncValidators: UniqueLinkNameValidator.validate(this.userService)
     }]
   });
-  @ViewChild(FormGroupDirective) personFormDirective: FormGroupDirective;
   @Input() parentSubmittedStatus: Observable<boolean>;
 
   get voivodeship(): AbstractControl {
@@ -74,8 +72,11 @@ export class UserFormComponent implements ControlValueAccessor, AsyncValidator, 
   }
 
   writeValue(obj: any): void {
-    if (obj) {
-      this.userForm.setValue(obj, {emitEvent: false});
+    if (obj != null && obj !== '') {
+      this.userForm.setValue(obj, {emitEvent: true});
+      setTimeout(() => {
+        this.userForm.updateValueAndValidity();
+      });
     }
   }
 
@@ -83,16 +84,14 @@ export class UserFormComponent implements ControlValueAccessor, AsyncValidator, 
   }
 
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
-    return this.userForm.statusChanges.pipe(map(status => {
-        if (status === 'VALID') {
-          control.setErrors(null);
-        }
-        if (status === 'INVALID') {
-          control.setErrors({invalid: true});
-        }
-
-        return status === 'VALID' ? null : {invalid: true};
-      }),
+    return merge(this.userForm.statusChanges, timer(0, 1000)).pipe(
+      map(() => this.userForm.status),
+      startWith(this.userForm.status),
+      filter(value => value !== 'PENDING'),
+      take(1),
+      map(() => {
+        return this.userForm.valid ? null : {invalid: true};
+      })
     );
   }
 }

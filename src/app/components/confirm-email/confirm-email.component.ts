@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../core/services/auth.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import {tap} from 'rxjs/operators';
 
 export const CONFIRMED_SUCCESSFULLY_MESSAGE = 'E-mail został zweryfikowany. Możesz się zalogować.';
 export const AWAITING_CONFIRMATION_MESSAGE = 'E-mail oczekuje na weryfikację. \nPotwierdź go klikając link otrzymany w wiadomości.';
