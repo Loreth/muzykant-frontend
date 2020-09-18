@@ -28,6 +28,6 @@ mat-form-field {
   width: 80%;
 }
 
-.mat-form-field {
+mat-form-field.mat-form-field {
   margin-bottom: 4px;
 }

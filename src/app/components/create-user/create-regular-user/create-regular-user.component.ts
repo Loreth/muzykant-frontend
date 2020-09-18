@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {Voivodeship} from '../../../shared/models/voivodeship.model';
+import {Voivodeship} from '../../../shared/models/voivodeship';
 import {FormControl, FormGroup} from '@angular/forms';
 import {VoivodeshipService} from '../../../core/services/voivodeship.service';
 import {map} from 'rxjs/operators';
 import {RegularUserService} from '../../../core/services/regular-user.service';
 import {Person} from '../../../shared/models/person';
 import {Router} from '@angular/router';
-import {RegularUser} from '../../../shared/models/regular-user.model';
 import {TokenStorageService} from '../../../core/services/token-storage.service';
+import {RegularUser} from '../../../shared/models/regular-user';
+import {Authority} from '../../../shared/models/authority';
 
 @Component({
   selector: 'app-create-regular-user',
@@ -48,7 +49,7 @@ export class CreateRegularUserComponent implements OnInit {
       this.regularUserService.addDto(regularUser).subscribe(response => {
         const claims = TokenStorageService.getClaims();
         claims.linkName = response.linkName;
-        claims.authority = 'ROLE_REGULAR_USER';
+        claims.authority = Authority.ROLE_REGULAR;
         TokenStorageService.setClaims(claims);
         this.router.navigateByUrl('/account');
       });

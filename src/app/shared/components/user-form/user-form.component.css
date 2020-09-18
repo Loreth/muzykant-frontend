@@ -1,0 +1,7 @@
+.profile-name-field {
+  margin-bottom: 4px;
+}
+
+[readonly] {
+  cursor: default;
+}

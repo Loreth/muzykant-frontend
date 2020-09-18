@@ -8,6 +8,7 @@ export const RESEND_MAIL = '/resend-mail';
 export const LOGIN = '/login';
 
 export const USER = '/users';
+export const CHANGE_PASSWORD = '/change-password';
 export const BAND = '/bands';
 export const MUSICIAN = '/musicians';
 export const REGULAR_USER = '/regular-users';
@@ -21,10 +22,7 @@ export const IMAGE = '/images';
 export const PREDEFINED_VOCAL_RANGE = '/predefined-vocal-ranges';
 export const VOCAL_TECHNIQUE = '/vocal-techniques';
 export const VOIVODESHIP = '/voivodeships';
-
-export const BAND_CREATE_USER = BAND + SIGN_UP;
-export const MUSICIAN_CREATE_USER = MUSICIAN + SIGN_UP;
-export const REGULAR_CREATE_USER = REGULAR_USER + SIGN_UP;
+export const SOCIAL_MEDIA_LINKS = '/social-media-links';
 
 export function getEndpointUrl(endpoint: string): string {
   return API_BASE_URL + ':' + API_PORT + endpoint;

@@ -3,7 +3,7 @@ import {getEndpointUrl, JAM_SESSION_AD} from '../../shared/rest-api-urls';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {AbstractControl} from '@angular/forms';
 import {MusicianWantedAdService} from './musician-wanted-ad.service';
-import {JamSessionAd} from '../../shared/models/jam-session-ad.model';
+import {JamSessionAd} from '../../shared/models/jam-session-ad';
 import {RestSearchService} from './rest-search.service';
 import {FormSearchService} from './form-search.service';
 import {Observable} from 'rxjs';

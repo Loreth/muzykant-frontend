@@ -1,4 +1,4 @@
-import {UserType} from './models/UserType';
+import {UserType} from './models/user-type';
 
 export class LocalizationUtils {
   public static localizeUserType(userType: UserType): string {

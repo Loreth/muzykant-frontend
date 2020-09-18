@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {UserType} from '../../shared/models/UserType';
+import {UserType} from '../../shared/models/user-type';
 import {LocalizationUtils} from '../../shared/localization-utils';
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, forwardRef} from '@angular/core';
 import {ChipListAutocompleteInputComponent} from '../chip-list-autocomplete-input/chip-list-autocomplete-input.component';
-import {Genre} from '../../../../shared/models/genre.model';
+import {Genre} from '../../../../shared/models/genre';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {GenreService} from '../../../../core/services/genre.service';
 import {ChipCssClass} from '../../../../shared/models/ad-chip';

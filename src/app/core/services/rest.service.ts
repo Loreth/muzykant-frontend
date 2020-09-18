@@ -1,8 +1,8 @@
 import {Observable, of} from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
-import {Identifiable} from '../../shared/models/identifiable.model';
 import {Page} from '../../shared/models/pagination/page';
+import {Identifiable} from '../../shared/models/identifiable';
 
 export abstract class RestService<T extends Identifiable<ID>, ID> {
   private static readonly DEFAULT_PAGE = 0;
@@ -41,7 +41,7 @@ export abstract class RestService<T extends Identifiable<ID>, ID> {
     );
   }
 
-  updateDto(dto: T): Observable<any> {
+  updateDto(dto: T): Observable<T> {
     const url = `${this.endpointUrl}/${dto.id}`;
     return this.http.put(url, dto, this.httpOptions).pipe(
       tap(_ => console.log(`updated Dto w/ id=${dto.id}`)),
@@ -56,13 +56,12 @@ export abstract class RestService<T extends Identifiable<ID>, ID> {
     );
   }
 
-  deleteDto(dtoOrId: T | number): Observable<T> {
+  deleteDto(dtoOrId: T | number): Observable<HttpResponse<any>> {
     const id = typeof dtoOrId === 'number' ? dtoOrId : dtoOrId.id;
     const url = `${this.endpointUrl}/${id}`;
 
-    return this.http.delete<T>(url, this.httpOptions).pipe(
-      tap(_ => console.log(`deleted Dto w/ id=${id}`)),
-      catchError(this.handleError<T>('deleteDto'))
+    return this.http.delete<any>(url, {headers: this.httpOptions.headers, observe: 'response'}).pipe(
+      tap(_ => console.log(`deleted Dto w/ id=${id}`))
     );
   }
 

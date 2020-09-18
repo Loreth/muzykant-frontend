@@ -1,1 +1,13 @@
-<p>band-basic-info works!</p>
+<form [formGroup]="basicInfoForm" (ngSubmit)="onSubmit()" id="basicInfoForm">
+  <app-user-form [voivodeships$]="voivodeships$"
+                 [parentSubmittedStatus]="formSubmittedStatus"
+                 [disabledLinkName]="true"
+                 [disabledLinkNameHint]="true"
+                 fxLayout="column"
+                 formControlName="user">
+  </app-user-form>
+  <mat-form-field appearance="outline">
+    <mat-label>Numer telefonu</mat-label>
+    <input matInput formControlName="phone" name="phone">
+  </mat-form-field>
+</form>

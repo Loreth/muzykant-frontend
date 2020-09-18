@@ -3,12 +3,13 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import {VoivodeshipService} from '../../../core/services/voivodeship.service';
 import {map} from 'rxjs/operators';
-import {Voivodeship} from '../../../shared/models/voivodeship.model';
+import {Voivodeship} from '../../../shared/models/voivodeship';
 import {MusicianService} from '../../../core/services/musician.service';
-import {Musician} from '../../../shared/models/musician.model';
+import {Musician} from '../../../shared/models/musician';
 import {Person} from '../../../shared/models/person';
 import {Router} from '@angular/router';
 import {TokenStorageService} from '../../../core/services/token-storage.service';
+import {Authority} from '../../../shared/models/authority';
 
 @Component({
   selector: 'app-create-musician',
@@ -47,8 +48,9 @@ export class CreateMusicianComponent implements OnInit {
       console.log(musician);
       this.musicianService.addDto(musician).subscribe(response => {
         const claims = TokenStorageService.getClaims();
+        claims.userId = response.id;
         claims.linkName = response.linkName;
-        claims.authority = 'ROLE_MUSICIAN';
+        claims.authority = Authority.ROLE_MUSICIAN;
         TokenStorageService.setClaims(claims);
         this.router.navigateByUrl('/account');
       });

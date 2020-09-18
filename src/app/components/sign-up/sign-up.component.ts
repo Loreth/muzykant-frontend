@@ -1,10 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, FormGroupDirective, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
 import {FIELD_REQUIRED_MSG} from '../../shared/message-constants';
 import {AuthService} from '../../core/services/auth.service';
-import {SignUpRequest} from '../../shared/models/sign-up-request.model';
+import {SignUpRequest} from '../../shared/models/sign-up-request';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {HttpErrorResponse} from '@angular/common/http';
+import {CustomValidators} from '../../core/validators/custom-validators';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,7 +22,7 @@ export class SignUpComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
     person: new FormControl()
-  }, {validators: this.matchingValidator('confirmPassword', 'password')});
+  }, {validators: CustomValidators.matchingValidator('confirmPassword', 'password')});
   @ViewChild(FormGroupDirective) signUpFormDirective: FormGroupDirective;
 
   constructor(private authService: AuthService, private snackBar: MatSnackBar) {
@@ -50,27 +51,6 @@ export class SignUpComponent {
     this.snackBar.open(message,
       '', {duration: this.snackbarDurationInSeconds * 1000, panelClass: ['snackbar']}
     );
-  }
-
-  matchingValidator(controlName: string, matchToControlName: string): ValidatorFn {
-    return (group: FormGroup) => {
-      const control = group.get(controlName);
-      const controlToMatch = group.get(matchToControlName);
-
-      if (!(control && controlToMatch)) {
-        return null;
-      }
-
-      if (control.errors && !control.errors.matching) {
-        return null;
-      }
-
-      if (control.value !== controlToMatch.value) {
-        control.setErrors({matching: true});
-      } else {
-        control.setErrors(null);
-      }
-    };
   }
 
   onSubmit(): void {

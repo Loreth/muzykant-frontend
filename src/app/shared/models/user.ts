@@ -1,10 +1,10 @@
-import {UserType} from './UserType';
-import {Identifiable} from './identifiable.model';
-import {Voivodeship} from './voivodeship.model';
-import {Instrument} from './instrument.model';
-import {Genre} from './genre.model';
+import {UserType} from './user-type';
+import {Identifiable} from './identifiable';
+import {Voivodeship} from './voivodeship';
+import {Instrument} from './instrument';
+import {Genre} from './genre';
 import {UserImage} from './user-image';
-import {VocalTechnique} from './vocal-technique.model';
+import {VocalTechnique} from './vocal-technique';
 
 export interface User extends Identifiable<number> {
   userType: UserType;

@@ -1,4 +1,4 @@
-import {Ad} from './ad.model';
+import {Ad} from './ad';
 import {AdChip} from './ad-chip';
 
 export class AdWithChips {

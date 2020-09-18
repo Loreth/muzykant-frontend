@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {MusicianWantedAdService} from '../../../core/services/musician-wanted-ad.service';
 import {Subject} from 'rxjs';
 import {AdWithChips} from '../../../shared/models/ad-with-chips';
-import {MusicianWantedAdsComponent} from '../../classified-ads/musician-wanted-ads/musician-wanted-ads.component';
+import {AdChip} from '../../../shared/models/ad-chip';
 
 @Component({
   selector: 'app-musician-wanted-ad-details',
@@ -24,7 +24,7 @@ export class MusicianWantedAdDetailsComponent implements OnInit {
     });
 
     this.musicianWantedAdService.getDto(this.adId).subscribe(ad => {
-        this.adWithChips$.next(new AdWithChips(ad, MusicianWantedAdsComponent.makeAdChips(ad)));
+      this.adWithChips$.next(new AdWithChips(ad, AdChip.makeMusicianWantedAdChips(ad)));
       }
     );
   }

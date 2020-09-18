@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {BAND, getEndpointUrl} from '../../shared/rest-api-urls';
 import {HttpClient} from '@angular/common/http';
 import {RestService} from './rest.service';
-import {Band} from '../../shared/models/band.model';
+import {Band} from '../../shared/models/band';
 
 @Injectable({
   providedIn: 'root'

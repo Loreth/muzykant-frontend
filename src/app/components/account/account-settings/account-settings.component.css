@@ -1,0 +1,15 @@
+[readonly] {
+  cursor: default;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.app-card:not(:first-child) {
+  margin-top: 10px;
+}
+
+.password-change-card .mat-form-field {
+  max-width: 400px;
+}

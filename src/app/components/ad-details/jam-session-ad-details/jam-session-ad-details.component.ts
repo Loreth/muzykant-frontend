@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
 import {AdWithChips} from '../../../shared/models/ad-with-chips';
 import {ActivatedRoute} from '@angular/router';
-import {SomeoneWantedAdsComponent} from '../../classified-ads/someone-wanted-ads/someone-wanted-ads.component';
 import {JamSessionAdService} from '../../../core/services/jam-session-ad.service';
+import {AdChip} from '../../../shared/models/ad-chip';
 
 @Component({
   selector: 'app-jam-session-ad-details',
@@ -24,7 +24,7 @@ export class JamSessionAdDetailsComponent implements OnInit {
     });
 
     this.jamSessionAdService.getDto(this.adId).subscribe(ad => {
-        this.adWithChips$.next(new AdWithChips(ad, SomeoneWantedAdsComponent.makeAdChips(ad)));
+      this.adWithChips$.next(new AdWithChips(ad, AdChip.makeAdChips(ad)));
       }
     );
   }

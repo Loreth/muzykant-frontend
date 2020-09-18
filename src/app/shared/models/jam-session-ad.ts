@@ -1,4 +1,4 @@
-import {Ad} from './ad.model';
+import {Ad} from './ad';
 
 export interface JamSessionAd extends Ad {
 }

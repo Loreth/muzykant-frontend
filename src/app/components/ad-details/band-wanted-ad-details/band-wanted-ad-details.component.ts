@@ -3,7 +3,7 @@ import {Subject} from 'rxjs';
 import {AdWithChips} from '../../../shared/models/ad-with-chips';
 import {ActivatedRoute} from '@angular/router';
 import {BandWantedAdService} from '../../../core/services/band-wanted-ad.service';
-import {SomeoneWantedAdsComponent} from '../../classified-ads/someone-wanted-ads/someone-wanted-ads.component';
+import {AdChip} from '../../../shared/models/ad-chip';
 
 @Component({
   selector: 'app-band-wanted-ad-details',
@@ -24,7 +24,7 @@ export class BandWantedAdDetailsComponent implements OnInit {
     });
 
     this.bandWantedAdService.getDto(this.adId).subscribe(ad => {
-        this.adWithChips$.next(new AdWithChips(ad, SomeoneWantedAdsComponent.makeAdChips(ad)));
+      this.adWithChips$.next(new AdWithChips(ad, AdChip.makeAdChips(ad)));
       }
     );
   }

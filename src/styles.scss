@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "app/shared/chip.css";
+@import '~@angular/material/theming';
 
 html, body {
   height: 100%;
@@ -68,4 +69,8 @@ simple-snack-bar span {
 .form-prefix-icon {
   margin-right: 16px;
   opacity: 0.5;
+}
+
+.elevation-transition {
+  @include mat-elevation-transition;
 }

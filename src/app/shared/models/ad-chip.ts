@@ -1,3 +1,6 @@
+import {Ad} from './ad';
+import {MusicianWantedAd} from './musician-wanted-ad';
+
 export enum ChipCssClass {
   INSTRUMENT = 'instrument-chip',
   GENRE = 'genre-chip',
@@ -13,4 +16,37 @@ export class AdChip {
 
   label: string;
   cssClass: ChipCssClass;
+
+  static makeAdChips(ad: Ad): AdChip[] {
+    const adChips: AdChip[] = [];
+
+    if (ad.preferredGenres) {
+      for (const genre of ad.preferredGenres) {
+        adChips.push(new AdChip(genre.name, ChipCssClass.GENRE));
+      }
+    }
+    if (ad.preferredInstruments) {
+      for (const instrument of ad.preferredInstruments) {
+        adChips.push(new AdChip(instrument.name, ChipCssClass.INSTRUMENT));
+      }
+    }
+
+    return adChips;
+  }
+
+  static makeMusicianWantedAdChips(ad: MusicianWantedAd): AdChip[] {
+    const adChips: AdChip[] = AdChip.makeAdChips(ad);
+
+    if (ad.preferredGender === 'F') {
+      adChips.push(new AdChip('Kobieta', ChipCssClass.GENDER));
+    } else if (ad.preferredGender === 'M') {
+      adChips.push(new AdChip('Mężczyzna', ChipCssClass.GENDER));
+    }
+    if (ad.minAge && ad.maxAge) {
+      adChips.push(new AdChip(`${ad.minAge.toString()}-${ad.maxAge.toString()} lat`, ChipCssClass.AGE));
+    }
+
+    return adChips;
+  }
 }
+

@@ -1,4 +1,4 @@
-import {Identifiable} from './identifiable.model';
+import {Identifiable} from './identifiable';
 import {Moment} from 'moment';
 
 export interface Person extends Identifiable<number> {

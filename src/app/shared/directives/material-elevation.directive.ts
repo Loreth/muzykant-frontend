@@ -16,6 +16,7 @@ export class MaterialElevationDirective implements OnChanges {
     private renderer: Renderer2
   ) {
     this.setElevation(this.defaultElevation);
+    this.renderer.addClass(this.element.nativeElement, `elevation-transition`);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

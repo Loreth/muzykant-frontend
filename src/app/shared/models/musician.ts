@@ -1,7 +1,7 @@
 import {User} from './user';
 import {Person} from './person';
-import {VocalRange} from './vocal-range.model';
-import {Equipment} from './equipment.model';
+import {VocalRange} from './vocal-range';
+import {Equipment} from './equipment';
 
 export interface Musician extends User {
   person: Person;

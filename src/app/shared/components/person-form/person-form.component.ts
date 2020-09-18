@@ -55,6 +55,10 @@ export class PersonFormComponent implements ControlValueAccessor, Validator, OnI
     return this.personForm.get('lastName');
   }
 
+  get pseudo(): AbstractControl {
+    return this.personForm.get('pseudo');
+  }
+
   get gender(): AbstractControl {
     return this.personForm.get('gender');
   }
@@ -86,7 +90,11 @@ export class PersonFormComponent implements ControlValueAccessor, Validator, OnI
 
   writeValue(obj: any): void {
     if (obj) {
-      this.personForm.setValue(obj, {emitEvent: false});
+      this.firstName.setValue(obj.firstName, {emitEvent: false});
+      this.lastName.setValue(obj.lastName, {emitEvent: false});
+      this.birthdate.setValue(obj.birthdate, {emitEvent: false});
+      this.gender.setValue(obj.gender, {emitEvent: false});
+      this.pseudo.setValue(obj.pseudo, {emitEvent: false});
     }
   }
 

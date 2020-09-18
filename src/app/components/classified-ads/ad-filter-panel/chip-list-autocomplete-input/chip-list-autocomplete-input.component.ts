@@ -3,7 +3,7 @@ import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/for
 import {Observable} from 'rxjs';
 import {MatAutocompleteSelectedEvent, MatAutocompleteTrigger} from '@angular/material/autocomplete';
 import {map, startWith} from 'rxjs/operators';
-import {Nameable} from '../../../../shared/models/nameable.model';
+import {Nameable} from '../../../../shared/models/nameable';
 import {RestService} from '../../../../core/services/rest.service';
 
 @Component({

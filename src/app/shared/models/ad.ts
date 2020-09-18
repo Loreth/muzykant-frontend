@@ -1,9 +1,9 @@
-import {Genre} from './genre.model';
-import {Instrument} from './instrument.model';
-import {Identifiable} from './identifiable.model';
-import {Voivodeship} from './voivodeship.model';
-import {AdType} from './AdType';
-import {UserType} from './UserType';
+import {Genre} from './genre';
+import {Instrument} from './instrument';
+import {Identifiable} from './identifiable';
+import {Voivodeship} from './voivodeship';
+import {AdType} from './ad-type';
+import {UserType} from './user-type';
 
 export interface Ad extends Identifiable<number> {
   adType: AdType;

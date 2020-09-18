@@ -12,7 +12,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MusicianBasicInfoComponent} from './account-basic-info/musician-basic-info/musician-basic-info.component';
 import {BandBasicInfoComponent} from './account-basic-info/band-basic-info/band-basic-info.component';
 import {RegularUserBasicInfoComponent} from './account-basic-info/regular-user-basic-info/regular-user-basic-info.component';
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {AccountDetailsComponent} from './account-details/account-details.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {AccountSettingsComponent} from './account-settings/account-settings.component';
+import {AccountSocialMediaLinksComponent} from './account-social-media-links/account-social-media-links.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,10 @@ import {RegularUserBasicInfoComponent} from './account-basic-info/regular-user-b
     AccountBasicInfoComponent,
     MusicianBasicInfoComponent,
     BandBasicInfoComponent,
-    RegularUserBasicInfoComponent
+    RegularUserBasicInfoComponent,
+    AccountDetailsComponent,
+    AccountSettingsComponent,
+    AccountSocialMediaLinksComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +39,12 @@ import {RegularUserBasicInfoComponent} from './account-basic-info/regular-user-b
     SharedModule,
     FlexLayoutModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ]
 })
 export class AccountModule {

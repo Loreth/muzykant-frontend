@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {MusicianWantedAdService} from '../../../core/services/musician-wanted-ad.service';
-import {AdChip, ChipCssClass} from '../../../shared/models/ad-chip';
-import {MusicianWantedAd} from '../../../shared/models/musician-wanted-ad.model';
+import {AdChip} from '../../../shared/models/ad-chip';
+import {MusicianWantedAd} from '../../../shared/models/musician-wanted-ad';
 import {AdWithChips} from '../../../shared/models/ad-with-chips';
 import {Page} from '../../../shared/models/pagination/page';
 import {Subject} from 'rxjs';
 import {FormGroup} from '@angular/forms';
-import {SomeoneWantedAdsComponent} from '../someone-wanted-ads/someone-wanted-ads.component';
-import {UserType} from '../../../shared/models/UserType';
+import {UserType} from '../../../shared/models/user-type';
 
 @Component({
   selector: 'app-musician-wanted-ads',
@@ -23,21 +22,6 @@ export class MusicianWantedAdsComponent implements OnInit {
   adsWithChips$: Subject<AdWithChips[]> = new Subject();
   wantedUserType = UserType.MUSICIAN;
 
-  public static makeAdChips(ad: MusicianWantedAd): AdChip[] {
-    const adChips: AdChip[] = SomeoneWantedAdsComponent.makeAdChips(ad);
-
-    if (ad.preferredGender === 'F') {
-      adChips.push(new AdChip('Kobieta', ChipCssClass.GENDER));
-    } else if (ad.preferredGender === 'M') {
-      adChips.push(new AdChip('Mężczyzna', ChipCssClass.GENDER));
-    }
-    if (ad.minAge && ad.maxAge) {
-      adChips.push(new AdChip(`${ad.minAge.toString()}-${ad.maxAge.toString()} lat`, ChipCssClass.AGE));
-    }
-
-    return adChips;
-  }
-
   ngOnInit(): void {
     this.musicianWantedAdService
     .getDtosPage(0, 10, ['publishedDate,DESC'])
@@ -46,7 +30,7 @@ export class MusicianWantedAdsComponent implements OnInit {
     this.adsPage$.subscribe(page => {
       const adsWithChips = [];
       for (const ad of page.content) {
-        adsWithChips.push(new AdWithChips(ad, MusicianWantedAdsComponent.makeAdChips(ad)));
+        adsWithChips.push(new AdWithChips(ad, AdChip.makeMusicianWantedAdChips(ad)));
       }
       this.adsWithChips$.next(adsWithChips);
     });

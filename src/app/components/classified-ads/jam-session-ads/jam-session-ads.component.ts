@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
 import {Page} from '../../../shared/models/pagination/page';
 import {AdWithChips} from '../../../shared/models/ad-with-chips';
-import {SomeoneWantedAdsComponent} from '../someone-wanted-ads/someone-wanted-ads.component';
 import {FormGroup} from '@angular/forms';
-import {JamSessionAd} from '../../../shared/models/jam-session-ad.model';
+import {JamSessionAd} from '../../../shared/models/jam-session-ad';
 import {JamSessionAdService} from '../../../core/services/jam-session-ad.service';
+import {AdChip} from '../../../shared/models/ad-chip';
 
 @Component({
   selector: 'app-jam-session-ads',
@@ -27,7 +27,7 @@ export class JamSessionAdsComponent implements OnInit {
     this.adsPage$.subscribe(page => {
       const adsWithChips = [];
       for (const ad of page.content) {
-        adsWithChips.push(new AdWithChips(ad, SomeoneWantedAdsComponent.makeAdChips(ad)));
+        adsWithChips.push(new AdWithChips(ad, AdChip.makeAdChips(ad)));
       }
       this.adsWithChips$.next(adsWithChips);
     });

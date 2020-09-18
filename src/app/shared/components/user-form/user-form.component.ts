@@ -11,8 +11,8 @@ import {
 } from '@angular/forms';
 import {FIELD_REQUIRED_MSG} from '../../message-constants';
 import {merge, Observable, timer} from 'rxjs';
-import {Voivodeship} from '../../models/voivodeship.model';
-import {UniqueLinkNameValidator} from '../../../core/validators/uniqueLinkNameValidator';
+import {Voivodeship} from '../../models/voivodeship';
+import {CustomAsyncValidators} from '../../../core/validators/custom-async-validators';
 import {UserService} from '../../../core/services/user.service';
 import {filter, map, startWith, take} from 'rxjs/operators';
 
@@ -41,13 +41,19 @@ export class UserFormComponent implements ControlValueAccessor, AsyncValidator, 
     city: [''],
     linkName: ['', {
       validators: [Validators.required, Validators.pattern('[a-z0-9_]+')],
-      asyncValidators: UniqueLinkNameValidator.validate(this.userService)
+      asyncValidators: CustomAsyncValidators.uniqueLinkName(this.userService)
     }]
   });
   @Input() parentSubmittedStatus: Observable<boolean>;
+  @Input() disabledLinkName: boolean;
+  @Input() disabledLinkNameHint: boolean;
 
   get voivodeship(): AbstractControl {
     return this.userForm.get('voivodeship');
+  }
+
+  get city(): AbstractControl {
+    return this.userForm.get('city');
   }
 
   get linkName(): AbstractControl {
@@ -58,6 +64,11 @@ export class UserFormComponent implements ControlValueAccessor, AsyncValidator, 
   }
 
   ngOnInit(): void {
+    if (this.disabledLinkName) {
+      this.linkName.clearValidators();
+      this.linkName.clearAsyncValidators();
+    }
+
     this.parentSubmittedStatus.subscribe(() => {
       this.userForm.markAllAsTouched();
     });
@@ -73,7 +84,9 @@ export class UserFormComponent implements ControlValueAccessor, AsyncValidator, 
 
   writeValue(obj: any): void {
     if (obj != null && obj !== '') {
-      this.userForm.setValue(obj, {emitEvent: true});
+      this.voivodeship.setValue(obj.voivodeship, {emitEvent: true});
+      this.linkName.setValue(obj.linkName, {emitEvent: true});
+      this.city.setValue(obj.city, {emitEvent: true});
       setTimeout(() => {
         this.userForm.updateValueAndValidity();
       });
@@ -93,5 +106,9 @@ export class UserFormComponent implements ControlValueAccessor, AsyncValidator, 
         return this.userForm.valid ? null : {invalid: true};
       })
     );
+  }
+
+  compareVoivodeshipObjects(voivo1: Voivodeship, voivo2: Voivodeship): boolean {
+    return voivo1 && voivo2 && voivo1.id === voivo2.id;
   }
 }

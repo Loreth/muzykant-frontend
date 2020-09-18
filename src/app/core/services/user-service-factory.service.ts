@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {MusicianService} from './musician.service';
 import {RestService} from './rest.service';
 import {User} from '../../shared/models/user';
-import {UserType} from '../../shared/models/UserType';
+import {UserType} from '../../shared/models/user-type';
 import {BandService} from './band.service';
 import {RegularUserService} from './regular-user.service';
+import {Authority} from '../../shared/models/authority';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,17 @@ export class UserServiceFactoryService {
       case UserType.BAND:
         return this.bandService;
       case UserType.REGULAR:
+        return this.regularUserService;
+    }
+  }
+
+  getUserServiceByAuthority(authority: Authority): RestService<User, number> {
+    switch (authority) {
+      case Authority.ROLE_MUSICIAN:
+        return this.musicianService;
+      case Authority.ROLE_BAND:
+        return this.bandService;
+      case Authority.ROLE_REGULAR:
         return this.regularUserService;
     }
   }

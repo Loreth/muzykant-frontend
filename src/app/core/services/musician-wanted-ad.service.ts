@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {getEndpointUrl, MUSICIAN_WANTED_AD} from '../../shared/rest-api-urls';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {MusicianWantedAd} from '../../shared/models/musician-wanted-ad.model';
+import {MusicianWantedAd} from '../../shared/models/musician-wanted-ad';
 import {AbstractControl} from '@angular/forms';
-import {UserType} from '../../shared/models/UserType';
+import {UserType} from '../../shared/models/user-type';
 import {RestSearchService} from './rest-search.service';
 import {FormSearchService} from './form-search.service';
 import {Observable} from 'rxjs';

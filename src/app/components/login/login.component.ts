@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {AuthService} from '../../core/services/auth.service';
 import {Router} from '@angular/router';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {LoginRequest} from '../../shared/models/login-request.model';
+import {LoginRequest} from '../../shared/models/login-request';
 import {FIELD_REQUIRED_MSG} from '../../shared/message-constants';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {HttpErrorResponse} from '@angular/common/http';

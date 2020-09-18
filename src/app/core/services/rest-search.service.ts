@@ -1,13 +1,14 @@
-import {Identifiable} from '../../shared/models/identifiable.model';
 import {RestService} from './rest.service';
 import {Observable} from 'rxjs';
 import {Page} from '../../shared/models/pagination/page';
 import {catchError, tap} from 'rxjs/operators';
 import {HttpParams} from '@angular/common/http';
+import {SEARCH} from '../../shared/rest-api-urls';
+import {Identifiable} from '../../shared/models/identifiable';
 
 export abstract class RestSearchService<T extends Identifiable<ID>, ID> extends RestService<T, ID> {
   searchDtos(searchParams: HttpParams, page: number = 0, pageSize: number = 20, sortFields?: string[]): Observable<Page<T>> {
-    const searchUrl = `${this.endpointUrl}/search`;
+    const searchUrl = this.endpointUrl + SEARCH;
     searchParams = searchParams
     .set('page', page.toString())
     .set('size', pageSize.toString());

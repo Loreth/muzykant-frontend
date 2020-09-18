@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {CONFIRM_EMAIL, getEndpointUrl, LOGIN, RESEND_MAIL, SIGN_UP} from '../../shared/rest-api-urls';
-import {LoginRequest} from '../../shared/models/login-request.model';
-import {SignUpRequest} from '../../shared/models/sign-up-request.model';
+import {CHANGE_PASSWORD, CONFIRM_EMAIL, getEndpointUrl, LOGIN, RESEND_MAIL, SIGN_UP, USER} from '../../shared/rest-api-urls';
+import {LoginRequest} from '../../shared/models/login-request';
+import {SignUpRequest} from '../../shared/models/sign-up-request';
 import {TokenStorageService} from './token-storage.service';
 import {map, tap} from 'rxjs/operators';
 import {TokenClaims} from '../../shared/models/token-claims';
 import {Router} from '@angular/router';
+import {Authority} from '../../shared/models/authority';
+import {PasswordChangeRequest} from '../../shared/models/password-change-request';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +46,25 @@ export class AuthService {
     return this.http.post<any>(getEndpointUrl(RESEND_MAIL), {email}, {observe: 'response'});
   }
 
+  changePassword(passwordChangeRequest: PasswordChangeRequest): Observable<HttpResponse<any>> {
+    return this.http.post<any>(
+      getEndpointUrl(USER + '/' + AuthService.loggedUserId + CHANGE_PASSWORD),
+      passwordChangeRequest, {observe: 'response'});
+  }
+
   isLoggedIn(): boolean {
     return TokenStorageService.getToken() != null;
+  }
+
+  static get loggedUserId(): number {
+    return TokenStorageService.getClaims().userId;
+  }
+
+  static get loggedUserAuthority(): Authority {
+    return TokenStorageService.getClaims().authority;
+  }
+
+  static get loggedUserEmail(): string {
+    return TokenStorageService.getClaims().subject;
   }
 }

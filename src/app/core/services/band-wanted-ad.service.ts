@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {BAND_WANTED_AD, getEndpointUrl} from '../../shared/rest-api-urls';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {AbstractControl} from '@angular/forms';
-import {BandWantedAd} from '../../shared/models/band-wanted-ad.model';
+import {BandWantedAd} from '../../shared/models/band-wanted-ad';
 import {MusicianWantedAdService} from './musician-wanted-ad.service';
 import {RestSearchService} from './rest-search.service';
 import {Observable} from 'rxjs';

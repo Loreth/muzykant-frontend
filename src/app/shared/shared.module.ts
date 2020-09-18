@@ -13,19 +13,28 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {UserFormComponent} from './components/user-form/user-form.component';
 import {MatSelectModule} from '@angular/material/select';
+import {ChipAutocompleteInputComponent} from './components/chip-autocomplete-input/chip-autocomplete-input.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatChipsModule} from '@angular/material/chips';
+import {SoundcloudWidgetComponent} from './components/soundcloud-widget/soundcloud-widget.component';
 
 @NgModule({
   declarations: [CapitalizePipe,
     MaterialElevationDirective,
     MatRangeSliderComponent,
     PersonFormComponent,
-    UserFormComponent],
+    UserFormComponent,
+    ChipAutocompleteInputComponent,
+    SoundcloudWidgetComponent],
   exports: [
     CapitalizePipe,
     MaterialElevationDirective,
     MatRangeSliderComponent,
     PersonFormComponent,
-    UserFormComponent
+    UserFormComponent,
+    ChipAutocompleteInputComponent,
+    SoundcloudWidgetComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +45,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatCheckboxModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatChipsModule
   ],
   providers: [
     MatDatepickerModule

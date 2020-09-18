@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {getEndpointUrl, REGULAR_USER} from '../../shared/rest-api-urls';
 import {HttpClient} from '@angular/common/http';
 import {RestService} from './rest.service';
-import {RegularUser} from '../../shared/models/regular-user.model';
+import {RegularUser} from '../../shared/models/regular-user';
 
 @Injectable({
   providedIn: 'root'

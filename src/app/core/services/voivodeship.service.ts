@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {getEndpointUrl, VOIVODESHIP} from '../../shared/rest-api-urls';
 import {HttpClient} from '@angular/common/http';
 import {RestService} from './rest.service';
-import {Voivodeship} from '../../shared/models/voivodeship.model';
+import {Voivodeship} from '../../shared/models/voivodeship';
 
 @Injectable({
   providedIn: 'root'

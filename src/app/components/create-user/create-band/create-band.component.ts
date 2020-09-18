@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {Voivodeship} from '../../../shared/models/voivodeship.model';
+import {Voivodeship} from '../../../shared/models/voivodeship';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {VoivodeshipService} from '../../../core/services/voivodeship.service';
 import {map} from 'rxjs/operators';
 import {FIELD_REQUIRED_MSG} from '../../../shared/message-constants';
 import {Router} from '@angular/router';
 import {BandService} from '../../../core/services/band.service';
-import {Band} from '../../../shared/models/band.model';
+import {Band} from '../../../shared/models/band';
 import {TokenStorageService} from '../../../core/services/token-storage.service';
+import {Authority} from '../../../shared/models/authority';
 
 @Component({
   selector: 'app-create-band',
@@ -61,7 +62,7 @@ export class CreateBandComponent implements OnInit {
       this.bandService.addDto(band).subscribe(response => {
         const claims = TokenStorageService.getClaims();
         claims.linkName = response.linkName;
-        claims.authority = 'ROLE_BAND';
+        claims.authority = Authority.ROLE_BAND;
         TokenStorageService.setClaims(claims);
         this.router.navigateByUrl('/account');
       });

@@ -1,0 +1,77 @@
+<div class="app-card">
+  <h2>Ustawienia</h2>
+  <mat-form-field appearance="outline">
+    <mat-label>E-mail</mat-label>
+    <input matInput [formControl]="emailForm" name="muzykant-email" [readonly]="true">
+    <mat-icon matPrefix class="form-prefix-icon">mail_outlined</mat-icon>
+  </mat-form-field>
+</div>
+
+<div class="app-card password-change-card">
+  <h2>Zmiana hasła</h2>
+  <form [formGroup]="passwordChangeForm" (ngSubmit)="onSubmitPasswordChangeForm()"
+        fxLayout="column">
+    <mat-form-field appearance="outline">
+      <mat-label>Stare hasło</mat-label>
+      <input matInput formControlName="oldPassword" [type]="hidePassword ? 'password' : 'text'">
+      <mat-icon matPrefix class="form-prefix-icon">lock_outlined</mat-icon>
+      <button tabindex="-1"
+              type="button"
+              class="inline-element"
+              mat-icon-button matSuffix
+              (click)="hidePassword = !hidePassword">
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="oldPassword.errors?.required">
+        Stare hasło {{requiredMessage}}
+      </mat-error>
+      <mat-error *ngIf="oldPassword.errors?.minlength">
+        Hasło musi mieć minimum 8 znaków
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nowe hasło</mat-label>
+      <input matInput formControlName="newPassword" [type]="hideNewPassword ? 'password' : 'text'">
+      <mat-icon matPrefix class="form-prefix-icon">lock_outlined</mat-icon>
+      <button tabindex="-1"
+              type="button"
+              class="inline-element"
+              mat-icon-button matSuffix
+              (click)="hideNewPassword = !hideNewPassword">
+        <mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="newPassword.errors?.required">
+        Nowe hasło {{requiredMessage}}
+      </mat-error>
+      <mat-error *ngIf="newPassword.errors?.minlength">
+        Hasło musi mieć minimum 8 znaków
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Potwierdź nowe hasło</mat-label>
+      <input matInput formControlName="confirmNewPassword"
+             [type]="hideConfirmNewPassword ? 'password' : 'text'">
+      <span matPrefix class="material-icons-outlined form-prefix-icon">enhanced_encryption</span>
+      <button tabindex="-1"
+              type="button"
+              class="inline-element"
+              mat-icon-button matSuffix
+              (click)="hideConfirmNewPassword = !hideConfirmNewPassword">
+        <mat-icon>{{hideConfirmNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="confirmNewPassword.errors?.required">
+        Potwierdzenie nowego hasła jest wymagane
+      </mat-error>
+      <mat-error *ngIf="confirmNewPassword.errors?.minlength">
+        Hasło musi mieć minimum 8 znaków
+      </mat-error>
+      <mat-error *ngIf="confirmNewPassword.errors?.matching">
+        Podane hasła są różne
+      </mat-error>
+    </mat-form-field>
+
+    <button type="submit" mat-flat-button color="accent" fxFlexAlign="end">
+      Zmień hasło
+    </button>
+  </form>
+</div>

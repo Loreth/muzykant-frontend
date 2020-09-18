@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Observable, Subject} from 'rxjs';
-import {UserType} from '../../shared/models/UserType';
+import {UserType} from '../../shared/models/user-type';
 import {LocalizationUtils} from '../../shared/localization-utils';
 import {AdWithChips} from '../../shared/models/ad-with-chips';
-import {AdType} from '../../shared/models/AdType';
+import {AdType} from '../../shared/models/ad-type';
 import {User} from '../../shared/models/user';
-import {Nameable} from '../../shared/models/nameable.model';
+import {Nameable} from '../../shared/models/nameable';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {UserServiceFactoryService} from '../../core/services/user-service-factory.service';

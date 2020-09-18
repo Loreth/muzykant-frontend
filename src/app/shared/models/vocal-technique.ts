@@ -1,4 +1,4 @@
-import {Nameable} from './nameable.model';
+import {Nameable} from './nameable';
 
 export interface VocalTechnique extends Nameable<number> {
 }

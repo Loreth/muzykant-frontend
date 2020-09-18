@@ -1,0 +1,29 @@
+<div class="app-card">
+  <h2>Media społecznościowe</h2>
+  <form [formGroup]="socialMediaLinksForm" (ngSubmit)="onSubmit()" fxLayout="column"
+        class="link-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Link do profilu Soundcloud</mat-label>
+      <input matInput formControlName="soundcloud">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Link do kanału Youtube</mat-label>
+      <input matInput formControlName="youtube">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Link do strony internetowej</mat-label>
+      <input matInput formControlName="webpage">
+    </mat-form-field>
+
+    <button type="submit" mat-flat-button color="accent" fxFlexAlign="end">
+      Zapisz zmiany
+    </button>
+  </form>
+</div>
+
+<div class="soundcloud-card">
+  <app-soundcloud-widget *ngIf="shouldRenderSoundcloudWidget"
+                         [soundcloudProfileLink]="soundcloud.value">
+  </app-soundcloud-widget>
+</div>
+

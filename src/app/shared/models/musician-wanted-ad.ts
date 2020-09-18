@@ -1,5 +1,5 @@
-import {Ad} from './ad.model';
-import {VocalRange} from './vocal-range.model';
+import {Ad} from './ad';
+import {VocalRange} from './vocal-range';
 
 export interface MusicianWantedAd extends Ad {
   preferredGender: string;

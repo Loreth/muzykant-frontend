@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Voivodeship} from '../../../shared/models/voivodeship.model';
+import {Voivodeship} from '../../../shared/models/voivodeship';
 import {FormControl, FormGroup} from '@angular/forms';
 import {VoivodeshipService} from '../../../core/services/voivodeship.service';
 import {Observable} from 'rxjs';
 import {debounceTime, map} from 'rxjs/operators';
-import {UserType} from '../../../shared/models/UserType';
+import {UserType} from '../../../shared/models/user-type';
 
 @Component({
   selector: 'app-ad-filter-panel',

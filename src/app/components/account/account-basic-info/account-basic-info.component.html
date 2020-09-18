@@ -1,11 +1,22 @@
-<div fxLayout="column" fxLayoutAlign="start center">
+<div class="app-card" fxLayout="column" fxLayoutAlign="start center">
   <h2 fxFlexAlign="start">Dane podstawowe</h2>
-  <div [formGroup]="basicInfoForm" class="basic-info-form" fxLayout="column">
-    <app-user-form [voivodeships$]="voivodeships$"
-                   [parentSubmittedStatus]="formSubmittedStatus"
-                   fxLayout="column"
-                   formControlName="user">
-    </app-user-form>
-    <app-person-form fxLayout="column" formControlName="person"></app-person-form>
+  <div class="basic-info-form" [ngSwitch]="loggedInUserAuthority">
+    <app-musician-basic-info *ngSwitchCase="authority.ROLE_MUSICIAN"
+                             [voivodeships$]="voivodeships$"
+                             (changesSavedEvent)="openSnackBar($event)">
+    </app-musician-basic-info>
+    <app-band-basic-info *ngSwitchCase="authority.ROLE_BAND"
+                         [voivodeships$]="voivodeships$"
+                         (changesSavedEvent)="openSnackBar($event)">
+    </app-band-basic-info>
+    <app-regular-user-basic-info *ngSwitchCase="authority.ROLE_REGULAR"
+                                 [voivodeships$]="voivodeships$"
+                                 (changesSavedEvent)="openSnackBar($event)">
+    </app-regular-user-basic-info>
   </div>
+  <button form="basicInfoForm" type="submit" mat-flat-button
+          color="accent"
+          fxFlexAlign="end">
+    Zapisz zmiany
+  </button>
 </div>

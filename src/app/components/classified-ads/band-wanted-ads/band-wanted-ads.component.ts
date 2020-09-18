@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
 import {Page} from '../../../shared/models/pagination/page';
 import {AdWithChips} from '../../../shared/models/ad-with-chips';
-import {SomeoneWantedAdsComponent} from '../someone-wanted-ads/someone-wanted-ads.component';
 import {FormGroup} from '@angular/forms';
-import {BandWantedAd} from '../../../shared/models/band-wanted-ad.model';
+import {BandWantedAd} from '../../../shared/models/band-wanted-ad';
 import {BandWantedAdService} from '../../../core/services/band-wanted-ad.service';
-import {UserType} from '../../../shared/models/UserType';
+import {UserType} from '../../../shared/models/user-type';
+import {AdChip} from '../../../shared/models/ad-chip';
 
 @Component({
   selector: 'app-band-wanted-ads',
@@ -29,7 +29,7 @@ export class BandWantedAdsComponent implements OnInit {
     this.adsPage$.subscribe(page => {
       const adsWithChips = [];
       for (const ad of page.content) {
-        adsWithChips.push(new AdWithChips(ad, SomeoneWantedAdsComponent.makeAdChips(ad)));
+        adsWithChips.push(new AdWithChips(ad, AdChip.makeAdChips(ad)));
       }
       this.adsWithChips$.next(adsWithChips);
     });
