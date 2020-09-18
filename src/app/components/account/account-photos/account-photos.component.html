@@ -1,0 +1,29 @@
+<div class="app-card">
+  <h2>Zdjęcia</h2>
+  <div fxLayout="row wrap" fxLayoutAlign="start center" class="photo-list"
+       [sortablejs]="userImages"
+       [sortablejsOptions]="{ghostClass: 'photo-drag-shadow'}">
+    <div class="photo-wrapper" *ngFor="let userImage of userImages">
+      <img [src]="userImage.link" class="photo" alt="zdjęcie">
+      <mat-icon class="delete-photo-icon" (click)="removeImage(userImage)">cancel</mat-icon>
+    </div>
+  </div>
+  <div fxLayout="column">
+    <button type="button" mat-flat-button color="accent" class="save-button" fxFlexAlign="end"
+            (click)="savePhotos()">
+      Zapisz zdjęcia
+    </button>
+  </div>
+
+  <ngx-file-drop dropZoneLabel="Upuść tu zdjęcia" accept=".png,.jpg,.webp"
+                 (onFileDrop)="dropped($event)"
+                 dropZoneClassName="account-photo-dropzone">
+    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+      <div (click)="openFileSelector()" class="dropzone-content" fxLayout="column"
+           fxLayoutAlign="center center">
+        <mat-icon class="md-36">cloud_upload</mat-icon>
+        <span>Upuść tu zdjęcia (lub kliknij)</span>
+      </div>
+    </ng-template>
+  </ngx-file-drop>
+</div>

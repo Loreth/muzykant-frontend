@@ -1,0 +1,64 @@
+.dropzone-content {
+  height: 100%;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.dropzone-content:hover {
+  cursor: pointer;
+}
+
+.photo-list {
+  padding: 16px;
+}
+
+.photo-wrapper {
+  position: relative;
+  height: 200px;
+  cursor: move;
+  margin: 5px;
+}
+
+.photo {
+  height: 100%;
+}
+
+.delete-photo-icon {
+  position: absolute;
+  color: #f6f6f6;
+  top: 2px;
+  right: 2px;
+  opacity: 0.9;
+  visibility: hidden;
+}
+
+.photo-wrapper:hover .delete-photo-icon {
+  visibility: visible;
+}
+
+.delete-photo-icon:hover {
+  cursor: pointer;
+}
+
+.save-button {
+  margin-bottom: 16px;
+}
+
+/*.drag-animation {*/
+/*  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);*/
+/*}*/
+
+/*.photo-list.cdk-drop-list-dragging .photo:not(.cdk-drag-placeholder) {*/
+/*  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);*/
+/*}*/
+
+.photo-drag-placeholder {
+}
+
+.photo-drag-shadow {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}

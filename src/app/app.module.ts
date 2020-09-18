@@ -45,6 +45,7 @@ import {CreateMusicianComponent} from './components/create-user/create-musician/
 import {CreateBandComponent} from './components/create-user/create-band/create-band.component';
 import {CreateRegularUserComponent} from './components/create-user/create-regular-user/create-regular-user.component';
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from '@angular/material-moment-adapter';
+import {SortablejsModule} from 'ngx-sortablejs';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from '@angular/mat
     MatGridListModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    SortablejsModule.forRoot({animation: 200, easing: 'cubic-bezier(0, 0, 0.2, 1)',}),
   ],
   providers: [
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}},

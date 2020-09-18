@@ -20,6 +20,9 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
 import {AccountSocialMediaLinksComponent} from './account-social-media-links/account-social-media-links.component';
+import {AccountPhotosComponent} from './account-photos/account-photos.component';
+import {NgxFileDropModule} from 'ngx-file-drop';
+import {SortablejsModule} from 'ngx-sortablejs';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import {AccountSocialMediaLinksComponent} from './account-social-media-links/acc
     RegularUserBasicInfoComponent,
     AccountDetailsComponent,
     AccountSettingsComponent,
-    AccountSocialMediaLinksComponent
+    AccountSocialMediaLinksComponent,
+    AccountPhotosComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +48,9 @@ import {AccountSocialMediaLinksComponent} from './account-social-media-links/acc
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxFileDropModule,
+    SortablejsModule
   ]
 })
 export class AccountModule {

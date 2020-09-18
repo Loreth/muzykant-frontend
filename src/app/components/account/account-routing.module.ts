@@ -5,6 +5,7 @@ import {AccountBasicInfoComponent} from './account-basic-info/account-basic-info
 import {AccountDetailsComponent} from './account-details/account-details.component';
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
 import {AccountSocialMediaLinksComponent} from './account-social-media-links/account-social-media-links.component';
+import {AccountPhotosComponent} from './account-photos/account-photos.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
       {path: 'details', component: AccountDetailsComponent},
       {path: 'settings', component: AccountSettingsComponent},
       {path: 'social-media', component: AccountSocialMediaLinksComponent},
-      {path: 'photos', component: AccountBasicInfoComponent},
+      {path: 'photos', component: AccountPhotosComponent},
       {path: 'messages', component: AccountBasicInfoComponent}
     ]
   }

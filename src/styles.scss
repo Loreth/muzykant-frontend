@@ -74,3 +74,8 @@ simple-snack-bar span {
 .elevation-transition {
   @include mat-elevation-transition;
 }
+
+.account-photo-dropzone {
+  border-radius: 10px;
+  border: 2px dashed rgba(0, 0, 0, 0.12);
+}

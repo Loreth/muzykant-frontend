@@ -18,11 +18,13 @@ export const JAM_SESSION_AD = '/jam-session-ads';
 export const GENRE = '/genres';
 export const INSTRUMENT = '/instruments';
 export const EQUIPMENT = '/equipments';
-export const IMAGE = '/images';
+export const USER_IMAGE = '/user-images';
 export const PREDEFINED_VOCAL_RANGE = '/predefined-vocal-ranges';
 export const VOCAL_TECHNIQUE = '/vocal-techniques';
 export const VOIVODESHIP = '/voivodeships';
 export const SOCIAL_MEDIA_LINKS = '/social-media-links';
+
+export const USER_IMAGE_UPLOAD = '/user-images/upload';
 
 export function getEndpointUrl(endpoint: string): string {
   return API_BASE_URL + ':' + API_PORT + endpoint;
