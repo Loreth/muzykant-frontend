@@ -5,10 +5,12 @@ import {Instrument} from './instrument';
 import {Genre} from './genre';
 import {UserImage} from './user-image';
 import {VocalTechnique} from './vocal-technique';
+import {SocialMediaLinks} from './social-media-links';
 
 export interface User extends Identifiable<number> {
   userType: UserType;
   linkName: string;
+  displayName: string;
   description: string;
   phone: string;
   city: string;
@@ -18,4 +20,5 @@ export interface User extends Identifiable<number> {
   genres: Genre[];
   instruments: Instrument[];
   vocalTechniques: VocalTechnique[];
+  socialMediaLinks: SocialMediaLinks;
 }

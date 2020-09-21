@@ -1,0 +1,26 @@
+.title-header {
+  margin-bottom: 18px;
+}
+
+.mat-tab-link {
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mat-tab-link:hover {
+  cursor: default;
+}
+
+.mat-tab-label-active {
+  opacity: 1 !important;
+  color: #a70012 !important;
+}
+
+.mat-tab-nav-bar {
+  border-bottom: 0;
+}
+
+:host ::ng-deep .mat-ink-bar {
+  background-color: #a70012 !important;
+}

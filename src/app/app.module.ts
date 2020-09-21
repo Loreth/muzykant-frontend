@@ -13,8 +13,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
-import {MusiciansComponent} from './components/musicians/musicians.component';
-import {BandsComponent} from './components/bands/bands.component';
+import {MusiciansComponent} from './components/user-search/musicians/musicians.component';
+import {BandsComponent} from './components/user-search/bands/bands.component';
 import {MatListModule} from '@angular/material/list';
 import {HttpClientModule} from '@angular/common/http';
 import {AdDetailsComponent} from './components/ad-details/ad-details.component';
@@ -46,6 +46,10 @@ import {CreateBandComponent} from './components/create-user/create-band/create-b
 import {CreateRegularUserComponent} from './components/create-user/create-regular-user/create-regular-user.component';
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from '@angular/material-moment-adapter';
 import {SortablejsModule} from 'ngx-sortablejs';
+import {UsersComponent} from './components/users/users.component';
+import {UserSearchFilterPanelComponent} from './components/user-search/user-search-filter-panel/user-search-filter-panel.component';
+import {UserSearchResultsComponent} from './components/user-search/user-search-results/user-search-results.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -66,6 +70,9 @@ import {SortablejsModule} from 'ngx-sortablejs';
     CreateMusicianComponent,
     CreateBandComponent,
     CreateRegularUserComponent,
+    UsersComponent,
+    UserSearchFilterPanelComponent,
+    UserSearchResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,6 +108,7 @@ import {SortablejsModule} from 'ngx-sortablejs';
     MatSnackBarModule,
     MatMomentDateModule,
     SortablejsModule.forRoot({animation: 200, easing: 'cubic-bezier(0, 0, 0.2, 1)',}),
+    MatCheckboxModule,
   ],
   providers: [
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}},

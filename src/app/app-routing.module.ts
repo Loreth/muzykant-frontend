@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {BandsComponent} from './components/bands/bands.component';
-import {MusiciansComponent} from './components/musicians/musicians.component';
+import {BandsComponent} from './components/user-search/bands/bands.component';
+import {MusiciansComponent} from './components/user-search/musicians/musicians.component';
 import {MusicianWantedAdDetailsComponent} from './components/ad-details/musician-wanted-ad-details/musician-wanted-ad-details.component';
 import {BandWantedAdDetailsComponent} from './components/ad-details/band-wanted-ad-details/band-wanted-ad-details.component';
 import {JamSessionAdDetailsComponent} from './components/ad-details/jam-session-ad-details/jam-session-ad-details.component';

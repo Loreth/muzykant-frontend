@@ -2,13 +2,13 @@
   <h2>Dane szczegółowe</h2>
   <form [formGroup]="accountDetailsForm" (ngSubmit)="onSubmit()" fxLayout="column">
     <app-chip-autocomplete-input [items$]="genres$"
-                                 [label]="'Gatunki'"
-                                 [chipCssClass]="'genre-chip'"
+                                 label="Gatunki"
+                                 chipCssClass="genre-chip"
                                  formControlName="genres">
     </app-chip-autocomplete-input>
     <app-chip-autocomplete-input [items$]="instruments$"
-                                 [label]="'Instrumenty'"
-                                 [chipCssClass]="'instrument-chip'"
+                                 label="Instrumenty"
+                                 chipCssClass="instrument-chip"
                                  formControlName="instruments">
     </app-chip-autocomplete-input>
     <mat-form-field appearance="outline">

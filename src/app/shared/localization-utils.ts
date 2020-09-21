@@ -17,4 +17,18 @@ export class LocalizationUtils {
 
     return localizedUserType;
   }
+
+  public static localizeGender(gender: string): string {
+    let localizedGender: string;
+    switch (gender) {
+      case 'M':
+        localizedGender = 'M';
+        break;
+      case 'F':
+        localizedGender = 'K';
+        break;
+    }
+
+    return localizedGender;
+  }
 }

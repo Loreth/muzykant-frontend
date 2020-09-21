@@ -1,28 +1,14 @@
-mat-card-header, .mat-card-image:hover {
-  cursor: pointer;
-}
-
 .ad-details-container {
   padding: 16px;
 }
 
-.user-card {
-  margin-right: 16px;
-  max-width: 265px;
-  border-radius: 10px;
-}
-
-.fallback-profile-icon {
-  width: 100%;
-  height: auto;
-}
-
-.fallback-profile-icon:hover {
-  cursor: pointer;
-}
-
 .row-name {
   min-width: 170px;
+}
+
+.user-card {
+  max-width: 265px;
+  width: 100%;
 }
 
 .ad-chip {
@@ -51,27 +37,23 @@ mat-card-header, .mat-card-image:hover {
   padding: 6px 0;
 }
 
+.ad-info {
+  margin-left: 16px;
+}
+
 .ad-info h2 {
   margin: 0 16px;
-}
-
-:host ::ng-deep .mat-card-header-text {
-  margin: 0;
-}
-
-mat-card-content {
-  font-size: 14px;
-}
-
-.card-content mat-icon {
-  padding-right: 8px;
-}
-
-.card-content p {
-  margin-bottom: 8px;
 }
 
 .commercial-icon {
   vertical-align: middle;
   color: rgba(0, 0, 0, 0.7);
+}
+
+.ad-no-description {
+  opacity: 0.6;
+}
+
+.message-button {
+  margin-left: 16px;
 }

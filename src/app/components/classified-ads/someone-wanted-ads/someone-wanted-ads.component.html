@@ -5,7 +5,7 @@
     <div fxLayoutAlign="center center">
       <mat-icon *ngIf="!adWithChips.ad.userProfileImageLink" color="accent"
                 class="fallback-profile-icon">
-        account_circle
+        {{getFallbackIconName(adWithChips.ad.userType)}}
       </mat-icon>
       <img *ngIf="adWithChips.ad.userProfileImageLink"
            [src]="adWithChips.ad.userProfileImageLink"
@@ -36,12 +36,12 @@
         <span *ngIf="!adWithChips.ad.description" class="ad-no-description-info">Brak treści ogłoszenia.</span>
       </div>
       <div fxLayoutAlign="space-between" class="ad-opacity-element">
-        <span class="user-type-and-genres">{{localizeUserType(adWithChips.ad.userType)}}
-          <span *ngIf=adWithChips.ad.userGenres?.length>
-            ({{mapGenresToGenreNames(adWithChips.ad.userGenres).join(', ')}})
-          </span>
-        </span>
-        <span>
+        <div class="user-type-and-genres">{{localizeUserType(adWithChips.ad.userType)}}
+          <ng-container *ngIf="adWithChips.ad.userGenres?.length">
+            ({{joinGenresToGenreNames(adWithChips.ad.userGenres)}})
+          </ng-container>
+        </div>
+        <span class="location-container">
           {{adWithChips.ad.location}}
           <span fxFlex class="material-icons location-icon">place</span>
         </span>

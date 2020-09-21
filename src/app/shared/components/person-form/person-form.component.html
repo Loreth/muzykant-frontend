@@ -23,7 +23,7 @@
            formControlName="birthdate" required name="birthdate">
     <mat-datepicker-toggle class="datepicker-toggle" matSuffix
                            [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker color="accent"></mat-datepicker>
+    <mat-datepicker xPosition="end" #picker color="accent"></mat-datepicker>
     <mat-error *ngIf="birthdate.errors?.required">
       Data urodzenia {{requiredMessage}} (format D.MM.RRRR)
     </mat-error>

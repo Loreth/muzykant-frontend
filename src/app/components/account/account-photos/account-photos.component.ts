@@ -4,6 +4,9 @@ import {UserImageService} from '../../../core/services/user-image.service';
 import {UserImage} from '../../../shared/models/user-image';
 import {HttpParams} from '@angular/common/http';
 import {AuthService} from '../../../core/services/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {forkJoin, Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-account-photos',
@@ -14,8 +17,10 @@ export class AccountPhotosComponent implements OnInit {
   userImages: UserImage[] = [];
   newImageFiles = [];
   deletedUserImagesIds: number[] = [];
+  snackbarDurationInSeconds = 2.5;
+  saveButtonDisabled = false;
 
-  constructor(private userImageService: UserImageService) {
+  constructor(private userImageService: UserImageService, private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -59,10 +64,13 @@ export class AccountPhotosComponent implements OnInit {
   }
 
   savePhotos(): void {
+    this.saveButtonDisabled = true;
     console.log('beginning to save photos');
+    const requests: Observable<any>[] = [];
+
     for (const id of this.deletedUserImagesIds) {
       console.log(`deleting photo with id=${id}`);
-      this.userImageService.deleteDto(id).subscribe();
+      requests.push(this.userImageService.deleteDto(id));
     }
 
     for (let i = 0; i < this.userImages.length; i++) {
@@ -72,16 +80,30 @@ export class AccountPhotosComponent implements OnInit {
       console.log(userImage);
 
       if (userImage.id) {
-        this.userImageService.updateDto(userImage).subscribe();
+        requests.push(this.userImageService.updateDto(userImage));
       } else {
         const image: File = this.newImageFiles.filter(x => x.newUserImage === userImage)[0].file;
-        this.userImageService.upload(image, userImage.userId, i).subscribe(
-          response => userImage.link = response.body.link
-        );
+        requests.push(this.userImageService.upload(image, userImage.userId, i).pipe(
+          tap(response => userImage.link = response.body.link)
+        ));
       }
     }
 
-    this.deletedUserImagesIds.length = 0;
-    this.newImageFiles.length = 0;
+    forkJoin(requests).subscribe(() => {
+      this.openSnackBar(true);
+      this.deletedUserImagesIds.length = 0;
+      this.newImageFiles.length = 0;
+      this.saveButtonDisabled = false;
+    }, () => this.openSnackBar(false));
+  }
+
+  openSnackBar(success: boolean): void {
+    let message = 'Coś poszło nie tak';
+    if (success) {
+      message = 'Zdjęcia zostały zapisane';
+    }
+    this.snackBar.open(message,
+      '', {duration: this.snackbarDurationInSeconds * 1000, panelClass: ['snackbar']}
+    );
   }
 }

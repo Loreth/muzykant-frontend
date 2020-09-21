@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {AdWithChips} from '../../../shared/models/ad-with-chips';
 import {Genre} from '../../../shared/models/genre';
-import {Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {UserType} from '../../../shared/models/user-type';
 import {AdType} from '../../../shared/models/ad-type';
 import {LocalizationUtils} from '../../../shared/localization-utils';
@@ -12,10 +12,17 @@ import {LocalizationUtils} from '../../../shared/localization-utils';
   styleUrls: ['./someone-wanted-ads.component.css']
 })
 export class SomeoneWantedAdsComponent {
-  @Input() adsWithChips$: Subject<AdWithChips[]>;
+  @Input() adsWithChips$: Observable<AdWithChips[]>;
 
-  mapGenresToGenreNames(genres: Genre[]): string[] {
-    return genres.map(genre => genre.name);
+  joinGenresToGenreNames(genres: Genre[]): string {
+    const namesCount = 4;
+    let joinedNames = genres.slice(0, namesCount).map(genre => genre.name).join(', ');
+    if (genres.length > namesCount) {
+      // joinedNames += ',...';
+      joinedNames += `, +${genres.length - namesCount} więcej`;
+    }
+
+    return joinedNames;
   }
 
   mapAdTypeToRoutingPath(adType: AdType): string {
@@ -31,5 +38,9 @@ export class SomeoneWantedAdsComponent {
 
   localizeUserType(userType: UserType): string {
     return LocalizationUtils.localizeUserType(userType);
+  }
+
+  getFallbackIconName(userType: UserType): string {
+    return userType === UserType.BAND ? 'supervised_user_circle' : 'account_circle';
   }
 }

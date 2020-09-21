@@ -1,45 +1,7 @@
 <div fxLayout="row" *ngIf="(adWithChips$ | async) as adWithChips">
   <div fxFlex="0 100 25%"></div>
   <div fxFlex="0 1 1024px" class="ad-details-container app-card" fxLayout="row">
-    <mat-card appMaterialElevation class="user-card app-card" fxFlex>
-      <mat-card-header>
-        <mat-card-title>{{adWithChips.ad.userDisplayName}}</mat-card-title>
-        <mat-card-subtitle>{{localizeUserType(adWithChips.ad.userType)}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-icon svgIcon="user_circle" *ngIf="!adWithChips.ad.userProfileImageLink" color="accent"
-                class="fallback-profile-icon">
-      </mat-icon>
-      <img mat-card-image *ngIf="adWithChips.ad.userProfileImageLink"
-           [src]="adWithChips.ad.userProfileImageLink"
-           alt="Zdjęcie profilowe użytkownika">
-      <mat-card-content *ngIf="postingUser$ | async as postingUser" class="card-content">
-        <p fxLayoutAlign="start center">
-          <mat-icon class="md-18">domain</mat-icon>
-          {{postingUser.voivodeship.name | capitalize}}
-        </p>
-        <p fxLayoutAlign="start center">
-          <mat-icon class="md-18">place</mat-icon>
-          {{postingUser.city | capitalize}}
-        </p>
-        <p *ngIf="getJoinedNames(postingUser.genres) as joinedGenres" fxLayoutAlign="start center">
-          <mat-icon class="md-18">music_note</mat-icon>
-          {{joinedGenres}}
-        </p>
-        <p *ngIf="getJoinedNames(postingUser.instruments) as joinedInstruments"
-           fxLayoutAlign="start center">
-          <mat-icon class="md-18">mic</mat-icon>
-          {{joinedInstruments}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions fxLayout="row" fxLayoutAlign="space-around  center">
-        <button [disabled]="true" mat-icon-button matTooltip="Soundcloud">
-          <mat-icon svgIcon="soundcloud"></mat-icon>
-        </button>
-        <button [disabled]="true" mat-icon-button matTooltip="YouTube">
-          <mat-icon svgIcon="youtube"></mat-icon>
-        </button>
-      </mat-card-actions>
-    </mat-card>
+    <app-user-card class="user-card" [user]="postingUser$ | async"></app-user-card>
 
     <div class="ad-info" fxFlex>
       <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -57,6 +19,11 @@
         <mat-list-item>
           <span class="row-name">Data publikacji</span>
           {{adWithChips.ad.publishedDate | date: 'dd.MM.yyyy'}}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span class="row-name">Lokalizacja</span>
+          {{adWithChips.ad.location}}
         </mat-list-item>
         <mat-divider></mat-divider>
         <div *ngIf="genreChips?.length">
@@ -98,8 +65,11 @@
           <mat-divider></mat-divider>
         </div>
       </mat-list>
-      <p class="ad-description">{{adWithChips.ad.description}}</p>
-      <button mat-raised-button color="primary">Wyślij wiadomość</button>
+      <p *ngIf="adWithChips.ad.description"
+         class="ad-description">{{adWithChips.ad.description}}</p>
+      <p *ngIf="!adWithChips.ad.description" class="ad-description ad-no-description">
+        Brak treści ogłoszenia</p>
+      <button mat-raised-button color="primary" class="message-button">Wyślij wiadomość</button>
     </div>
   </div>
   <div fxFlex="0 100 25%"></div>

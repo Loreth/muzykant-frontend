@@ -37,6 +37,10 @@
 
 .user-type-and-genres {
   letter-spacing: 0.03em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .ad-opacity-element {
@@ -46,7 +50,6 @@
 .ad-description {
   margin: 15px 0 20px;
   overflow: hidden;
-  text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -94,4 +97,8 @@
   font-size: 24px;
   text-align: center;
   color: rgba(0, 0, 0, 0.4);
+}
+
+.location-container {
+  margin-left: 16px;
 }

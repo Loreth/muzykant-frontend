@@ -8,9 +8,12 @@
       <mat-icon class="delete-photo-icon" (click)="removeImage(userImage)">cancel</mat-icon>
     </div>
   </div>
+  <div fxLayout="column" *ngIf="!userImages.length" class="no-images-placeholder">
+    Dodaj zdjęcia siebie, swojego sprzętu, koncertów itp.
+  </div>
   <div fxLayout="column">
     <button type="button" mat-flat-button color="accent" class="save-button" fxFlexAlign="end"
-            (click)="savePhotos()">
+            [disabled]="saveButtonDisabled" (click)="savePhotos()">
       Zapisz zdjęcia
     </button>
   </div>

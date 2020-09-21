@@ -20,8 +20,11 @@ import {Nameable} from '../../models/nameable';
 export class ChipAutocompleteInputComponent implements OnInit, ControlValueAccessor {
   @Input() items$: Observable<Nameable<any>[]>;
   @Input() label: string;
+  @Input() placeholder: string;
   @Input() labelIcon: string;
+  @Input() labelIconClass: string;
   @Input() chipCssClass: string;
+  @Input() chipsUnderInput = false;
 
   inputFormControl = new FormControl();
   items: Nameable<any>[];
@@ -57,8 +60,8 @@ export class ChipAutocompleteInputComponent implements OnInit, ControlValueAcces
     if (!this.selectedItems.map(item => item.id).includes(viewValue.id)) {
       this.selectedItems.push(viewValue);
     }
-    this.itemInput.nativeElement.value = '';
     this.inputFormControl.setValue('');
+    this.itemInput.nativeElement.value = '';
     this.propagateChange(this.selectedItems);
   }
 

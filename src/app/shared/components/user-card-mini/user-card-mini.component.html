@@ -1,0 +1,59 @@
+<mat-card *ngIf="user" appMaterialElevation defaultElevation="0" raisedElevation="4"
+          class="app-card"
+          fxFlex fxLayout="column">
+  <a [routerLink]="'/users/'+user.linkName">
+    <mat-card-header>
+      <mat-card-title class="one-line-clamp">
+        <span class="user-display-name">{{user.displayName}}</span>
+        <span *ngIf="userAsMusician(user) as musician">
+          ({{localizeGender(musician.person.gender)}}, {{getPersonAge(musician.person)}})
+        </span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-icon [svgIcon]="getFallbackIconName()"
+              *ngIf="!user.profileImageLink" color="accent"
+              class="profile-image">
+    </mat-icon>
+    <img *ngIf="user.profileImageLink"
+         [src]="user.profileImageLink"
+         alt="Zdjęcie profilowe użytkownika"
+         class="profile-image">
+  </a>
+
+  <mat-card-content class="card-content">
+    <p fxLayoutAlign="start center">
+      <mat-icon class="category-icon">domain</mat-icon>
+      {{user.voivodeship.name | capitalize}}
+    </p>
+    <p fxLayoutAlign="start center">
+      <mat-icon class="category-icon">place</mat-icon>
+      {{user.city | capitalize}}
+    </p>
+    <p *ngIf="getJoinedNames(user.genres) as joinedGenres" fxLayoutAlign="start center">
+      <mat-icon class="category-icon">music_note</mat-icon>
+      <span class="one-line-clamp">{{joinedGenres}}</span>
+    </p>
+    <p *ngIf="getJoinedNames(user.instruments) as joinedInstruments"
+       fxLayoutAlign="start center">
+      <mat-icon class="category-icon">mic</mat-icon>
+      <span class="one-line-clamp">{{joinedInstruments}}</span>
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
+    <a [href]="user.socialMediaLinks?.soundcloud" target="_blank"
+       [disabled]="user.socialMediaLinks?.soundcloud == null" mat-icon-button
+       matTooltip="Soundcloud">
+      <mat-icon class="action-icon" svgIcon="soundcloud"></mat-icon>
+    </a>
+    <a [href]="user.socialMediaLinks?.youtube" target="_blank"
+       [disabled]="user.socialMediaLinks?.youtube == null" mat-icon-button matTooltip="YouTube">
+      <mat-icon class="action-icon" svgIcon="youtube"></mat-icon>
+    </a>
+    <a [href]="user.socialMediaLinks?.webpage" target="_blank"
+       [disabled]="user.socialMediaLinks?.webpage == null" mat-icon-button
+       matTooltip="Strona internetowa">
+      <mat-icon class="action-icon">language</mat-icon>
+    </a>
+  </mat-card-actions>
+</mat-card>

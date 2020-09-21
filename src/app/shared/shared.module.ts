@@ -18,6 +18,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
 import {SoundcloudWidgetComponent} from './components/soundcloud-widget/soundcloud-widget.component';
+import {UserCardComponent} from './components/user-card/user-card.component';
+import {MatCardModule} from '@angular/material/card';
+import {FlexModule} from '@angular/flex-layout';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {UserCardMiniComponent} from './components/user-card-mini/user-card-mini.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [CapitalizePipe,
@@ -26,7 +33,9 @@ import {SoundcloudWidgetComponent} from './components/soundcloud-widget/soundclo
     PersonFormComponent,
     UserFormComponent,
     ChipAutocompleteInputComponent,
-    SoundcloudWidgetComponent],
+    SoundcloudWidgetComponent,
+    UserCardComponent,
+    UserCardMiniComponent],
   exports: [
     CapitalizePipe,
     MaterialElevationDirective,
@@ -34,7 +43,9 @@ import {SoundcloudWidgetComponent} from './components/soundcloud-widget/soundclo
     PersonFormComponent,
     UserFormComponent,
     ChipAutocompleteInputComponent,
-    SoundcloudWidgetComponent
+    SoundcloudWidgetComponent,
+    UserCardComponent,
+    UserCardMiniComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +59,12 @@ import {SoundcloudWidgetComponent} from './components/soundcloud-widget/soundclo
     MatSelectModule,
     MatIconModule,
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
+    MatCardModule,
+    FlexModule,
+    MatButtonModule,
+    MatTooltipModule,
+    RouterModule
   ],
   providers: [
     MatDatepickerModule

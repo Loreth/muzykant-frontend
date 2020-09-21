@@ -79,3 +79,8 @@ simple-snack-bar span {
   border-radius: 10px;
   border: 2px dashed rgba(0, 0, 0, 0.12);
 }
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+}

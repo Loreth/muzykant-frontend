@@ -1,0 +1,73 @@
+<form [formGroup]="userFiltersForm" class="app-card search-filter-panel">
+  <h4>Poszukiwany</h4>
+  <mat-form-field appearance="outline">
+    <mat-icon matPrefix class="md-18">domain</mat-icon>
+    <mat-label>Województwo</mat-label>
+    <mat-select class="voivodeship-name" multiple formControlName="voivodeships">
+      <mat-option class="mat-accent voivodeship-name"
+                  *ngFor="let voivodeship of voivodeships$ | async"
+                  [value]="voivodeship">{{voivodeship.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-icon matPrefix class="md-18">place</mat-icon>
+    <mat-label>Miasto</mat-label>
+    <input matInput placeholder="Miasto" formControlName="city" name="city">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-icon matPrefix class="md-18">person</mat-icon>
+    <mat-label>{{nameLabel}}</mat-label>
+    <input matInput [placeholder]="nameLabel" formControlName="name" name="filter-name">
+  </mat-form-field>
+  <app-chip-autocomplete-input [items$]="genres$"
+                               label="Gatunki"
+                               chipCssClass="genre-chip"
+                               placeholder="Dodaj gatunek"
+                               labelIcon="music_note"
+                               labelIconClass="md-18"
+                               chipsUnderInput="true"
+                               formControlName="genres">
+  </app-chip-autocomplete-input>
+  <div class="instrument-chip-input-wrapper">
+    <app-chip-autocomplete-input [items$]="instruments$"
+                                 label="Instrumenty"
+                                 chipCssClass="instrument-chip"
+                                 placeholder="Dodaj instrument"
+                                 labelIcon="mic"
+                                 labelIconClass="md-18"
+                                 chipsUnderInput="true"
+                                 formControlName="instruments"
+                                 class="instrument-chip-input">
+    </app-chip-autocomplete-input>
+  </div>
+
+  <section *ngIf="wantedUserType == 'MUSICIAN'">
+    <section class="gender-section">
+      <span class="section-label">Płeć<br></span>
+      <mat-checkbox class="gender-element" formControlName="genderFemale">
+        Kobieta
+      </mat-checkbox>
+      <mat-checkbox class="gender-element" formControlName="genderMale">
+        Mężczyzna
+      </mat-checkbox>
+    </section>
+
+    <span class="section-label">{{sliderLabel}}<br></span>
+    <section fxLayout="row">
+          <span class="slider-value slider-min-value"
+                fxFlexAlign="center">{{sliderValues?.min}}
+          </span>
+      <app-mat-range-slider
+        formControlName="ageRange"
+        class="slider"
+        fxFlex
+        thumbLabel
+        (input)="sliderValues = $event.value">
+      </app-mat-range-slider>
+      <span class="slider-value slider-max-value" fxFlexAlign="center">
+          {{sliderValues?.max}}<span *ngIf="sliderValues.max == 100">+</span>
+          </span>
+    </section>
+  </section>
+</form>
