@@ -24,11 +24,11 @@
       <mat-icon class="md-18">place</mat-icon>
       {{user.city | capitalize}}
     </p>
-    <p *ngIf="getJoinedNames(user.genres) as joinedGenres" fxLayoutAlign="start center">
+    <p *ngIf="getSortedJoinedNames(user.genres) as joinedGenres" fxLayoutAlign="start center">
       <mat-icon class="md-18">music_note</mat-icon>
       <span class="items-list">{{joinedGenres}}</span>
     </p>
-    <p *ngIf="getJoinedNames(user.instruments) as joinedInstruments"
+    <p *ngIf="getSortedJoinedNames(user.instruments) as joinedInstruments"
        fxLayoutAlign="start center">
       <mat-icon class="md-18">mic</mat-icon>
       <span class="items-list">{{joinedInstruments}}</span>

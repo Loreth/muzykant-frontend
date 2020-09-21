@@ -1,0 +1,11 @@
+<img [src]="croppedImageUrl" alt="podgląd zdjęcia" class="image-preview">
+<h2 mat-dialog-title>Zmień zdjęcie profilowe</h2>
+<div>
+  <img #image [src]="data.imgUrl" alt="zdjęcie użytkownika" crossorigin class="full-image">
+</div>
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="accent" (click)="onCancel()">Anuluj</button>
+  <button mat-flat-button color="accent" [mat-dialog-close]="canvas" cdkFocusInitial>
+    Zapisz zdjęcie
+  </button>
+</mat-dialog-actions>

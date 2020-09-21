@@ -1,6 +1,6 @@
 <div class="app-card">
   <h2>Zdjęcia</h2>
-  <div fxLayout="row wrap" fxLayoutAlign="start center" class="photo-list"
+  <div fxLayout="row wrap" fxLayoutAlign="start center"
        [sortablejs]="userImages"
        [sortablejsOptions]="{ghostClass: 'photo-drag-shadow'}">
     <div class="photo-wrapper" *ngFor="let userImage of userImages">

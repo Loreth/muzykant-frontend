@@ -25,6 +25,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {UserCardMiniComponent} from './components/user-card-mini/user-card-mini.component';
 import {RouterModule} from '@angular/router';
+import {ImageCropDialogComponent} from './components/image-crop-dialog/image-crop-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [CapitalizePipe,
@@ -35,7 +37,8 @@ import {RouterModule} from '@angular/router';
     ChipAutocompleteInputComponent,
     SoundcloudWidgetComponent,
     UserCardComponent,
-    UserCardMiniComponent],
+    UserCardMiniComponent,
+    ImageCropDialogComponent],
   exports: [
     CapitalizePipe,
     MaterialElevationDirective,
@@ -64,7 +67,8 @@ import {RouterModule} from '@angular/router';
     FlexModule,
     MatButtonModule,
     MatTooltipModule,
-    RouterModule
+    RouterModule,
+    MatDialogModule
   ],
   providers: [
     MatDatepickerModule

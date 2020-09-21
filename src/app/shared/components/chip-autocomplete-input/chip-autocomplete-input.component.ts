@@ -84,6 +84,7 @@ export class ChipAutocompleteInputComponent implements OnInit, ControlValueAcces
   writeValue(obj: Nameable<any>[]): void {
     if (obj !== null && obj !== undefined) {
       this.selectedItems = obj;
+      this.selectedItems.sort((a, b) => a.name.localeCompare(b.name));
     }
   }
 }

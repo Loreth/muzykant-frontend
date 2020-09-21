@@ -84,3 +84,12 @@ a {
   text-decoration: inherit;
   color: inherit;
 }
+
+.cdk-overlay-pane.profile-image-dialog {
+  position: relative !important;
+}
+
+.profile-image-dialog .mat-dialog-container {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}

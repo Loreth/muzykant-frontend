@@ -19,9 +19,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {ChipListAutocompleteInputComponent} from './ad-filter-panel/chip-list-autocomplete-input/chip-list-autocomplete-input.component';
-import {GenreChipInputComponent} from './ad-filter-panel/genre-chip-input/genre-chip-input.component';
-import {InstrumentChipInputComponent} from './ad-filter-panel/instrument-chip-input/instrument-chip-input.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -36,9 +33,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     JamSessionAdsComponent,
     SomeoneWantedAdsComponent,
     AdFilterPanelComponent,
-    ChipListAutocompleteInputComponent,
-    GenreChipInputComponent,
-    InstrumentChipInputComponent
   ],
   imports: [
     CommonModule,

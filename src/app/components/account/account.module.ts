@@ -23,6 +23,7 @@ import {AccountSocialMediaLinksComponent} from './account-social-media-links/acc
 import {AccountPhotosComponent} from './account-photos/account-photos.component';
 import {NgxFileDropModule} from 'ngx-file-drop';
 import {SortablejsModule} from 'ngx-sortablejs';
+import {MatRippleModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {SortablejsModule} from 'ngx-sortablejs';
     MatChipsModule,
     MatAutocompleteModule,
     NgxFileDropModule,
-    SortablejsModule
+    SortablejsModule,
+    MatRippleModule
   ]
 })
 export class AccountModule {

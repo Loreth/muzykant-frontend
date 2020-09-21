@@ -25,7 +25,8 @@ export class UserCardComponent {
       'supervised_user_circle', sanitizer.bypassSecurityTrustResourceUrl('assets/img/supervised_user_circle-48dp.svg'));
   }
 
-  getJoinedNames(nameable: Nameable<any>[]): string {
+  getSortedJoinedNames(nameable: Nameable<any>[]): string {
+    nameable.sort((a, b) => a.name.localeCompare(b.name));
     return nameable.map(value => value.name).join(', ');
   }
 

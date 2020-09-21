@@ -3,6 +3,12 @@ import {UserService} from '../../core/services/user.service';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AuthService} from '../../core/services/auth.service';
+import {Observable} from 'rxjs';
+import {User} from '../../shared/models/user';
+import {MatDialog} from '@angular/material/dialog';
+import {ImageCropDialogComponent} from '../../shared/components/image-crop-dialog/image-crop-dialog.component';
+import {UserImageService} from '../../core/services/user-image.service';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-account',
@@ -10,9 +16,12 @@ import {AuthService} from '../../core/services/auth.service';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  profileImageLink: string;
+  user$: Observable<User>;
+  profileImageLink;
 
   constructor(private userService: UserService,
+              private userImageService: UserImageService,
+              private profileImageDialog: MatDialog,
               iconRegistry: MatIconRegistry,
               sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon('user_circle', sanitizer.bypassSecurityTrustResourceUrl('assets/img/account_circle-48dp.svg'));
@@ -20,8 +29,39 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getDto(AuthService.loggedUserId).subscribe(
-      user => this.profileImageLink = user.profileImageLink
+    this.user$ = this.userService.getDto(AuthService.loggedUserId).pipe(
+      tap(user => this.setProfileImageLink(user.profileImageLink))
     );
+  }
+
+  openProfileImageDialog(event: Event): void {
+    const element = event.currentTarget as HTMLInputElement;
+    if (element.files.length > 0) {
+      const reader = new FileReader();
+      reader.readAsDataURL(element.files[0]);
+      reader.onload = () => {
+        const dialogRef = this.profileImageDialog.open(ImageCropDialogComponent, {
+          panelClass: 'profile-image-dialog',
+          data: {imgUrl: reader.result, cropAspectRatio: 1}
+        });
+
+        dialogRef.afterClosed().subscribe((newImageCanvas: HTMLCanvasElement) => {
+          if (newImageCanvas) {
+            newImageCanvas.toBlob(blob => {
+              const imgFile = new File([blob], 'profile-image', {type: 'image/jpg', lastModified: Date.now()});
+              this.userImageService.upload(imgFile, AuthService.loggedUserId, 0, true).subscribe(response => {
+                this.setProfileImageLink(response.body.link);
+              });
+            }, 'image/jpeg');
+          }
+        });
+      };
+    }
+  }
+
+  setProfileImageLink(profileImageLink: string): void {
+    if (profileImageLink) {
+      this.profileImageLink = profileImageLink + '?d=' + new Date().getTime();
+    }
   }
 }

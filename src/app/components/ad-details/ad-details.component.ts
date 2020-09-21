@@ -6,7 +6,6 @@ import {AdType} from '../../shared/models/ad-type';
 import {User} from '../../shared/models/user';
 import {UserServiceFactoryService} from '../../core/services/user-service-factory.service';
 import {AdChip, ChipCssClass} from '../../shared/models/ad-chip';
-import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-ad-details',
@@ -20,8 +19,6 @@ export class AdDetailsComponent implements OnInit {
   instrumentChips: AdChip[];
   ageChip: AdChip;
   genderChip: AdChip;
-  userGenreChips: AdChip[];
-  userInstrumentsChips: AdChip[];
 
   constructor(private location: Location,
               private userServiceFactoryService: UserServiceFactoryService) {
@@ -33,13 +30,9 @@ export class AdDetailsComponent implements OnInit {
         this.instrumentChips = adWithChips.chips.filter(chip => chip.cssClass === ChipCssClass.INSTRUMENT);
         this.ageChip = adWithChips.chips.filter(chip => chip.cssClass === ChipCssClass.AGE)[0];
         this.genderChip = adWithChips.chips.filter(chip => chip.cssClass === ChipCssClass.GENDER)[0];
-
-        this.postingUser$ = this.userServiceFactoryService.getUserService(adWithChips.ad.userType).getDto(adWithChips.ad.userId)
-        .pipe(
-          tap(user => {
-            this.userGenreChips = user.genres.map(genre => new AdChip(genre.name, ChipCssClass.GENRE));
-            this.userInstrumentsChips = user.genres.map(instrument => new AdChip(instrument.name, ChipCssClass.INSTRUMENT));
-          }));
+        this.postingUser$ = this.userServiceFactoryService.getUserService(adWithChips.ad.userType).getDto(adWithChips.ad.userId);
+        this.genreChips.sort((a, b) => a.label.localeCompare(b.label));
+        this.instrumentChips.sort((a, b) => a.label.localeCompare(b.label));
       }
     );
   }

@@ -22,8 +22,17 @@
           <mat-label>Lokalizacja</mat-label>
           <input matInput placeholder="Lokalizacja" formControlName="location" name="location">
         </mat-form-field>
-        <app-genre-chip-input formControlName="genres"></app-genre-chip-input>
-        <app-instrument-chip-input formControlName="instruments"></app-instrument-chip-input>
+        <app-chip-autocomplete-input [items$]="genres$" label="Gatunki" chipCssClass="genre-chip"
+                                     placeholder="Dodaj gatunek" labelIcon="music_note"
+                                     labelIconClass="md-18" chipsUnderInput="true"
+                                     formControlName="genres">
+        </app-chip-autocomplete-input>
+        <app-chip-autocomplete-input [items$]="instruments$" label="Instrumenty"
+                                     chipCssClass="instrument-chip" placeholder="Dodaj instrument"
+                                     labelIcon="mic" labelIconClass="md-18" chipsUnderInput="true"
+                                     formControlName="instruments">
+        </app-chip-autocomplete-input>
+
 
         <section *ngIf="wantedUserType == 'MUSICIAN'">
           <section class="gender-section">
@@ -73,8 +82,17 @@
             <span class="section-label">Oferta komercyjna</span>
             <mat-slide-toggle formControlName="commercial"></mat-slide-toggle>
           </section>
-          <app-genre-chip-input formControlName="genres"></app-genre-chip-input>
-          <app-instrument-chip-input formControlName="instruments"></app-instrument-chip-input>
+
+          <app-chip-autocomplete-input [items$]="genres$" label="Gatunki" chipCssClass="genre-chip"
+                                       placeholder="Dodaj gatunek" labelIcon="music_note"
+                                       labelIconClass="md-18" chipsUnderInput="true"
+                                       formControlName="genres">
+          </app-chip-autocomplete-input>
+          <app-chip-autocomplete-input [items$]="instruments$" label="Instrumenty"
+                                       chipCssClass="instrument-chip" placeholder="Dodaj instrument"
+                                       labelIcon="mic" labelIconClass="md-18" chipsUnderInput="true"
+                                       formControlName="instruments">
+          </app-chip-autocomplete-input>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

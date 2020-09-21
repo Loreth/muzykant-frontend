@@ -1,0 +1,19 @@
+.full-image {
+  max-height: 65vh;
+  max-width: calc(90vw - 400px);
+  display: block;
+}
+
+.image-preview {
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+  position: absolute;
+  right: -16px;
+  top: 0;
+  transform: translate(100%, 0);
+}
+
+.mat-dialog-container {
+  border-radius: 10px;
+}

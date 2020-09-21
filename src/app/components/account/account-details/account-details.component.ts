@@ -86,4 +86,20 @@ export class AccountDetailsComponent implements OnInit {
       '', {duration: this.snackbarDurationInSeconds * 1000, panelClass: ['snackbar']}
     );
   }
+
+  limitMaxLines(event: Event, maxLines: number): void {
+    const text = (event.target as HTMLTextAreaElement).value;
+    if (text.length > 0) {
+      const lineCount = 1 + text.replace(/[^\n]/g, '').length;
+      if (lineCount > maxLines) {
+        const textArray = text.split('\n');
+        (event.target as HTMLTextAreaElement).value = textArray.reduce((result, line, lineNum, array) => {
+          if (lineNum < maxLines) {
+            return result.concat('\n').concat(line);
+          }
+          return result.concat(line);
+        });
+      }
+    }
+  }
 }

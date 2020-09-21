@@ -5,6 +5,10 @@ import {VoivodeshipService} from '../../../core/services/voivodeship.service';
 import {Observable} from 'rxjs';
 import {debounceTime, map} from 'rxjs/operators';
 import {UserType} from '../../../shared/models/user-type';
+import {GenreService} from '../../../core/services/genre.service';
+import {InstrumentService} from '../../../core/services/instrument.service';
+import {Genre} from '../../../shared/models/genre';
+import {Instrument} from '../../../shared/models/instrument';
 
 @Component({
   selector: 'app-ad-filter-panel',
@@ -14,6 +18,8 @@ import {UserType} from '../../../shared/models/user-type';
 export class AdFilterPanelComponent implements OnInit {
   sliderValues: { min: number, max: number };
   voivodeships$: Observable<Voivodeship[]>;
+  genres$: Observable<Genre[]>;
+  instruments$: Observable<Instrument[]>;
 
   @Input() wantedUserType: UserType;
   @Output() changedFilters = new EventEmitter<FormGroup>();
@@ -38,7 +44,9 @@ export class AdFilterPanelComponent implements OnInit {
     }),
   });
 
-  constructor(private voivodeshipService: VoivodeshipService) {
+  constructor(private voivodeshipService: VoivodeshipService,
+              private genreService: GenreService,
+              private instrumentService: InstrumentService) {
   }
 
   ngOnInit(): void {
@@ -48,5 +56,11 @@ export class AdFilterPanelComponent implements OnInit {
       this.changedFilters.emit(this.adFiltersForm);
       console.log('ad filters emitted after debounce time');
     });
+    this.genres$ = this.genreService.getDtosPage(0, 2000, ['name']).pipe(
+      map(page => page.content)
+    );
+    this.instruments$ = this.instrumentService.getDtosPage(0, 2000, ['name']).pipe(
+      map(page => page.content)
+    );
   }
 }

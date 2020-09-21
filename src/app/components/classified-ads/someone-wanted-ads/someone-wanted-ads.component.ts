@@ -14,11 +14,11 @@ import {LocalizationUtils} from '../../../shared/localization-utils';
 export class SomeoneWantedAdsComponent {
   @Input() adsWithChips$: Observable<AdWithChips[]>;
 
-  joinGenresToGenreNames(genres: Genre[]): string {
+  sortAndJoinGenresToGenreNames(genres: Genre[]): string {
     const namesCount = 4;
+    genres.sort((a, b) => a.name.localeCompare(b.name));
     let joinedNames = genres.slice(0, namesCount).map(genre => genre.name).join(', ');
     if (genres.length > namesCount) {
-      // joinedNames += ',...';
       joinedNames += `, +${genres.length - namesCount} więcej`;
     }
 

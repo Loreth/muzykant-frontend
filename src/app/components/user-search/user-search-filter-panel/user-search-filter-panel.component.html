@@ -29,18 +29,15 @@
                                chipsUnderInput="true"
                                formControlName="genres">
   </app-chip-autocomplete-input>
-  <div class="instrument-chip-input-wrapper">
-    <app-chip-autocomplete-input [items$]="instruments$"
-                                 label="Instrumenty"
-                                 chipCssClass="instrument-chip"
-                                 placeholder="Dodaj instrument"
-                                 labelIcon="mic"
-                                 labelIconClass="md-18"
-                                 chipsUnderInput="true"
-                                 formControlName="instruments"
-                                 class="instrument-chip-input">
-    </app-chip-autocomplete-input>
-  </div>
+  <app-chip-autocomplete-input [items$]="instruments$"
+                               label="Instrumenty"
+                               chipCssClass="instrument-chip"
+                               placeholder="Dodaj instrument"
+                               labelIcon="mic"
+                               labelIconClass="md-18"
+                               chipsUnderInput="true"
+                               formControlName="instruments">
+  </app-chip-autocomplete-input>
 
   <section *ngIf="wantedUserType == 'MUSICIAN'">
     <section class="gender-section">

@@ -38,7 +38,7 @@
       <div fxLayoutAlign="space-between" class="ad-opacity-element">
         <div class="user-type-and-genres">{{localizeUserType(adWithChips.ad.userType)}}
           <ng-container *ngIf="adWithChips.ad.userGenres?.length">
-            ({{joinGenresToGenreNames(adWithChips.ad.userGenres)}})
+            ({{sortAndJoinGenresToGenreNames(adWithChips.ad.userGenres)}})
           </ng-container>
         </div>
         <span class="location-container">

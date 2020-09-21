@@ -13,7 +13,10 @@
     </app-chip-autocomplete-input>
     <mat-form-field appearance="outline">
       <mat-label>Opis</mat-label>
-      <textarea matInput formControlName="description"></textarea>
+      <textarea cdkAutosizeMinRows="3" cdkTextareaAutosize matInput
+                formControlName="description"
+                maxlength="1000" class="description"
+                (input)="limitMaxLines($event, 12)"></textarea>
     </mat-form-field>
 
     <button type="submit" mat-flat-button color="accent" fxFlexAlign="end">

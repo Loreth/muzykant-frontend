@@ -29,7 +29,7 @@
 
 .gender-section {
   padding: 3px 0;
-  margin: 6px 0;
+  margin-bottom: 6px;
 }
 
 .gender-element {
@@ -63,8 +63,4 @@
 
 .voivodeship-name {
   text-transform: capitalize;
-}
-
-.instrument-chip-input-wrapper {
-  margin-top: 8px;
 }

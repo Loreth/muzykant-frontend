@@ -1,13 +1,24 @@
 <div fxLayout="row">
-  <div fxFlex="1 0 25%" fxLayout="row" fxLayoutAlign="end">
+  <div fxFlex="1 0 25%" fxLayout="row" fxLayoutAlign="end" *ngIf="user$ | async as user">
     <div fxFlex="0 1 250px" class="app-card user-navigation">
-      <mat-icon svgIcon="user_circle" *ngIf="!profileImageLink" color="accent"
-                class="profile-image">
-      </mat-icon>
-      <img *ngIf="profileImageLink"
-           [src]="profileImageLink"
-           alt="Zdjęcie profilowe użytkownika"
-           class="profile-image">
+      <div class="profile-image-container">
+        <mat-icon svgIcon="user_circle" *ngIf="!profileImageLink" color="accent"
+                  class="profile-image">
+        </mat-icon>
+        <img *ngIf="profileImageLink"
+             [src]="profileImageLink"
+             alt="Zdjęcie profilowe użytkownika"
+             class="profile-image">
+
+        <div class="change-profile-image" fxLayout="row" fxLayoutAlign="center center"
+             matRipple (click)="profileImgInput.click()">
+          <mat-icon class="change-profile-image-icon material-icons-outlined">create</mat-icon>
+          <input #profileImgInput type="file" accept="image/png,image/jpeg,image/webp"
+                 name="profile-img" class="profile-img-input"
+                 (change)="openProfileImageDialog($event)">
+        </div>
+      </div>
+      <div class="user-display-name">{{user.displayName}}</div>
 
       <mat-nav-list>
         <a mat-list-item routerLink="basic-info" routerLinkActive="active-link">
