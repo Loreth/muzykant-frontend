@@ -10,30 +10,48 @@
 
 .photo-wrapper {
   position: relative;
-  height: 200px;
   cursor: move;
   margin: 5px;
 }
 
 .photo {
-  height: 100%;
+  max-height: 300px;
+  max-width: 317px;
 }
 
 .delete-photo-icon {
   position: absolute;
-  color: #f6f6f6;
-  top: 2px;
-  right: 2px;
-  opacity: 0.9;
-  visibility: hidden;
+  color: rgba(255, 255, 255, 0.85);
+  top: 4px;
+  right: 4px;
+  opacity: 0;
+  transition: transform .135s cubic-bezier(0.0, 0.0, 0.2, 1), opacity, color linear .15s;
+  z-index: 3;
 }
 
-.photo-wrapper:hover .delete-photo-icon {
-  visibility: visible;
+.photo-wrapper:hover .delete-photo-icon, .photo-wrapper:hover .delete-photo-background {
+  opacity: 1;
 }
 
 .delete-photo-icon:hover {
   cursor: pointer;
+  color: white;
+}
+
+.delete-photo-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 46px;
+  height: 100%;
+  max-height: 46px;
+  background: radial-gradient(
+    circle at top right,
+    rgba(20, 20, 20, 0.3),
+    rgba(255, 255, 255, 0) 70%
+  );
+  transition: transform .135s cubic-bezier(0.0, 0.0, 0.2, 1), opacity linear .15s;
+  opacity: 0;
 }
 
 .save-button {

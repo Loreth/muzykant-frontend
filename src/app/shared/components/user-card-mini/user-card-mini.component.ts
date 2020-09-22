@@ -7,7 +7,8 @@ import {UserType} from '../../models/user-type';
 import {LocalizationUtils} from '../../localization-utils';
 import {Musician} from '../../models/musician';
 import {Person} from '../../models/person';
-import * as moment from 'moment';
+// @ts-ignore
+import moment from 'moment';
 
 @Component({
   selector: 'app-user-card-mini',

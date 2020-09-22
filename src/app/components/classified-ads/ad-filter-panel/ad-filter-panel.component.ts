@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Voivodeship} from '../../../shared/models/voivodeship';
 import {FormControl, FormGroup} from '@angular/forms';
 import {VoivodeshipService} from '../../../core/services/voivodeship.service';
@@ -15,11 +15,12 @@ import {Instrument} from '../../../shared/models/instrument';
   templateUrl: './ad-filter-panel.component.html',
   styleUrls: ['./ad-filter-panel.component.css']
 })
-export class AdFilterPanelComponent implements OnInit {
+export class AdFilterPanelComponent implements OnInit, AfterViewInit {
   sliderValues: { min: number, max: number };
   voivodeships$: Observable<Voivodeship[]>;
   genres$: Observable<Genre[]>;
   instruments$: Observable<Instrument[]>;
+  collapsedPanelHeight = '64px';
 
   @Input() wantedUserType: UserType;
   @Output() changedFilters = new EventEmitter<FormGroup>();
@@ -62,5 +63,9 @@ export class AdFilterPanelComponent implements OnInit {
     this.instruments$ = this.instrumentService.getDtosPage(0, 2000, ['name']).pipe(
       map(page => page.content)
     );
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => this.collapsedPanelHeight = '48px');
   }
 }

@@ -1,5 +1,6 @@
-<mat-nav-list class="ad-list">
-  <a mat-list-item class="app-card" *ngFor="let adWithChips of adsWithChips$ | async"
+<mat-nav-list class="ad-list" *ngIf="adsWithChips$ | async as adsWithChips"
+              [@listAnimation]="adsWithChips.length">
+  <a mat-list-item class="app-card" *ngFor="let adWithChips of adsWithChips"
      routerLink="{{mapAdTypeToRoutingPath(adWithChips.ad.adType)}}/{{adWithChips.ad.id}}"
      appMaterialElevation defaultElevation="0" raisedElevation="4">
     <div fxLayoutAlign="center center">

@@ -9,3 +9,7 @@ mat-sidenav {
 main {
   margin: 16px;
 }
+
+.overlay-scrollbar {
+  height: calc(100% - 64px);
+}

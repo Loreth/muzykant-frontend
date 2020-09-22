@@ -5,6 +5,7 @@
        [sortablejsOptions]="{ghostClass: 'photo-drag-shadow'}">
     <div class="photo-wrapper" *ngFor="let userImage of userImages">
       <img [src]="userImage.link" class="photo" alt="zdjęcie">
+      <div class="delete-photo-background"></div>
       <mat-icon class="delete-photo-icon" (click)="removeImage(userImage)">cancel</mat-icon>
     </div>
   </div>

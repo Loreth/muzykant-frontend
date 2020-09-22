@@ -50,6 +50,7 @@ import {UsersComponent} from './components/users/users.component';
 import {UserSearchFilterPanelComponent} from './components/user-search/user-search-filter-panel/user-search-filter-panel.component';
 import {UserSearchResultsComponent} from './components/user-search/user-search-results/user-search-results.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatMomentDateModule,
     SortablejsModule.forRoot({animation: 200, easing: 'cubic-bezier(0, 0, 0.2, 1)',}),
     MatCheckboxModule,
+    OverlayscrollbarsModule
   ],
   providers: [
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}},

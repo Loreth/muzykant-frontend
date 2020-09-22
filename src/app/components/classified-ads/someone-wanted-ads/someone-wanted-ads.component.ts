@@ -5,11 +5,24 @@ import {Observable} from 'rxjs';
 import {UserType} from '../../../shared/models/user-type';
 import {AdType} from '../../../shared/models/ad-type';
 import {LocalizationUtils} from '../../../shared/localization-utils';
+import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-someone-wanted-ads',
   templateUrl: './someone-wanted-ads.component.html',
-  styleUrls: ['./someone-wanted-ads.component.css']
+  styleUrls: ['./someone-wanted-ads.component.css'],
+  animations: [
+    trigger('listAnimation', [
+      transition('* => *', [
+        query(':enter', [
+          style({opacity: 0}),
+          stagger(90, [
+            animate('0.25s', style({opacity: 1}))
+          ])
+        ], {optional: true})
+      ])
+    ])
+  ]
 })
 export class SomeoneWantedAdsComponent {
   @Input() adsWithChips$: Observable<AdWithChips[]>;

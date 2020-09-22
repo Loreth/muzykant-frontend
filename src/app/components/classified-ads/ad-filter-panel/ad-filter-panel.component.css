@@ -1,7 +1,6 @@
 .filter-panel {
-  padding: 0 0 8px;
+  padding: 0;
   margin-top: 18px;
-  margin-right: 10px;
 }
 
 :host ::ng-deep .mat-expansion-panel-body {
@@ -84,6 +83,10 @@ mat-expansion-panel-header.mat-expansion-panel-header {
 
 :host ::ng-deep .mat-slider-thumb {
   background-color: #d3061c !important;
+}
+
+.looking-filters-content {
+  padding-bottom: 8px;
 }
 
 .looking-filters-content > * {

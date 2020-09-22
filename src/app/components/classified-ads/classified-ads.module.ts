@@ -24,6 +24,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatSliderModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    OverlayscrollbarsModule
   ]
 })
 export class ClassifiedAdsModule {

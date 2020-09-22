@@ -12,8 +12,8 @@ import {
 } from '@angular/forms';
 import {FIELD_REQUIRED_MSG} from '../../message-constants';
 import {Observable} from 'rxjs';
-import * as moment from 'moment';
-import {Moment} from 'moment';
+// @ts-ignore
+import moment, {Moment} from 'moment';
 
 @Component({
   selector: 'app-person-form',

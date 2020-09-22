@@ -1,6 +1,7 @@
 import {HttpParams} from '@angular/common/http';
 import {AbstractControl} from '@angular/forms';
-import * as moment from 'moment';
+// @ts-ignore
+import moment from 'moment';
 
 export function userSearchFormToHttpParams(searchForm: AbstractControl): HttpParams {
   let httpParams = new HttpParams();
