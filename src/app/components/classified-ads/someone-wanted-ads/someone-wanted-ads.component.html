@@ -19,7 +19,7 @@
           <span class="profile-name">{{adWithChips.ad.userDisplayName}}</span>
           <span class="profile-expects" *ngIf="adWithChips.chips?.length">&nbsp;oczekuje:</span>
           <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
-                          *ngFor="let chip of adWithChips.chips">
+                          *ngFor="let chip of sortChips(adWithChips.chips)">
             {{chip.label | capitalize}}
           </mat-basic-chip>
         </mat-chip-list>

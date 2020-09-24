@@ -118,6 +118,12 @@
               "devServerTarget": "muzykant-frontend:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://loreth.github.io/muzykant-frontend/"
+          }
         }
       }
     }

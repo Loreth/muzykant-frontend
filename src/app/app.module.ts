@@ -93,7 +93,7 @@ import {environment} from '../environments/environment';
     JwtModule.forRoot({
       config: {
         tokenGetter: TokenStorageService.getToken,
-        allowedDomains: ['localhost:8080'],
+        allowedDomains: [environment.jwtAllowedDomain],
         disallowedRoutes: [environment.apiUrl + LOGIN]
       }
     }),

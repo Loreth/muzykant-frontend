@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'ads', pathMatch: 'full'},
   {path: 'login', component: LoginComponent, canActivate: [AlreadyLoggedGuard]},
   {path: 'sign-up', component: SignUpComponent, canActivate: [AlreadyLoggedGuard]},
-  {path: 'confirm-email', component: ConfirmEmailComponent, canActivate: [AuthGuard]},
+  {path: 'confirm-email', component: ConfirmEmailComponent, canActivate: [AlreadyLoggedGuard]},
   {path: 'create-user', component: CreateUserComponent, canDeactivate: [AuthGuard]},
   {path: 'account', loadChildren: () => import('./components/account/account.module').then(m => m.AccountModule)},
   {path: 'ads', loadChildren: () => import('./components/classified-ads/classified-ads.module').then(m => m.ClassifiedAdsModule)},

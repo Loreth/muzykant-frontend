@@ -48,5 +48,18 @@ export class AdChip {
 
     return adChips;
   }
+
+  getSortOrder(): number {
+    switch (this.cssClass) {
+      case ChipCssClass.GENRE:
+        return 0;
+      case ChipCssClass.INSTRUMENT:
+        return 1;
+      case ChipCssClass.GENDER:
+        return 2;
+      case ChipCssClass.AGE:
+        return 3;
+    }
+  }
 }
 

@@ -6,6 +6,7 @@ import {UserType} from '../../../shared/models/user-type';
 import {AdType} from '../../../shared/models/ad-type';
 import {LocalizationUtils} from '../../../shared/localization-utils';
 import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
+import {AdChip} from '../../../shared/models/ad-chip';
 
 @Component({
   selector: 'app-someone-wanted-ads',
@@ -68,5 +69,19 @@ export class SomeoneWantedAdsComponent {
 
   getFallbackIconName(userType: UserType): string {
     return userType === UserType.BAND ? 'supervised_user_circle' : 'account_circle';
+  }
+
+  sortChips(chips: AdChip[]): AdChip[] {
+    chips.sort((a, b) => {
+      if (a.cssClass === b.cssClass) {
+        return a.label.localeCompare(b.label);
+      } else if (a.getSortOrder() < b.getSortOrder()) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
+    return chips;
   }
 }
