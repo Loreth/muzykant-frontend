@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://muzykant-thesis.herokuapp.com',
-  jwtAllowedDomain: 'muzykant-thesis.herokuapp.com'
+  apiUrl: 'https://muzykant-backend.herokuapp.com',
+  jwtAllowedDomain: 'muzykant-backend.herokuapp.com'
 };
