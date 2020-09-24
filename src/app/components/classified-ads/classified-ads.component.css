@@ -9,13 +9,13 @@
 
 .mat-tab-link:hover {
   color: #e12b38;
-  opacity: 74%;
+  opacity: 0.74;
 }
 
 .mat-tab-link {
   color: #000000;
   font-size: 16px;
-  opacity: 74%;
+  opacity: 0.74;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }

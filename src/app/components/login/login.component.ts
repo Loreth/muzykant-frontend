@@ -66,6 +66,7 @@ export class LoginComponent {
             console.log('redirecting for disabled user ' + this.email.value);
             this.router.navigate(['/confirm-email'], {queryParams: {email: this.email.value}});
           } else {
+            console.log(error);
             this.openSnackBar(error);
           }
         }
