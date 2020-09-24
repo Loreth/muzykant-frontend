@@ -27,6 +27,7 @@ import {UserCardMiniComponent} from './components/user-card-mini/user-card-mini.
 import {RouterModule} from '@angular/router';
 import {ImageCropDialogComponent} from './components/image-crop-dialog/image-crop-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {AlertDialogComponent} from './components/alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [CapitalizePipe,
@@ -38,7 +39,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     SoundcloudWidgetComponent,
     UserCardComponent,
     UserCardMiniComponent,
-    ImageCropDialogComponent],
+    ImageCropDialogComponent,
+    AlertDialogComponent],
   exports: [
     CapitalizePipe,
     MaterialElevationDirective,

@@ -90,7 +90,11 @@ a {
   position: relative !important;
 }
 
-.profile-image-dialog .mat-dialog-container {
+.profile-image-dialog .mat-dialog-container, .profile-menu.mat-menu-panel {
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 10px;
+}
+
+.profile-menu.mat-menu-panel {
+  margin-top: 6px;
 }

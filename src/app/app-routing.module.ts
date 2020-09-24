@@ -10,13 +10,15 @@ import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {PageNotFoundComponent} from './core/page-not-found/page-not-found.component';
 import {ConfirmEmailComponent} from './components/confirm-email/confirm-email.component';
 import {CreateUserComponent} from './components/create-user/create-user.component';
+import {AuthGuard} from './core/guards/auth.guard';
+import {AlreadyLoggedGuard} from './core/guards/already-logged.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'ads', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'sign-up', component: SignUpComponent},
-  {path: 'confirm-email', component: ConfirmEmailComponent},
-  {path: 'create-user', component: CreateUserComponent},
+  {path: 'login', component: LoginComponent, canActivate: [AlreadyLoggedGuard]},
+  {path: 'sign-up', component: SignUpComponent, canActivate: [AlreadyLoggedGuard]},
+  {path: 'confirm-email', component: ConfirmEmailComponent, canActivate: [AuthGuard]},
+  {path: 'create-user', component: CreateUserComponent, canDeactivate: [AuthGuard]},
   {path: 'account', loadChildren: () => import('./components/account/account.module').then(m => m.AccountModule)},
   {path: 'ads', loadChildren: () => import('./components/classified-ads/classified-ads.module').then(m => m.ClassifiedAdsModule)},
   {path: 'musicians', component: MusiciansComponent},

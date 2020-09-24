@@ -6,4 +6,8 @@
                       fxFlex="20%" fxFlex.md="25%" fxFlex.sm="50%" fxFlex.xs="100%">
   </app-user-card-mini>
 </div>
-
+<div *ngIf="users$ | async as users" [@noResultsFoundAnimation]>
+  <div *ngIf="!(users?.length)" class="empty-search-results">
+    Nie znaleziono {{pluralUserTypeName}} spełniających podane kryteria
+  </div>
+</div>

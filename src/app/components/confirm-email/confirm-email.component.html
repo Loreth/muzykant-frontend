@@ -17,7 +17,7 @@
       <div fxFlex="0 1 auto" class="message-container">
         {{message}}
       </div>
-      <button *ngIf="!mailResent" mat-flat-button color="accent" class="resend-button"
+      <button *ngIf="!mailResent" mat-raised-button color="accent" class="resend-button"
               (click)="resendEmail()">
         Wyślij wiadomość ponownie
         <mat-icon>mail</mat-icon>

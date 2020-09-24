@@ -96,3 +96,7 @@ mat-expansion-panel-header.mat-expansion-panel-header {
 .voivodeship-name {
   text-transform: capitalize;
 }
+
+mat-expansion-panel-header.mat-expanded {
+  padding: 4px 16px;
+}

@@ -93,7 +93,7 @@ export class AccountDetailsComponent implements OnInit {
       const lineCount = 1 + text.replace(/[^\n]/g, '').length;
       if (lineCount > maxLines) {
         const textArray = text.split('\n');
-        (event.target as HTMLTextAreaElement).value = textArray.reduce((result, line, lineNum, array) => {
+        (event.target as HTMLTextAreaElement).value = textArray.reduce((result, line, lineNum) => {
           if (lineNum < maxLines) {
             return result.concat('\n').concat(line);
           }

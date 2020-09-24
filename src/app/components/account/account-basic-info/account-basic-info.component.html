@@ -9,12 +9,12 @@
                          [voivodeships$]="voivodeships$"
                          (changesSavedEvent)="openSnackBar($event)">
     </app-band-basic-info>
-    <app-regular-user-basic-info *ngSwitchCase="authority.ROLE_REGULAR"
+    <app-regular-user-basic-info *ngSwitchCase="authority.ROLE_REGULAR_USER"
                                  [voivodeships$]="voivodeships$"
                                  (changesSavedEvent)="openSnackBar($event)">
     </app-regular-user-basic-info>
   </div>
-  <button form="basicInfoForm" type="submit" mat-flat-button
+  <button form="basicInfoForm" type="submit" mat-raised-button
           color="accent"
           fxFlexAlign="end">
     Zapisz zmiany

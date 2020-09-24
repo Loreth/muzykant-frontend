@@ -69,7 +69,10 @@
          class="ad-description">{{adWithChips.ad.description}}</p>
       <p *ngIf="!adWithChips.ad.description" class="ad-description ad-no-description">
         Brak treści ogłoszenia</p>
-      <button mat-raised-button color="primary" class="message-button">Wyślij wiadomość</button>
+      <button mat-raised-button color="primary" class="message-button">
+        Wyślij wiadomość
+        <mat-icon>chat</mat-icon>
+      </button>
     </div>
   </div>
   <div fxFlex="0 100 25%"></div>

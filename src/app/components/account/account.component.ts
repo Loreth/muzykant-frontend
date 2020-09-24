@@ -30,7 +30,10 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$ = this.userService.getDto(AuthService.loggedUserId).pipe(
-      tap(user => this.setProfileImageLink(user.profileImageLink))
+      tap(user => {
+        this.setProfileImageLink(user.profileImageLink);
+        AuthService.userDisplayName = user.displayName;
+      })
     );
   }
 
@@ -62,6 +65,11 @@ export class AccountComponent implements OnInit {
   setProfileImageLink(profileImageLink: string): void {
     if (profileImageLink) {
       this.profileImageLink = profileImageLink + '?d=' + new Date().getTime();
+      AuthService.userProfileImageLink = this.profileImageLink;
     }
+  }
+
+  getUserDisplayName(): string {
+    return AuthService.userDisplayName;
   }
 }

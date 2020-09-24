@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {Voivodeship} from '../../../shared/models/voivodeship';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -17,6 +17,7 @@ import {Authority} from '../../../shared/models/authority';
   styleUrls: ['./create-regular-user.component.css']
 })
 export class CreateRegularUserComponent implements OnInit {
+  @Output() canDeactivate: EventEmitter<boolean> = new EventEmitter();
   voivodeships$: Observable<Voivodeship[]>;
   regularUserForm = new FormGroup({
     user: new FormControl(),
@@ -47,9 +48,11 @@ export class CreateRegularUserComponent implements OnInit {
       regularUser.person = this.regularUserForm.get('person').value as Person;
       console.log(regularUser);
       this.regularUserService.addDto(regularUser).subscribe(response => {
+        this.canDeactivate.emit(true);
         const claims = TokenStorageService.getClaims();
+        claims.userId = response.id;
         claims.linkName = response.linkName;
-        claims.authority = Authority.ROLE_REGULAR;
+        claims.authority = Authority.ROLE_REGULAR_USER;
         TokenStorageService.setClaims(claims);
         this.router.navigateByUrl('/account');
       });

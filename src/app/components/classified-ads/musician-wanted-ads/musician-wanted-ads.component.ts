@@ -15,12 +15,11 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./musician-wanted-ads.component.css']
 })
 export class MusicianWantedAdsComponent implements OnInit {
+  adsWithChips$: Observable<AdWithChips[]>;
+  wantedUserType = UserType.MUSICIAN;
 
   constructor(private musicianWantedAdService: MusicianWantedAdService) {
   }
-
-  adsWithChips$: Observable<AdWithChips[]>;
-  wantedUserType = UserType.MUSICIAN;
 
   ngOnInit(): void {
     this.adsWithChips$ = this.musicianWantedAdService

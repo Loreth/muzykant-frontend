@@ -25,7 +25,7 @@
       <mat-icon class="category-icon">domain</mat-icon>
       {{user.voivodeship.name | capitalize}}
     </p>
-    <p fxLayoutAlign="start center">
+    <p *ngIf="user.city" fxLayoutAlign="start center">
       <mat-icon class="category-icon">place</mat-icon>
       {{user.city | capitalize}}
     </p>
@@ -41,17 +41,20 @@
   </mat-card-content>
 
   <mat-card-actions fxLayout="row" fxLayoutAlign="space-around center">
-    <a [href]="user.socialMediaLinks?.soundcloud" target="_blank"
-       [disabled]="user.socialMediaLinks?.soundcloud == null" mat-icon-button
+    <a [href]="user.socialMediaLinks?.soundcloud ? user.socialMediaLinks.soundcloud : '//'"
+       target="_blank"
+       [disabled]="!user.socialMediaLinks?.soundcloud?.length" mat-icon-button
        matTooltip="Soundcloud">
       <mat-icon class="action-icon" svgIcon="soundcloud"></mat-icon>
     </a>
-    <a [href]="user.socialMediaLinks?.youtube" target="_blank"
-       [disabled]="user.socialMediaLinks?.youtube == null" mat-icon-button matTooltip="YouTube">
+    <a [href]="user.socialMediaLinks?.youtube ? user.socialMediaLinks.youtube : '//'"
+       target="_blank"
+       [disabled]="!user.socialMediaLinks?.youtube?.length " mat-icon-button matTooltip="YouTube">
       <mat-icon class="action-icon" svgIcon="youtube"></mat-icon>
     </a>
-    <a [href]="user.socialMediaLinks?.webpage" target="_blank"
-       [disabled]="user.socialMediaLinks?.webpage == null" mat-icon-button
+    <a [href]="user.socialMediaLinks?.webpage ? user.socialMediaLinks.webpage : '//'"
+       target="_blank"
+       [disabled]="!user.socialMediaLinks?.webpage?.length" mat-icon-button
        matTooltip="Strona internetowa">
       <mat-icon class="action-icon">language</mat-icon>
     </a>

@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Page} from '../../../shared/models/pagination/page';
 import {AdWithChips} from '../../../shared/models/ad-with-chips';
 import {FormGroup} from '@angular/forms';
-import {JamSessionAd} from '../../../shared/models/jam-session-ad';
 import {JamSessionAdService} from '../../../core/services/jam-session-ad.service';
 import {AdChip} from '../../../shared/models/ad-chip';
+import {map} from 'rxjs/operators';
+import {JamSessionAd} from '../../../shared/models/jam-session-ad';
 
 @Component({
   selector: 'app-jam-session-ads',
@@ -13,29 +14,28 @@ import {AdChip} from '../../../shared/models/ad-chip';
   styleUrls: ['./jam-session-ads.component.css']
 })
 export class JamSessionAdsComponent implements OnInit {
-  adsPage$: Subject<Page<JamSessionAd>> = new Subject();
-  adsWithChips$: Subject<AdWithChips[]> = new Subject();
+  adsWithChips$: Observable<AdWithChips[]>;
 
   constructor(private jamSessionAdService: JamSessionAdService) {
   }
 
   ngOnInit(): void {
-    this.jamSessionAdService
+    this.adsWithChips$ = this.jamSessionAdService
     .getDtosPage(0, 10, ['publishedDate,DESC'])
-    .subscribe(page => this.adsPage$.next(page));
-
-    this.adsPage$.subscribe(page => {
-      const adsWithChips = [];
-      for (const ad of page.content) {
-        adsWithChips.push(new AdWithChips(ad, AdChip.makeAdChips(ad)));
-      }
-      this.adsWithChips$.next(adsWithChips);
-    });
+    .pipe(map(page => this.mapToAdsWithChips(page)));
   }
 
   onChangedFilters(filtersForm: FormGroup): void {
-    this.jamSessionAdService
+    this.adsWithChips$ = this.jamSessionAdService
     .searchDtosWithForm(filtersForm, 0, 10, ['publishedDate,DESC'])
-    .subscribe(page => this.adsPage$.next(page));
+    .pipe(map(page => this.mapToAdsWithChips(page)));
+  }
+
+  private mapToAdsWithChips(page: Page<JamSessionAd>): AdWithChips[] {
+    const adsWithChips = [];
+    for (const ad of page.content) {
+      adsWithChips.push(new AdWithChips(ad, AdChip.makeAdChips(ad)));
+    }
+    return adsWithChips;
   }
 }

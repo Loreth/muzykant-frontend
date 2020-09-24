@@ -1,5 +1,5 @@
-export const API_PORT = '8080';
-export const API_BASE_URL = 'http://localhost';
+import {environment} from '../../environments/environment';
+
 export const ID = '/{id}';
 export const SEARCH = '/search';
 export const SIGN_UP = '/sign-up';
@@ -27,5 +27,5 @@ export const SOCIAL_MEDIA_LINKS = '/social-media-links';
 export const USER_IMAGE_UPLOAD = '/user-images/upload';
 
 export function getEndpointUrl(endpoint: string): string {
-  return API_BASE_URL + ':' + API_PORT + endpoint;
+  return environment.apiUrl + endpoint;
 }

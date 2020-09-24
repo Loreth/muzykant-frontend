@@ -56,7 +56,7 @@ export class LoginComponent {
         claims => {
           if (claims) {
             if (claims.userId) {
-              this.router.navigateByUrl('');
+              this.router.navigateByUrl(this.authService.redirectUrl);
             } else {
               this.router.navigateByUrl('/create-user');
             }

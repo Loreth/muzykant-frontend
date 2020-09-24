@@ -45,6 +45,7 @@ export class MusicianBasicInfoComponent implements OnInit {
         this.user.setValue(musician);
         this.phone.setValue(musician.phone);
         this.person.setValue(musician.person);
+        AuthService.userDisplayName = musician.displayName;
       }
     );
   }
@@ -61,6 +62,7 @@ export class MusicianBasicInfoComponent implements OnInit {
       console.log(this.musician);
       this.musicianService.updateDto(this.musician).subscribe(response => {
         this.changesSavedEvent.emit(response != null);
+        AuthService.userDisplayName = response.displayName;
       });
     }
   }

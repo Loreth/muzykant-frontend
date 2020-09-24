@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import {VoivodeshipService} from '../../../core/services/voivodeship.service';
@@ -17,6 +17,7 @@ import {Authority} from '../../../shared/models/authority';
   styleUrls: ['./create-musician.component.css']
 })
 export class CreateMusicianComponent implements OnInit {
+  @Output() canDeactivate: EventEmitter<boolean> = new EventEmitter();
   voivodeships$: Observable<Voivodeship[]>;
   musicianForm = new FormGroup({
     user: new FormControl(),
@@ -47,6 +48,7 @@ export class CreateMusicianComponent implements OnInit {
       musician.person = this.musicianForm.get('person').value as Person;
       console.log(musician);
       this.musicianService.addDto(musician).subscribe(response => {
+        this.canDeactivate.emit(true);
         const claims = TokenStorageService.getClaims();
         claims.userId = response.id;
         claims.linkName = response.linkName;

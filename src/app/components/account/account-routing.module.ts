@@ -6,10 +6,13 @@ import {AccountDetailsComponent} from './account-details/account-details.compone
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
 import {AccountSocialMediaLinksComponent} from './account-social-media-links/account-social-media-links.component';
 import {AccountPhotosComponent} from './account-photos/account-photos.component';
+import {AuthGuard} from '../../core/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: '', component: AccountComponent, children: [
+    path: '', component: AccountComponent,
+    canActivate: [AuthGuard], canActivateChild: [AuthGuard],
+    children: [
       {path: '', redirectTo: 'basic-info', pathMatch: 'full'},
       {path: 'basic-info', component: AccountBasicInfoComponent},
       {path: 'details', component: AccountDetailsComponent},

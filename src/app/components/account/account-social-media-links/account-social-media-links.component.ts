@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {SocialMediaLinksService} from '../../../core/services/social-media-links.service';
 import {AuthService} from '../../../core/services/auth.service';
 import {SocialMediaLinks} from '../../../shared/models/social-media-links';
@@ -12,11 +12,14 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class AccountSocialMediaLinksComponent implements OnInit {
   socialMediaLinksForm = new FormGroup({
-    youtube: new FormControl(),
-    soundcloud: new FormControl(),
-    webpage: new FormControl()
+    youtube: new FormControl(null,
+      Validators.pattern('^(https?:\\/\\/)?(www\\.)?youtube\\.com\\/(?:c\\/|channel\\/|user\\/)?([a-zA-Z0-9\\-]{1,})$')),
+    soundcloud: new FormControl(null,
+      Validators.pattern('^(https?:\\/\\/)?(www\\.)?soundcloud\\.com\\/([a-zA-Z0-9\\-]{1,})$')),
+    webpage: new FormControl(null,
+      Validators.pattern('^(https?:\\/\\/)?(www\\.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)|(https?:\\/\\/)?(www\\.)?(?!ww)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$'))
   });
-  shouldRenderSoundcloudWidget = false;
+  renderSoundcloudWidget = false;
   snackbarDurationInSeconds = 2.5;
 
   get soundcloud(): AbstractControl {
@@ -42,7 +45,7 @@ export class AccountSocialMediaLinksComponent implements OnInit {
         this.webpage.setValue(dto.webpage);
       }
       if (this.soundcloud.value) {
-        this.shouldRenderSoundcloudWidget = true;
+        this.renderSoundcloudWidget = true;
       }
     });
   }
@@ -51,12 +54,15 @@ export class AccountSocialMediaLinksComponent implements OnInit {
     if (this.socialMediaLinksForm.valid) {
       console.log('submitting valid socialMediaLinksForm');
       const socialMediaLinks = this.socialMediaLinksForm.value as SocialMediaLinks;
+      socialMediaLinks.youtube = this.appendHttpIfNotPresent(socialMediaLinks.youtube);
+      socialMediaLinks.webpage = this.appendHttpIfNotPresent(socialMediaLinks.webpage);
+      socialMediaLinks.soundcloud = this.appendHttpIfNotPresent(socialMediaLinks.soundcloud);
       socialMediaLinks.id = AuthService.loggedUserId;
       socialMediaLinks.userId = AuthService.loggedUserId;
       this.socialMediaLinksService.updateDto(socialMediaLinks).subscribe(response => {
         this.openSnackBar(response != null);
         if (this.soundcloud.value) {
-          this.shouldRenderSoundcloudWidget = true;
+          this.renderSoundcloudWidget = true;
         }
       });
     }
@@ -70,5 +76,13 @@ export class AccountSocialMediaLinksComponent implements OnInit {
     this.snackBar.open(message,
       '', {duration: this.snackbarDurationInSeconds * 1000, panelClass: ['snackbar']}
     );
+  }
+
+  appendHttpIfNotPresent(value: string): string {
+    if (!value?.startsWith('http')) {
+      return value;
+    }
+
+    return value;
   }
 }

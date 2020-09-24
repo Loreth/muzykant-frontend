@@ -11,9 +11,7 @@
       <img *ngIf="adWithChips.ad.userProfileImageLink"
            [src]="adWithChips.ad.userProfileImageLink"
            class="profile-image"
-           alt="profile image"
-           height="150px"
-           width="150px"/>
+           alt="profile image"/>
     </div>
     <div fxLayout="column" fxFlex class="ad-item-content">
       <div fxLayout fxFlex>
@@ -51,7 +49,7 @@
   </a>
 </mat-nav-list>
 
-<div *ngIf="adsWithChips$ | async as adsWithChips">
+<div *ngIf="adsWithChips$ | async as adsWithChips" [@noAdsFoundAnimation]>
   <div *ngIf="!(adsWithChips?.length)" class="ads-not-found">
     Nie znaleziono ogłoszeń spełniających podane kryteria
   </div>

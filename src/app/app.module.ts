@@ -16,7 +16,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MusiciansComponent} from './components/user-search/musicians/musicians.component';
 import {BandsComponent} from './components/user-search/bands/bands.component';
 import {MatListModule} from '@angular/material/list';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AdDetailsComponent} from './components/ad-details/ad-details.component';
 import {MatCardModule} from '@angular/material/card';
 import {MusicianWantedAdDetailsComponent} from './components/ad-details/musician-wanted-ad-details/musician-wanted-ad-details.component';
@@ -28,7 +28,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {LoginComponent} from './components/login/login.component';
 import {JwtModule} from '@auth0/angular-jwt';
 import {TokenStorageService} from './core/services/token-storage.service';
-import {API_BASE_URL, LOGIN} from './shared/rest-api-urls';
+import {LOGIN} from './shared/rest-api-urls';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -51,6 +51,8 @@ import {UserSearchFilterPanelComponent} from './components/user-search/user-sear
 import {UserSearchResultsComponent} from './components/user-search/user-search-results/user-search-results.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
+import {ErrorInterceptor} from './core/interceptors/error-interceptor';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -92,7 +94,7 @@ import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
       config: {
         tokenGetter: TokenStorageService.getToken,
         allowedDomains: ['localhost:8080'],
-        disallowedRoutes: [API_BASE_URL + LOGIN]
+        disallowedRoutes: [environment.apiUrl + LOGIN]
       }
     }),
     MatCardModule,
@@ -108,11 +110,12 @@ import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
     MatSelectModule,
     MatSnackBarModule,
     MatMomentDateModule,
-    SortablejsModule.forRoot({animation: 200, easing: 'cubic-bezier(0, 0, 0.2, 1)',}),
+    SortablejsModule.forRoot({animation: 200, easing: 'cubic-bezier(0, 0, 0.2, 1)'}),
     MatCheckboxModule,
-    OverlayscrollbarsModule
+    OverlayscrollbarsModule,
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}},
     {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'},
     {

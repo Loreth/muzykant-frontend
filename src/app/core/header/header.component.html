@@ -1,10 +1,5 @@
 <header>
   <mat-toolbar class="mat-elevation-z6" color="primary">
-    <div fxHide.gt-xs>
-      <button mat-icon-button (click)="onToggleSidenav()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
     <img routerLink="" src="../../../assets/img/muzykant_logo.webp" alt="logo"
          class="logo-image">
     <div fxLayout="row" fxFlex fxLayoutAlign="end">
@@ -20,25 +15,28 @@
       </div>
       <div fxFlexAlign="center">
         <span *ngIf="!isUserLoggedIn()">
-          <button routerLink="login" mat-flat-button color="accent">
+          <button routerLink="login" mat-raised-button color="accent">
             Zaloguj się <mat-icon>login</mat-icon>
           </button>
         </span>
         <div *ngIf="isUserLoggedIn()" fxLayout="row">
-          <button routerLink="new-ad" mat-flat-button color="accent" class="new-ad-button">
+          <div *ngIf="$user | async"></div>
+          <button routerLink="new-ad" mat-raised-button color="accent" class="new-ad-button">
             Dodaj ogłoszenie
             <mat-icon>playlist_add</mat-icon>
           </button>
           <div matRipple [matMenuTriggerFor]="userMenu" class="user-dropdown-menu" fxLayout="row"
                fxLayoutAlign="space-around center">
-            <mat-icon class="md-36"
-                      color="accent">
+            <mat-icon class="md-36" color="accent" *ngIf="!getUserProfileImageLink()">
               account_circle
             </mat-icon>
-            <span class="profile-text">Konto</span>
+            <img *ngIf="getUserProfileImageLink()" [src]="getUserProfileImageLink()"
+                 alt="zdjęcie profilowe"
+                 class="profile-image">
+            <span class="profile-text">{{getUserDisplayName()}}</span>
             <mat-icon class="md-24 dropdown-icon">expand_more</mat-icon>
           </div>
-          <mat-menu #userMenu="matMenu" backdropClass="profile-menu">
+          <mat-menu #userMenu="matMenu" xPosition="before" class="profile-menu">
             <a mat-menu-item routerLink="/account">
               <mat-icon color="accent">account_circle</mat-icon>
               <span>Moje konto</span>

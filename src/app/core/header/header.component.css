@@ -64,7 +64,7 @@ header {
   cursor: pointer;
 }
 
-header .mat-flat-button {
+header .mat-raised-button {
   font-weight: 600;
 }
 
@@ -72,6 +72,10 @@ header .mat-flat-button {
   margin-right: 18px;
 }
 
-/*::ng-deep .profile-menu + * .cdk-overlay-pane > div.mat-menu-panel {*/
-/*  border-radius: 10px;*/
-/*}*/
+.profile-image {
+  display: block;
+  width: 34px;
+  height: 34px;
+  padding: 2px;
+  border-radius: 50%;
+}

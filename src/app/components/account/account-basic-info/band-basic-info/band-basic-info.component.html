@@ -7,6 +7,25 @@
                  formControlName="user">
   </app-user-form>
   <mat-form-field appearance="outline">
+    <mat-label>Nazwa zespołu</mat-label>
+    <input matInput required formControlName="name" name="band-name">
+    <mat-error *ngIf="name.errors?.required">
+      Nazwa zespołu {{requiredMessage}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Rok założenia</mat-label>
+    <input matInput formControlName="formationYear" name="formationYear">
+    <mat-error
+      *ngIf="formationYear.errors?.min || formationYear.errors?.max">
+      Rok założenia musi znajdować się w zakresie 1900-{{currentYear}}
+    </mat-error>
+    <mat-error
+      *ngIf="formationYear.errors?.pattern && !(formationYear.errors?.min || formationYear.errors?.max)">
+      Podaj poprawny rok
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Numer telefonu</mat-label>
     <input matInput formControlName="phone" name="phone">
   </mat-form-field>

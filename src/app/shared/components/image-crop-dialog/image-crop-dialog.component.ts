@@ -13,7 +13,6 @@ export interface ImageCropDialogData {
   styleUrls: ['./image-crop-dialog.component.css']
 })
 export class ImageCropDialogComponent implements AfterViewInit {
-
   private cropper: Cropper;
   @ViewChild('image') public imageElement: ElementRef;
   canvas: HTMLCanvasElement;
@@ -33,7 +32,8 @@ export class ImageCropDialogComponent implements AfterViewInit {
       minCropBoxHeight: 100,
       minCropBoxWidth: 100,
       zoomable: false,
-      scalable: true,
+      scalable: false,
+      movable: false,
       autoCropArea: 1,
       aspectRatio: this.data.cropAspectRatio,
       crop: () => {

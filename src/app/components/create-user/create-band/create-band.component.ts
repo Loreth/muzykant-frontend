@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {Voivodeship} from '../../../shared/models/voivodeship';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -10,6 +10,7 @@ import {BandService} from '../../../core/services/band.service';
 import {Band} from '../../../shared/models/band';
 import {TokenStorageService} from '../../../core/services/token-storage.service';
 import {Authority} from '../../../shared/models/authority';
+import {TokenClaims} from '../../../shared/models/token-claims';
 
 @Component({
   selector: 'app-create-band',
@@ -17,6 +18,7 @@ import {Authority} from '../../../shared/models/authority';
   styleUrls: ['./create-band.component.css']
 })
 export class CreateBandComponent implements OnInit {
+  @Output() canDeactivate: EventEmitter<boolean> = new EventEmitter();
   requiredMessage = FIELD_REQUIRED_MSG;
   currentYear = new Date().getFullYear();
   voivodeships$: Observable<Voivodeship[]>;
@@ -60,7 +62,9 @@ export class CreateBandComponent implements OnInit {
       band.formationYear = this.formationYear.value;
       console.log(band);
       this.bandService.addDto(band).subscribe(response => {
-        const claims = TokenStorageService.getClaims();
+        this.canDeactivate.emit(true);
+        const claims: TokenClaims = TokenStorageService.getClaims();
+        claims.userId = response.id;
         claims.linkName = response.linkName;
         claims.authority = Authority.ROLE_BAND;
         TokenStorageService.setClaims(claims);

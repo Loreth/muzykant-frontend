@@ -12,9 +12,15 @@
     </mat-form-field>
 
     <div class="create-user-form" [ngSwitch]="selectedUserType">
-      <app-create-musician *ngSwitchCase="userTypes[0].type"></app-create-musician>
-      <app-create-band *ngSwitchCase="userTypes[1].type"></app-create-band>
-      <app-create-regular-user *ngSwitchCase="userTypes[2].type"></app-create-regular-user>
+      <app-create-musician *ngSwitchCase="userTypes[0].type"
+                           (canDeactivate)="setCanComponentDeactivate($event)">
+      </app-create-musician>
+      <app-create-band *ngSwitchCase="userTypes[1].type"
+                       (canDeactivate)="setCanComponentDeactivate($event)">
+      </app-create-band>
+      <app-create-regular-user *ngSwitchCase="userTypes[2].type"
+                               (canDeactivate)="setCanComponentDeactivate($event)">
+      </app-create-regular-user>
     </div>
   </div>
 </div>

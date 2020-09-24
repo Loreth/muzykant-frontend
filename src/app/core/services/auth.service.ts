@@ -11,10 +11,14 @@ import {Router} from '@angular/router';
 import {Authority} from '../../shared/models/authority';
 import {PasswordChangeRequest} from '../../shared/models/password-change-request';
 
+const DISPLAY_NAME_KEY = 'display-name';
+const PROFILE_IMAGE_LINK_KEY = 'profile-image-link';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  redirectUrl: string;
 
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService, private router: Router) {
   }
@@ -26,7 +30,10 @@ export class AuthService {
   }
 
   logout(): void {
+    console.log('logging out');
     TokenStorageService.logout();
+    localStorage.removeItem(DISPLAY_NAME_KEY);
+    localStorage.removeItem(PROFILE_IMAGE_LINK_KEY);
     this.router.navigateByUrl('');
   }
 
@@ -56,15 +63,35 @@ export class AuthService {
     return TokenStorageService.getToken() != null;
   }
 
+  isFullyRegistered(): boolean {
+    return AuthService.loggedUserId != null && AuthService.loggedUserAuthority != null;
+  }
+
   static get loggedUserId(): number {
-    return TokenStorageService.getClaims().userId;
+    return TokenStorageService.getClaims()?.userId;
   }
 
   static get loggedUserAuthority(): Authority {
-    return TokenStorageService.getClaims().authority;
+    return TokenStorageService.getClaims()?.authority;
   }
 
   static get loggedUserEmail(): string {
-    return TokenStorageService.getClaims().subject;
+    return TokenStorageService.getClaims()?.subject;
+  }
+
+  static get userDisplayName(): string {
+    return localStorage.getItem(DISPLAY_NAME_KEY);
+  }
+
+  static set userDisplayName(userDisplayName: string) {
+    localStorage.setItem(DISPLAY_NAME_KEY, userDisplayName);
+  }
+
+  static get userProfileImageLink(): string {
+    return localStorage.getItem(PROFILE_IMAGE_LINK_KEY);
+  }
+
+  static set userProfileImageLink(userProfileImageLink: string) {
+    localStorage.setItem(PROFILE_IMAGE_LINK_KEY, userProfileImageLink);
   }
 }

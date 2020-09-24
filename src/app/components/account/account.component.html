@@ -18,7 +18,7 @@
                  (change)="openProfileImageDialog($event)">
         </div>
       </div>
-      <div class="user-display-name">{{user.displayName}}</div>
+      <div class="user-display-name">{{getUserDisplayName()}}</div>
 
       <mat-nav-list>
         <a mat-list-item routerLink="basic-info" routerLinkActive="active-link">

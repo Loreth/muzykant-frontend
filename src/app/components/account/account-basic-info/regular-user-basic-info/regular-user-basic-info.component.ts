@@ -45,6 +45,7 @@ export class RegularUserBasicInfoComponent implements OnInit {
         this.user.setValue(regularUser);
         this.phone.setValue(regularUser.phone);
         this.person.setValue(regularUser.person);
+        AuthService.userDisplayName = regularUser.displayName;
       }
     );
   }
@@ -61,6 +62,7 @@ export class RegularUserBasicInfoComponent implements OnInit {
       console.log(this.regularUser);
       this.regularUserService.updateDto(this.regularUser).subscribe(response => {
         this.changesSavedEvent.emit(response != null);
+        AuthService.userDisplayName = response.displayName;
       });
     }
   }

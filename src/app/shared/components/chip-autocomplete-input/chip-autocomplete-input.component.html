@@ -1,4 +1,4 @@
-<div class="chip-list-margin">
+<div [class]="chipsUnderInput ? 'chip-list-margin': ''">
   <mat-form-field appearance="outline">
     <mat-icon matPrefix *ngIf="labelIcon" [class]="labelIconClass">{{labelIcon}}</mat-icon>
     <mat-label>{{label}}</mat-label>

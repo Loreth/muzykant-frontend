@@ -29,12 +29,13 @@ export class UserServiceFactoryService {
   }
 
   getUserServiceByAuthority(authority: Authority): RestService<User, number> {
+    console.log('service factory used on authority: ' + authority);
     switch (authority) {
       case Authority.ROLE_MUSICIAN:
         return this.musicianService;
       case Authority.ROLE_BAND:
         return this.bandService;
-      case Authority.ROLE_REGULAR:
+      case Authority.ROLE_REGULAR_USER:
         return this.regularUserService;
     }
   }

@@ -17,12 +17,25 @@ import {animate, query, stagger, style, transition, trigger} from '@angular/anim
         query(':enter', [
           style({opacity: 0}),
           stagger(90, [
-            animate('0.25s', style({opacity: 1}))
+            animate('260ms', style({opacity: 1}))
           ])
-        ], {optional: true})
+        ], {optional: true}),
+        query(':leave',
+          animate('100ms', style({opacity: 0})),
+          {optional: true})
+      ])
+    ]),
+    trigger('noAdsFoundAnimation', [
+      transition('* => *', [
+        query(':enter', [
+          style({opacity: 0}),
+          stagger(90, [
+            animate('260ms', style({opacity: 1}))
+          ])
+        ], {optional: true}),
       ])
     ])
-  ]
+  ],
 })
 export class SomeoneWantedAdsComponent {
   @Input() adsWithChips$: Observable<AdWithChips[]>;
