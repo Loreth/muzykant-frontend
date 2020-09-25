@@ -84,7 +84,10 @@ export class AccountPhotosComponent implements OnInit {
       } else {
         const image: File = this.newImageFiles.filter(x => x.newUserImage === userImage)[0].file;
         requests.push(this.userImageService.upload(image, userImage.userId, i).pipe(
-          tap(response => userImage.link = response.body.link)
+          tap(response => {
+            userImage.link = response.body.link;
+            userImage.id = response.body.id;
+          })
         ));
       }
     }
