@@ -26,7 +26,7 @@
   </app-user-form>
 
   <button type="submit" class="create-user-button" mat-raised-button color="accent"
-          fxFlexAlign="center">
+          fxFlexAlign="center" [disabled]="disableSubmitButton">
     Dokończ rejestrację
     <mat-icon>how_to_reg</mat-icon>
   </button>

@@ -5,4 +5,5 @@ export interface SocialMediaLinks extends Identifiable<number> {
   soundcloud: string;
   webpage: string;
   userId: number;
+  version: number;
 }

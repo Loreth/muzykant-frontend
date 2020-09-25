@@ -15,6 +15,7 @@
 }
 
 .photo {
+  display: block;
   max-height: 300px;
   max-width: 317px;
 }

@@ -24,19 +24,20 @@ export class CreateMusicianComponent implements OnInit {
     person: new FormControl()
   });
   formSubmittedStatus: Subject<boolean> = new Subject();
+  disableSubmitButton = false;
 
   constructor(private voivodeshipService: VoivodeshipService, private musicianService: MusicianService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.voivodeships$ = this.voivodeshipService.getDtosPage(0, 2000, ['name']).pipe(map(page => page.content));
+    this.musicianForm.get('user').statusChanges.subscribe(status => {
+      this.disableSubmitButton = status === 'PENDING';
+    });
   }
 
   onSubmit(): void {
     this.formSubmittedStatus.next(true);
-    if (this.musicianForm.status === 'PENDING') {
-      this.musicianForm.statusChanges.subscribe(_ => this.doSubmit());
-    }
     this.doSubmit();
   }
 

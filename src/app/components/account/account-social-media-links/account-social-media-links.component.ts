@@ -21,6 +21,7 @@ export class AccountSocialMediaLinksComponent implements OnInit {
   });
   renderSoundcloudWidget = false;
   snackbarDurationInSeconds = 2.5;
+  socialMediaLinksDto: SocialMediaLinks = null;
 
   get soundcloud(): AbstractControl {
     return this.socialMediaLinksForm.get('soundcloud');
@@ -40,6 +41,7 @@ export class AccountSocialMediaLinksComponent implements OnInit {
   ngOnInit(): void {
     this.socialMediaLinksService.getDto(AuthService.loggedUserId).subscribe(dto => {
       if (dto) {
+        this.socialMediaLinksDto = dto;
         this.soundcloud.setValue(dto.soundcloud);
         this.youtube.setValue(dto.youtube);
         this.webpage.setValue(dto.webpage);
@@ -57,9 +59,11 @@ export class AccountSocialMediaLinksComponent implements OnInit {
       socialMediaLinks.youtube = this.appendHttpIfNotPresent(socialMediaLinks.youtube);
       socialMediaLinks.webpage = this.appendHttpIfNotPresent(socialMediaLinks.webpage);
       socialMediaLinks.soundcloud = this.appendHttpIfNotPresent(socialMediaLinks.soundcloud);
-      socialMediaLinks.id = AuthService.loggedUserId;
+      socialMediaLinks.id = this.socialMediaLinksDto?.id;
+      socialMediaLinks.version = this.socialMediaLinksDto?.version;
       socialMediaLinks.userId = AuthService.loggedUserId;
       this.socialMediaLinksService.updateDto(socialMediaLinks).subscribe(response => {
+        this.socialMediaLinksDto = response;
         this.openSnackBar(response != null);
         if (this.soundcloud.value) {
           this.renderSoundcloudWidget = true;

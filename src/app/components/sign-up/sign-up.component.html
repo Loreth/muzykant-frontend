@@ -16,7 +16,8 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Hasło</mat-label>
-        <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'">
+        <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'"
+               name="password">
         <mat-icon matPrefix class="form-prefix-icon">lock_outlined</mat-icon>
         <button tabindex="-1"
                 type="button"
@@ -35,7 +36,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Potwierdź hasło</mat-label>
         <input matInput formControlName="confirmPassword"
-               [type]="hideConfirmPassword ? 'password' : 'text'">
+               [type]="hideConfirmPassword ? 'password' : 'text'" name="confirm-password">
         <span matPrefix class="material-icons-outlined form-prefix-icon">enhanced_encryption</span>
         <button tabindex="-1"
                 type="button"

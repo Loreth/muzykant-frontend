@@ -29,6 +29,7 @@ export class CreateBandComponent implements OnInit {
       [Validators.min(1900), Validators.max(this.currentYear), Validators.pattern('^[0-9]{4}$')]),
   });
   formSubmittedStatus: Subject<boolean> = new Subject();
+  disableSubmitButton = false;
 
   get name(): AbstractControl {
     return this.bandForm.get('name');
@@ -43,13 +44,13 @@ export class CreateBandComponent implements OnInit {
 
   ngOnInit(): void {
     this.voivodeships$ = this.voivodeshipService.getDtosPage(0, 2000, ['name']).pipe(map(page => page.content));
+    this.bandForm.get('user').statusChanges.subscribe(status => {
+      this.disableSubmitButton = status === 'PENDING';
+    });
   }
 
   onSubmit(): void {
     this.formSubmittedStatus.next(true);
-    if (this.bandForm.status === 'PENDING') {
-      this.bandForm.statusChanges.subscribe(_ => this.doSubmit());
-    }
     this.doSubmit();
   }
 

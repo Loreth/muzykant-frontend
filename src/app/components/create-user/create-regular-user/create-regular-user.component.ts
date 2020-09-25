@@ -24,19 +24,20 @@ export class CreateRegularUserComponent implements OnInit {
     person: new FormControl()
   });
   formSubmittedStatus: Subject<boolean> = new Subject();
+  disableSubmitButton = false;
 
   constructor(private voivodeshipService: VoivodeshipService, private regularUserService: RegularUserService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.voivodeships$ = this.voivodeshipService.getDtosPage(0, 2000, ['name']).pipe(map(page => page.content));
+    this.regularUserForm.get('user').statusChanges.subscribe(status => {
+      this.disableSubmitButton = status === 'PENDING';
+    });
   }
 
   onSubmit(): void {
     this.formSubmittedStatus.next(true);
-    if (this.regularUserForm.status === 'PENDING') {
-      this.regularUserForm.statusChanges.subscribe(_ => this.doSubmit());
-    }
     this.doSubmit();
   }
 
