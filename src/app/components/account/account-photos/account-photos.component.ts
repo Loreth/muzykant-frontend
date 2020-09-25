@@ -44,7 +44,8 @@ export class AccountPhotosComponent implements OnInit {
               id: null,
               userId: AuthService.loggedUserId,
               link: reader.result as string,
-              orderIndex: files.length
+              orderIndex: files.length,
+              filename: null
             };
             this.userImages.push(newUserImage);
             this.newImageFiles.push({file, newUserImage});
@@ -87,6 +88,7 @@ export class AccountPhotosComponent implements OnInit {
           tap(response => {
             userImage.link = response.body.link;
             userImage.id = response.body.id;
+            userImage.filename = response.body.filename;
           })
         ));
       }
