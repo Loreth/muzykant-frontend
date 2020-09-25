@@ -13,7 +13,8 @@
         fxLayout="column">
     <mat-form-field appearance="outline">
       <mat-label>Stare hasło</mat-label>
-      <input matInput formControlName="oldPassword" [type]="hidePassword ? 'password' : 'text'">
+      <input matInput formControlName="oldPassword" [type]="hidePassword ? 'password' : 'text'"
+             name="old-password">
       <mat-icon matPrefix class="form-prefix-icon">lock_outlined</mat-icon>
       <button tabindex="-1"
               type="button"
@@ -31,7 +32,8 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Nowe hasło</mat-label>
-      <input matInput formControlName="newPassword" [type]="hideNewPassword ? 'password' : 'text'">
+      <input matInput formControlName="newPassword" [type]="hideNewPassword ? 'password' : 'text'"
+             name="new-password">
       <mat-icon matPrefix class="form-prefix-icon">lock_outlined</mat-icon>
       <button tabindex="-1"
               type="button"
@@ -50,7 +52,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Potwierdź nowe hasło</mat-label>
       <input matInput formControlName="confirmNewPassword"
-             [type]="hideConfirmNewPassword ? 'password' : 'text'">
+             [type]="hideConfirmNewPassword ? 'password' : 'text'" name="confirm-new-password">
       <span matPrefix class="material-icons-outlined form-prefix-icon">enhanced_encryption</span>
       <button tabindex="-1"
               type="button"
