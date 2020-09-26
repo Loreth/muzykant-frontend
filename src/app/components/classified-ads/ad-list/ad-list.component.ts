@@ -9,9 +9,9 @@ import {animate, query, stagger, style, transition, trigger} from '@angular/anim
 import {AdChip} from '../../../shared/models/ad-chip';
 
 @Component({
-  selector: 'app-someone-wanted-ads',
-  templateUrl: './someone-wanted-ads.component.html',
-  styleUrls: ['./someone-wanted-ads.component.css'],
+  selector: 'app-ad-list',
+  templateUrl: './ad-list.component.html',
+  styleUrls: ['./ad-list.component.css'],
   animations: [
     trigger('listAnimation', [
       transition('* => *', [
@@ -38,7 +38,7 @@ import {AdChip} from '../../../shared/models/ad-chip';
     ])
   ],
 })
-export class SomeoneWantedAdsComponent {
+export class AdListComponent {
   @Input() adsWithChips$: Observable<AdWithChips[]>;
 
   sortAndJoinGenresToGenreNames(genres: Genre[]): string {

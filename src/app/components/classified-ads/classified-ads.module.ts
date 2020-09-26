@@ -7,7 +7,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
 import {SharedModule} from '../../shared/shared.module';
-import {SomeoneWantedAdsComponent} from './someone-wanted-ads/someone-wanted-ads.component';
+import {AdListComponent} from './ad-list/ad-list.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
 import {AdFilterPanelComponent} from './ad-filter-panel/ad-filter-panel.component';
@@ -27,7 +27,7 @@ import {AdsWithFilterPanelComponent} from './ads-with-filter-panel/ads-with-filt
 @NgModule({
   declarations: [
     ClassifiedAdsComponent,
-    SomeoneWantedAdsComponent,
+    AdListComponent,
     AdFilterPanelComponent,
     AdsWithFilterPanelComponent,
   ],

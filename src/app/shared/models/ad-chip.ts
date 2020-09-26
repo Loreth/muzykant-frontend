@@ -32,7 +32,7 @@ export class AdChip {
       }
     }
     if (ad.adType === AdType.MUSICIAN_WANTED) {
-      adChips.concat(AdChip.makePersonalAdChips(ad as MusicianWantedAd));
+      adChips.push(...AdChip.makePersonalAdChips(ad as MusicianWantedAd));
     }
     return adChips;
   }
