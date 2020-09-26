@@ -20,13 +20,14 @@ export class AccountDetailsComponent implements OnInit {
   accountDetailsForm = new FormGroup({
     genres: new FormControl(),
     instruments: new FormControl(),
-    description: new FormControl()
+    description: new FormControl('')
   });
   user: User;
   genres$: Observable<Genre[]>;
   instruments$: Observable<Instrument[]>;
   userService;
   snackbarDurationInSeconds = 2.5;
+  descriptionMaxLength = 1000;
 
   get genres(): AbstractControl {
     return this.accountDetailsForm.get('genres');
@@ -101,5 +102,9 @@ export class AccountDetailsComponent implements OnInit {
         });
       }
     }
+  }
+
+  remainingDescriptionCharacters(): number {
+    return this.descriptionMaxLength - (this.description.value?.length || 0);
   }
 }

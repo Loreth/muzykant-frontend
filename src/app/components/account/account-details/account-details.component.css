@@ -1,3 +1,13 @@
 .mat-form-field {
   width: 100%;
 }
+
+.remaining-characters {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 14px;
+}
+
+:host ::ng-deep .description .mat-form-field-wrapper {
+  padding-bottom: 0;
+}

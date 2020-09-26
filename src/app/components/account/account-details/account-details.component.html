@@ -11,13 +11,14 @@
                                  chipCssClass="instrument-chip"
                                  formControlName="instruments">
     </app-chip-autocomplete-input>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="description">
       <mat-label>Opis</mat-label>
       <textarea cdkAutosizeMinRows="3" cdkTextareaAutosize matInput
                 formControlName="description"
-                maxlength="1000" class="description"
+                [maxlength]="descriptionMaxLength" class="description"
                 (input)="limitMaxLines($event, 12)"></textarea>
     </mat-form-field>
+    <div class="remaining-characters">Pozostało znaków: {{remainingDescriptionCharacters()}}</div>
 
     <button type="submit" mat-raised-button color="accent" fxFlexAlign="end">
       Zapisz zmiany
