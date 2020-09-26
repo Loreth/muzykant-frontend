@@ -2,9 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {ClassifiedAdsRoutingModule} from './classified-ads-routing.module';
-import {MusicianWantedAdsComponent} from './musician-wanted-ads/musician-wanted-ads.component';
-import {BandWantedAdsComponent} from './band-wanted-ads/band-wanted-ads.component';
-import {JamSessionAdsComponent} from './jam-session-ads/jam-session-ads.component';
 import {ClassifiedAdsComponent} from './classified-ads.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -25,15 +22,14 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
+import {AdsWithFilterPanelComponent} from './ads-with-filter-panel/ads-with-filter-panel.component';
 
 @NgModule({
   declarations: [
     ClassifiedAdsComponent,
-    BandWantedAdsComponent,
-    MusicianWantedAdsComponent,
-    JamSessionAdsComponent,
     SomeoneWantedAdsComponent,
     AdFilterPanelComponent,
+    AdsWithFilterPanelComponent,
   ],
   imports: [
     CommonModule,

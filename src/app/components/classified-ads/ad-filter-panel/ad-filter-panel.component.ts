@@ -4,11 +4,11 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {VoivodeshipService} from '../../../core/services/voivodeship.service';
 import {Observable} from 'rxjs';
 import {debounceTime, map} from 'rxjs/operators';
-import {UserType} from '../../../shared/models/user-type';
 import {GenreService} from '../../../core/services/genre.service';
 import {InstrumentService} from '../../../core/services/instrument.service';
 import {Genre} from '../../../shared/models/genre';
 import {Instrument} from '../../../shared/models/instrument';
+import {AdType} from '../../../shared/models/ad-type';
 
 @Component({
   selector: 'app-ad-filter-panel',
@@ -22,7 +22,7 @@ export class AdFilterPanelComponent implements OnInit, AfterViewInit {
   instruments$: Observable<Instrument[]>;
   collapsedPanelHeight = '64px';
 
-  @Input() wantedUserType: UserType;
+  @Input() adType: AdType;
   @Output() changedFilters = new EventEmitter<FormGroup>();
 
   adFiltersForm = new FormGroup({

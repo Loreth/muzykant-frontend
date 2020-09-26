@@ -7,12 +7,11 @@ import {MusicianWantedAdService} from './musician-wanted-ad.service';
 import {RestSearchService} from './rest-search.service';
 import {Observable} from 'rxjs';
 import {Page} from '../../shared/models/pagination/page';
-import {FormSearchService} from './form-search.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BandWantedAdService extends RestSearchService<BandWantedAd, number> implements FormSearchService<BandWantedAd> {
+export class BandWantedAdService extends RestSearchService<BandWantedAd, number> {
   constructor(httpClient: HttpClient) {
     super(httpClient, getEndpointUrl(BAND_WANTED_AD));
   }

@@ -1,5 +1,6 @@
 import {Ad} from './ad';
 import {MusicianWantedAd} from './musician-wanted-ad';
+import {AdType} from './ad-type';
 
 export enum ChipCssClass {
   INSTRUMENT = 'instrument-chip',
@@ -30,12 +31,14 @@ export class AdChip {
         adChips.push(new AdChip(instrument.name, ChipCssClass.INSTRUMENT));
       }
     }
-
+    if (ad.adType === AdType.MUSICIAN_WANTED) {
+      adChips.concat(AdChip.makePersonalAdChips(ad as MusicianWantedAd));
+    }
     return adChips;
   }
 
-  static makeMusicianWantedAdChips(ad: MusicianWantedAd): AdChip[] {
-    const adChips: AdChip[] = AdChip.makeAdChips(ad);
+  private static makePersonalAdChips(ad: MusicianWantedAd): AdChip[] {
+    const adChips: AdChip[] = [];
 
     if (ad.preferredGender === 'F') {
       adChips.push(new AdChip('Kobieta', ChipCssClass.GENDER));

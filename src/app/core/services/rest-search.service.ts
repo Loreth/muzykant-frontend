@@ -5,8 +5,10 @@ import {catchError, tap} from 'rxjs/operators';
 import {HttpParams} from '@angular/common/http';
 import {SEARCH} from '../../shared/rest-api-urls';
 import {Identifiable} from '../../shared/models/identifiable';
+import {FormSearchService} from './form-search.service';
+import {AbstractControl} from '@angular/forms';
 
-export abstract class RestSearchService<T extends Identifiable<ID>, ID> extends RestService<T, ID> {
+export abstract class RestSearchService<T extends Identifiable<ID>, ID> extends RestService<T, ID> implements FormSearchService<T> {
   searchDtos(searchParams: HttpParams, page: number = 0, pageSize: number = 20, sortFields?: string[]): Observable<Page<T>> {
     const searchUrl = this.endpointUrl + SEARCH;
     searchParams = searchParams
@@ -23,5 +25,9 @@ export abstract class RestSearchService<T extends Identifiable<ID>, ID> extends 
         console.log(`no dtos under "${this.endpointUrl}?${searchParams}"`)),
       catchError(this.handleError<Page<T>>('searchDtos', new Page()))
     );
+  }
+
+  searchDtosWithForm(searchForm: AbstractControl, page: number, pageSize: number, sortFields?: string[]): Observable<Page<T>> {
+    return undefined;
   }
 }

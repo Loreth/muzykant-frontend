@@ -24,7 +24,7 @@ export class MusicianWantedAdDetailsComponent implements OnInit {
     });
 
     this.musicianWantedAdService.getDto(this.adId).subscribe(ad => {
-      this.adWithChips$.next(new AdWithChips(ad, AdChip.makeMusicianWantedAdChips(ad)));
+      this.adWithChips$.next(new AdWithChips(ad, AdChip.makeAdChips(ad)));
       }
     );
   }
