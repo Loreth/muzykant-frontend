@@ -9,9 +9,8 @@ import {Animations} from '../../../shared/animations/animations';
   templateUrl: './user-search-results.component.html',
   styleUrls: ['./user-search-results.component.css'],
   animations: [
-    trigger('listAnimation', [Animations.enterLeaveTransition]),
-    trigger('noResultsFoundAnimation', [Animations.enterTransition])
-  ],
+    trigger('listAnimation', [Animations.enterLeaveTransition])
+  ]
 })
 export class UserSearchResultsComponent implements OnInit {
   @Input() pluralUserTypeName: string;

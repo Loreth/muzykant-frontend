@@ -1,3 +1,27 @@
-h2 {
+.ad-list-header {
   color: rgba(0, 0, 0, 0.6);
+  font-size: 28px;
+  line-height: normal;
+  width: auto;
+}
+
+.header-bar {
+  margin-top: 16px;
+  margin-bottom: 12px;
+}
+
+.ad-list .mat-list-item {
+  height: auto;
+  margin: 10px 0;
+}
+
+.ad-list::ng-deep .mat-list-item-content {
+  padding: 0 !important;
+}
+
+.ads-not-found {
+  padding-top: 80px;
+  font-size: 24px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.4);
 }

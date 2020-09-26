@@ -4,7 +4,8 @@
                          (changedFilters)="onChangedFilters($event)"
                          fxFlex="0 1 340px" class="filter-panel"></app-ad-filter-panel>
   </div>
-  <app-ad-list [adsWithChips$]="adsWithChips$" fxFlex="0 1 1024px">
+  <app-ad-list [adsWithChips$]="adsWithChips$" fxFlex="0 1 1024px"
+               noResultsMessage="Nie znaleziono ogłoszeń spełniających podane kryteria">
   </app-ad-list>
   <div fxFlex="0 100 25%"></div>
 </div>

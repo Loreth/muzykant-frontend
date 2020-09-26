@@ -3,7 +3,6 @@ import {Observable} from 'rxjs';
 import {AdWithChips} from '../../../shared/models/ad-with-chips';
 import {map} from 'rxjs/operators';
 import {FormGroup} from '@angular/forms';
-import {AdChip} from '../../../shared/models/ad-chip';
 import {ActivatedRoute} from '@angular/router';
 import {AdType} from '../../../shared/models/ad-type';
 import {AdServiceFactoryService} from '../../../core/services/ad-service-factory.service';
@@ -28,9 +27,9 @@ export class AdsWithFilterPanelComponent implements OnInit {
     this.activatedRoute.data.subscribe(data => {
         this.adType = data.adType;
         this.adService = this.adServiceFactoryService.getAdService(data.adType);
-        this.adsWithChips$ = this.adService
-        .getDtosPage(0, 10, ['publishedDate,DESC'])
-        .pipe(map(page => this.mapToAdsWithChips(page.content)));
+      this.adsWithChips$ = this.adService
+      .getDtosPage(0, 10, ['publishedDate,DESC'])
+      .pipe(map(page => AdWithChips.mapToAdsWithChips(page.content)));
       }
     );
   }
@@ -38,14 +37,6 @@ export class AdsWithFilterPanelComponent implements OnInit {
   onChangedFilters(filtersForm: FormGroup): void {
     this.adsWithChips$ = this.adService
     .searchDtosWithForm(filtersForm, 0, 10, ['publishedDate,DESC'])
-    .pipe(map(page => this.mapToAdsWithChips(page.content)));
-  }
-
-  private mapToAdsWithChips(ads: Ad[]): AdWithChips[] {
-    const adsWithChips = [];
-    for (const ad of ads) {
-      adsWithChips.push(new AdWithChips(ad, AdChip.makeAdChips(ad)));
-    }
-    return adsWithChips;
+    .pipe(map(page => AdWithChips.mapToAdsWithChips(page.content)));
   }
 }

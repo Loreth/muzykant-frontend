@@ -9,4 +9,12 @@ export class AdWithChips {
     this.ad = ad;
     this.chips = chips;
   }
+
+  public static mapToAdsWithChips(ads: Ad[]): AdWithChips[] {
+    const adsWithChips = [];
+    for (const ad of ads) {
+      adsWithChips.push(new AdWithChips(ad, AdChip.makeAdChips(ad)));
+    }
+    return adsWithChips;
+  }
 }

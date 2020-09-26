@@ -1,98 +1,10 @@
 .ad-list .mat-list-item {
-  color: black;
   height: auto;
   margin: 10px 0;
 }
 
-.ad-list .mat-list-item:hover {
-  cursor: pointer;
-  background-color: white;
-}
-
 .ad-list::ng-deep .mat-list-item-content {
-  padding-left: 0 !important;
-}
-
-.fallback-profile-icon {
-  font-size: 160px;
-  width: auto;
-  height: auto;
-  margin-right: 5px;
-}
-
-.profile-image {
-  height: auto;
-  width: 150px;
-  border-radius: 10px;
-  padding: 5px;
-  margin-right: 5px;
-}
-
-
-.ad-item-content {
-  padding: 10px 0;
-  min-height: 160px;
-}
-
-.profile-name {
-  font-size: 18px;
-}
-
-.profile-expects {
-  font-size: 18px;
-  color: rgba(0, 0, 0, 0.6);
-  margin-right: 8px;
-}
-
-.user-type-and-genres {
-  letter-spacing: 0.03em;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-}
-
-.ad-opacity-element {
-  color: rgba(0, 0, 0, 0.7);
-}
-
-.ad-description {
-  margin: 12px 0 18px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.ad-no-description-info {
-  opacity: 0.6;
-}
-
-.location-icon {
-  opacity: 0.85;
-  margin-right: -0.2em;
-  padding-left: 3px;
-}
-
-.ad-posted-date {
-  font-size: 13px;
-  padding-left: 6px;
-}
-
-.ad-chip {
-  color: rgba(0, 0, 0, 0.87);
-  font-size: 13px;
-  padding: 0 0.77em;
-  margin: 5px 8px 5px 0;
-  border-radius: 12px;
-}
-
-:host ::ng-deep .mat-chip-list-wrapper {
-  margin: 0;
-}
-
-.chip-list {
-  outline: none;
+  padding: 0 !important;
 }
 
 .ads-not-found {
@@ -100,8 +12,4 @@
   font-size: 24px;
   text-align: center;
   color: rgba(0, 0, 0, 0.4);
-}
-
-.location-container {
-  margin-left: 16px;
 }

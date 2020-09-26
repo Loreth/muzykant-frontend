@@ -53,7 +53,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
 import {ErrorInterceptor} from './core/interceptors/error-interceptor';
 import {environment} from '../environments/environment';
-import {AdManagementPanelComponent} from './components/ad-management-panel/ad-management-panel.component';
+import {ClassifiedAdsModule} from './components/classified-ads/classified-ads.module';
 
 @NgModule({
   declarations: [
@@ -76,8 +76,7 @@ import {AdManagementPanelComponent} from './components/ad-management-panel/ad-ma
     CreateRegularUserComponent,
     UsersComponent,
     UserSearchFilterPanelComponent,
-    UserSearchResultsComponent,
-    AdManagementPanelComponent,
+    UserSearchResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -115,6 +114,7 @@ import {AdManagementPanelComponent} from './components/ad-management-panel/ad-ma
     SortablejsModule.forRoot({animation: 200, easing: 'cubic-bezier(0, 0, 0.2, 1)'}),
     MatCheckboxModule,
     OverlayscrollbarsModule,
+    ClassifiedAdsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

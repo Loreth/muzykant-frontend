@@ -1,8 +1,24 @@
 <div fxLayout="row" fxLayoutAlign="center start">
-  <div fxFlex="0 1 1024px" fxLayout="column">
-    <h2>Moje ogłoszenia</h2>
-    <div class="app-card">
-      dfd
+  <div fxFlex="0 1 1024px">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="header-bar">
+      <div class="ad-list-header">Moje ogłoszenia</div>
+      <button routerLink="new-ad" mat-raised-button color="accent">
+        Dodaj ogłoszenie
+        <mat-icon>playlist_add</mat-icon>
+      </button>
+    </div>
+
+    <div *ngIf="userAdsWithChips$ | async as adsWithChips" [@listAnimation]="adsWithChips.length">
+      <mat-list class="ad-list">
+        <mat-list-item *ngFor="let adWithChips of adsWithChips">
+          <app-classified-ad [adWithChips]="adWithChips" fxFlex>
+          </app-classified-ad>
+        </mat-list-item>
+      </mat-list>
+
+      <div *ngIf="!(adsWithChips?.length)" class="ads-not-found">
+        {{noResultsMessage}}
+      </div>
     </div>
   </div>
 </div>

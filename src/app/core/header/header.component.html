@@ -21,7 +21,8 @@
         </span>
         <div *ngIf="isUserLoggedIn()" fxLayout="row">
           <div *ngIf="$user | async"></div>
-          <button routerLink="new-ad" mat-raised-button color="accent" class="new-ad-button">
+          <button routerLink="my-ads/new-ad" mat-raised-button color="accent" class="new-ad-button"
+                  fxFlexAlign="center">
             Dodaj ogłoszenie
             <mat-icon>playlist_add</mat-icon>
           </button>

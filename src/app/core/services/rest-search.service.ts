@@ -28,6 +28,7 @@ export abstract class RestSearchService<T extends Identifiable<ID>, ID> extends 
   }
 
   searchDtosWithForm(searchForm: AbstractControl, page: number, pageSize: number, sortFields?: string[]): Observable<Page<T>> {
+    console.error('searchDtosWithForm not overriden!');
     return undefined;
   }
 }

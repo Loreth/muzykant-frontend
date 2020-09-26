@@ -1,13 +1,15 @@
-<div fxLayout="row wrap" class="user-cards-container" fxLayoutGap="10px grid"
-     *ngIf="users$ | async as users" [@listAnimation]="users.length">
-  <app-user-card-mini *ngFor="let user of users"
-                      [user]="user"
-                      class='user-card'
-                      fxFlex="20%" fxFlex.md="25%" fxFlex.sm="50%" fxFlex.xs="100%">
-  </app-user-card-mini>
-</div>
-<div *ngIf="users$ | async as users" [@noResultsFoundAnimation]>
+<div *ngIf="users$ | async as users" [@listAnimation]="users.length">
+  <div fxLayout="row wrap" class="user-cards-container" fxLayoutGap="10px grid">
+    <app-user-card-mini *ngFor="let user of users"
+                        [user]="user"
+                        class='user-card'
+                        fxFlex="20%" fxFlex.md="25%" fxFlex.sm="50%" fxFlex.xs="100%">
+    </app-user-card-mini>
+  </div>
+
   <div *ngIf="!(users?.length)" class="empty-search-results">
     Nie znaleziono {{pluralUserTypeName}} spełniających podane kryteria
   </div>
 </div>
+
+

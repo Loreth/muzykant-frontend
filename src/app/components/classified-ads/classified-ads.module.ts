@@ -23,6 +23,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
 import {AdsWithFilterPanelComponent} from './ads-with-filter-panel/ads-with-filter-panel.component';
+import {ClassifiedAdComponent} from './classified-ad/classified-ad.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,11 @@ import {AdsWithFilterPanelComponent} from './ads-with-filter-panel/ads-with-filt
     AdListComponent,
     AdFilterPanelComponent,
     AdsWithFilterPanelComponent,
+    ClassifiedAdComponent,
+  ],
+  exports: [
+    AdListComponent,
+    ClassifiedAdComponent
   ],
   imports: [
     CommonModule,
