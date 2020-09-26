@@ -5,37 +5,17 @@ import {Observable} from 'rxjs';
 import {UserType} from '../../../shared/models/user-type';
 import {AdType} from '../../../shared/models/ad-type';
 import {LocalizationUtils} from '../../../shared/localization-utils';
-import {animate, query, stagger, style, transition, trigger} from '@angular/animations';
+import {trigger} from '@angular/animations';
 import {AdChip} from '../../../shared/models/ad-chip';
+import {Animations} from '../../../shared/animations/animations';
 
 @Component({
   selector: 'app-ad-list',
   templateUrl: './ad-list.component.html',
   styleUrls: ['./ad-list.component.css'],
   animations: [
-    trigger('listAnimation', [
-      transition('* => *', [
-        query(':enter', [
-          style({opacity: 0}),
-          stagger(90, [
-            animate('260ms', style({opacity: 1}))
-          ])
-        ], {optional: true}),
-        query(':leave',
-          animate('100ms', style({opacity: 0})),
-          {optional: true})
-      ])
-    ]),
-    trigger('noAdsFoundAnimation', [
-      transition('* => *', [
-        query(':enter', [
-          style({opacity: 0}),
-          stagger(90, [
-            animate('260ms', style({opacity: 1}))
-          ])
-        ], {optional: true}),
-      ])
-    ])
+    trigger('listAnimation', [Animations.enterLeaveTransition]),
+    trigger('noAdsFoundAnimation', [Animations.enterTransition])
   ],
 })
 export class AdListComponent {
