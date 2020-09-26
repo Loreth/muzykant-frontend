@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '', component: ClassifiedAdsComponent, children: [
       {path: '', redirectTo: 'musician-wanted', pathMatch: 'full'},
-      {path: 'musician-wanted', component: MusicianWantedAdsComponent},
+      {path: 'musician-wanted', component: MusicianWantedAdsComponent, data: {}},
       {path: 'band-wanted', component: BandWantedAdsComponent},
       {path: 'jam-session', component: JamSessionAdsComponent}
     ]

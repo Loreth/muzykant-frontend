@@ -53,6 +53,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
 import {ErrorInterceptor} from './core/interceptors/error-interceptor';
 import {environment} from '../environments/environment';
+import {AdManagementPanelComponent} from './components/ad-management-panel/ad-management-panel.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import {environment} from '../environments/environment';
     UsersComponent,
     UserSearchFilterPanelComponent,
     UserSearchResultsComponent,
+    AdManagementPanelComponent,
   ],
   imports: [
     BrowserModule,

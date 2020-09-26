@@ -98,3 +98,12 @@ a {
 .profile-menu.mat-menu-panel {
   margin-top: 6px;
 }
+
+.profile-menu .mat-menu-content:not(:empty) {
+  padding-bottom: 0;
+}
+
+.profile-menu .mat-menu-item {
+  display: flex;
+  align-items: center;
+}
