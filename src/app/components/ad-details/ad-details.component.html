@@ -65,8 +65,10 @@
           <mat-divider></mat-divider>
         </div>
       </mat-list>
-      <p *ngIf="adWithChips.ad.description"
-         class="ad-description">{{adWithChips.ad.description}}</p>
+      <div *ngIf="adWithChips.ad.description" class="ad-description">
+        <p class="description-header">Treść ogłoszenia</p>
+        <p>{{adWithChips.ad.description}}</p>
+      </div>
       <p *ngIf="!adWithChips.ad.description" class="ad-description ad-no-description">
         Brak treści ogłoszenia</p>
       <button mat-raised-button color="primary" class="message-button">

@@ -29,6 +29,11 @@
 
 .ad-description {
   margin: 16px;
+  text-align: justify;
+}
+
+.description-header {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 :host .mat-list-item {
