@@ -82,7 +82,7 @@ mat-expansion-panel-header.mat-expansion-panel-header {
 }
 
 :host ::ng-deep .mat-slider-thumb {
-  background-color: #d3061c !important;
+  background-color: #e12b38 !important;
 }
 
 .looking-filters-content {

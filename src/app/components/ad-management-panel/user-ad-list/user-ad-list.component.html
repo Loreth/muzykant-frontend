@@ -1,0 +1,17 @@
+<div *ngIf="userAdsWithChips$ | async as adsWithChips" [@listAnimation]="adsWithChips.length">
+  <mat-list class="ad-list">
+    <mat-list-item *ngFor="let adWithChips of adsWithChips" class="list-item">
+      <app-classified-ad [adWithChips]="adWithChips" fxFlex>
+      </app-classified-ad>
+      <div class="ad-actions" fxLayout="column" fxLayoutAlign="start end">
+        <mat-icon class="action-icon" (click)="deleteAd(adsWithChips, adWithChips)">delete
+        </mat-icon>
+        <mat-icon class="action-icon" (click)="editAd(adWithChips)">edit</mat-icon>
+      </div>
+    </mat-list-item>
+  </mat-list>
+
+  <div *ngIf="!(adsWithChips?.length)" class="ads-not-found">
+    {{noResultsMessage}}
+  </div>
+</div>

@@ -13,8 +13,7 @@
               [displayWith]="displayWith"
               [vertical]="vertical"
               (blur)="_onTouched();"
-              [formControlName]="_switchCase ? 'max' : 'min'"
-  >
+              [formControlName]="_switchCase ? 'max' : 'min'">
   </mat-slider>
 
   <mat-slider #sMax
@@ -30,7 +29,6 @@
               [displayWith]="displayWith"
               [vertical]="vertical"
               (blur)="_onTouched();"
-              [formControlName]="_switchCase ? 'min' : 'max'"
-  >
+              [formControlName]="_switchCase ? 'min' : 'max'">
   </mat-slider>
 </ng-container>

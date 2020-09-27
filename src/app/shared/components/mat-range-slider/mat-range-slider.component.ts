@@ -16,14 +16,12 @@ export interface MatRangeSliderChange<T> {
     provide: NG_VALUE_ACCESSOR,
     useExisting: MatRangeSliderComponent,
     multi: true
-  }
-  ]
+  }]
 })
 export class MatRangeSliderComponent<T extends { min: number, max: number }>
   implements OnInit, AfterViewInit, OnChanges, ControlValueAccessor {
 
   get formGroupValueCorrected() {
-
     const ans = this.formGroup.value.max < this.formGroup.value.min ?
       {min: this.formGroup.value.max, max: this.formGroup.value.min} :
       this.formGroup.value;

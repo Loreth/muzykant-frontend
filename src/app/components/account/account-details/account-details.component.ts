@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {UserServiceFactoryService} from '../../../core/services/user-service-factory.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {TextUtils} from '../../../shared/text-utils';
 
 @Component({
   selector: 'app-account-details',
@@ -89,19 +90,7 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   limitMaxLines(event: Event, maxLines: number): void {
-    const text = (event.target as HTMLTextAreaElement).value;
-    if (text.length > 0) {
-      const lineCount = 1 + text.replace(/[^\n]/g, '').length;
-      if (lineCount > maxLines) {
-        const textArray = text.split('\n');
-        (event.target as HTMLTextAreaElement).value = textArray.reduce((result, line, lineNum) => {
-          if (lineNum < maxLines) {
-            return result.concat('\n').concat(line);
-          }
-          return result.concat(line);
-        });
-      }
-    }
+    TextUtils.limitMaxLines(event, maxLines);
   }
 
   remainingDescriptionCharacters(): number {

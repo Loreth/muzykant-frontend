@@ -28,6 +28,7 @@ import {RouterModule} from '@angular/router';
 import {ImageCropDialogComponent} from './components/image-crop-dialog/image-crop-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {AlertDialogComponent} from './components/alert-dialog/alert-dialog.component';
+import {ConfirmationDialogComponent} from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [CapitalizePipe,
@@ -40,7 +41,8 @@ import {AlertDialogComponent} from './components/alert-dialog/alert-dialog.compo
     UserCardComponent,
     UserCardMiniComponent,
     ImageCropDialogComponent,
-    AlertDialogComponent],
+    AlertDialogComponent,
+    ConfirmationDialogComponent],
   exports: [
     CapitalizePipe,
     MaterialElevationDirective,

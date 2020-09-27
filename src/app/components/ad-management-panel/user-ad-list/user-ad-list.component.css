@@ -1,0 +1,48 @@
+
+.list-item {
+  position: relative;
+}
+
+.ad-list .mat-list-item {
+  height: auto;
+  margin: 10px 0;
+}
+
+.ad-list::ng-deep .mat-list-item-content {
+  padding: 0 !important;
+}
+
+.ads-not-found {
+  padding-top: 80px;
+  font-size: 24px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.ad-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  height: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: linear-gradient(240deg, rgba(20, 20, 20, 0.25) 20%, rgba(20, 20, 20, 0.15) 40%, transparent 76%);
+  opacity: 0;
+  transition: opacity linear .15s;
+  z-index: 2;
+}
+
+.action-icon {
+  color: rgba(240, 240, 240, 0.92);
+  transition: color linear .15s;
+}
+
+.action-icon:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.ad-list .list-item:hover .ad-actions {
+  opacity: 1;
+}

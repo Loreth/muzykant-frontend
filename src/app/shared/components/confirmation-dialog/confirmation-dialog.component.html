@@ -1,0 +1,8 @@
+<mat-dialog-content>
+  <p>{{data.message || "Czy na pewno chcesz to zrobić?"}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="accent" [mat-dialog-close]="false">Anuluj</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="true">OK</button>
+</mat-dialog-actions>
+

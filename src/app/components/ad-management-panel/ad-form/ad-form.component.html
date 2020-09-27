@@ -1,0 +1,91 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+  <form [formGroup]="adForm" (ngSubmit)="onSubmit()" fxLayout="column" class="form-container"
+        fxFlex="0 1 1024px" fxLayoutGap="10px">
+    <div class="header-bar">Nowe ogłoszenie</div>
+
+    <div class="app-card" fxLayout="column">
+      <h2>Informacje podstawowe</h2>
+      <mat-form-field appearance="outline" fxFlexAlign="start">
+        <mat-label>Rodzaj ogłoszenia</mat-label>
+        <mat-select [formControl]="adType">
+          <mat-option [value]="adTypEnum.MUSICIAN_WANTED">Szukam muzyka</mat-option>
+          <mat-option [value]="adTypEnum.BAND_WANTED">Szukam zespołu</mat-option>
+          <mat-option [value]="adTypEnum.JAM_SESSION">Jam session</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Województwo</mat-label>
+        <mat-select class="voivodeship-name" multiple formControlName="voivodeships">
+          <mat-option class="mat-accent voivodeship-name"
+                      *ngFor="let voivodeship of voivodeships$ | async"
+                      [value]="voivodeship">{{voivodeship.name | capitalize}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Lokalizacja</mat-label>
+        <input matInput placeholder="Lokalizacja" formControlName="location" name="location">
+      </mat-form-field>
+      <section fxLayoutAlign="row">
+        <span class="section-label">Oferta komercyjna</span>
+        <mat-slide-toggle formControlName="commercial"></mat-slide-toggle>
+      </section>
+    </div>
+
+    <div class="app-card" [class]="showPersonalSection() ? 'personal-card' : ''">
+      <h2>Cechy poszukiwanego</h2>
+      <app-chip-autocomplete-input [items$]="genres$"
+                                   label="Gatunki, których znajomości oczekujesz"
+                                   chipCssClass="genre-chip"
+                                   formControlName="genres">
+      </app-chip-autocomplete-input>
+      <app-chip-autocomplete-input [items$]="instruments$"
+                                   [class]="showPersonalSection() ? '' : 'remove-wrapper-padding'"
+                                   label="Instrumenty, których znajomości oczekujesz"
+                                   chipCssClass="instrument-chip"
+                                   formControlName="instruments">
+      </app-chip-autocomplete-input>
+
+      <section *ngIf="showPersonalSection()">
+        <section class="gender-section">
+          <span class="section-label">Płeć<br></span>
+          <mat-checkbox class="gender-element" formControlName="genderFemale">
+            Kobieta
+          </mat-checkbox>
+          <mat-checkbox class="gender-element" formControlName="genderMale">
+            Mężczyzna
+          </mat-checkbox>
+        </section>
+
+        <span class="section-label">Wiek<br></span>
+        <section fxLayout="row">
+          <span class="slider-value slider-min-value"
+                fxFlexAlign="center">{{sliderValues?.min}}
+          </span>
+          <app-mat-range-slider formControlName="ageRange" class="slider" fxFlex thumbLabel
+                                (input)="sliderValues = $event.value">
+          </app-mat-range-slider>
+          <span class="slider-value slider-max-value" fxFlexAlign="center">
+          {{sliderValues?.max}}<span *ngIf="sliderValues.max == 100">+</span>
+          </span>
+        </section>
+      </section>
+    </div>
+
+    <div class="app-card">
+      <h2>Treść ogłoszenia</h2>
+      <mat-form-field appearance="outline" class="description remove-wrapper-padding">
+        <mat-label>Treść ogłoszenia</mat-label>
+        <textarea cdkAutosizeMinRows="6" cdkTextareaAutosize matInput
+                  formControlName="description"
+                  [maxlength]="descriptionMaxLength"
+                  (input)="limitMaxLines($event, 12)"></textarea>
+      </mat-form-field>
+      <div class="remaining-characters">Pozostało znaków: {{remainingDescriptionCharacters()}}</div>
+    </div>
+
+    <button type="submit" mat-raised-button color="accent" fxFlexAlign="end" class="submit-button">
+      Utwórz ogłoszenie
+    </button>
+  </form>
+</div>

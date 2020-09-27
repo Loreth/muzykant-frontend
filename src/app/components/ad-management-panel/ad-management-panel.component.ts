@@ -8,20 +8,14 @@ import {HttpParams} from '@angular/common/http';
 import {AuthService} from '../../core/services/auth.service';
 import {map} from 'rxjs/operators';
 import {AdWithChips} from '../../shared/models/ad-with-chips';
-import {trigger} from '@angular/animations';
-import {Animations} from '../../shared/animations/animations';
 
 @Component({
   selector: 'app-ad-management-panel',
   templateUrl: './ad-management-panel.component.html',
-  styleUrls: ['./ad-management-panel.component.css'],
-  animations: [
-    trigger('listAnimation', [Animations.enterLeaveTransition])
-  ]
+  styleUrls: ['./ad-management-panel.component.css']
 })
 export class AdManagementPanelComponent implements OnInit {
   userAdsWithChips$: Observable<AdWithChips[]>;
-  noResultsMessage = 'Nie masz aktualnie żadnego aktywnego ogłoszenia';
 
   constructor(private musicianWantedAdService: MusicianWantedAdService,
               private bandWantedAdService: BandWantedAdService,

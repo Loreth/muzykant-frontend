@@ -26,7 +26,7 @@
   top: 4px;
   right: 4px;
   opacity: 0;
-  transition: transform .135s cubic-bezier(0.0, 0.0, 0.2, 1), opacity, color linear .15s;
+  transition: transform .135s cubic-bezier(0.0, 0.0, 0.2, 1), opacity linear .15s, color linear .15s;
   z-index: 3;
 }
 
@@ -49,7 +49,7 @@
   background: radial-gradient(
     circle at top right,
     rgba(20, 20, 20, 0.3),
-    rgba(255, 255, 255, 0) 70%
+    transparent 70%
   );
   transition: transform .135s cubic-bezier(0.0, 0.0, 0.2, 1), opacity linear .15s;
   opacity: 0;
