@@ -6,11 +6,17 @@ import {AdType} from '../../shared/models/ad-type';
 import {User} from '../../shared/models/user';
 import {UserServiceFactoryService} from '../../core/services/user-service-factory.service';
 import {AdChip, ChipCssClass} from '../../shared/models/ad-chip';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-ad-details',
   templateUrl: './ad-details.component.html',
-  styleUrls: ['./ad-details.component.css']
+  styleUrls: ['./ad-details.component.css'],
+  animations: [trigger('cardAnimation', [
+    state('void', style({opacity: 0, transform: 'translate3d(0, -2%, 0)'})),
+    state('*', style({opacity: 1, transform: 'translate3d(0, 0, 0)'})),
+    transition(':enter', animate(`0.5s 90ms ease-out`))
+  ])]
 })
 export class AdDetailsComponent implements OnInit {
   @Input() adWithChips$: Observable<AdWithChips>;

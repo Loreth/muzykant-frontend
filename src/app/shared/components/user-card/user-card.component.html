@@ -8,13 +8,15 @@
       </span>
     </mat-card-subtitle>
   </mat-card-header>
-  <mat-icon [svgIcon]="getFallbackIconName()" *ngIf="!user.profileImageLink" color="accent"
+
+  <mat-icon [svgIcon]="getFallbackIconName()" color="accent" *ngIf="!user.profileImageLink"
             class="profile-image fallback-profile-image">
   </mat-icon>
   <img mat-card-image *ngIf="user.profileImageLink"
        [src]="user.profileImageLink"
        alt="Zdjęcie profilowe użytkownika"
        class="profile-image">
+
   <mat-card-content class="card-content">
     <p fxLayoutAlign="start center">
       <mat-icon class="md-18">domain</mat-icon>
