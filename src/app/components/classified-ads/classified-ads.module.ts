@@ -24,6 +24,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
 import {AdsWithFilterPanelComponent} from './ads-with-filter-panel/ads-with-filter-panel.component';
 import {ClassifiedAdComponent} from './classified-ad/classified-ad.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {ClassifiedAdComponent} from './classified-ad/classified-ad.component';
     MatSlideToggleModule,
     MatSelectModule,
     MatTooltipModule,
-    OverlayscrollbarsModule
+    OverlayscrollbarsModule,
+    MatPaginatorModule
   ]
 })
 export class ClassifiedAdsModule {

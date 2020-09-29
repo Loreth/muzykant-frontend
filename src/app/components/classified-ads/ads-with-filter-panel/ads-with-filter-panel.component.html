@@ -4,8 +4,16 @@
                          (changedFilters)="onChangedFilters($event)"
                          fxFlex="0 1 340px" class="filter-panel"></app-ad-filter-panel>
   </div>
-  <app-ad-list [adsWithChips$]="adsWithChips$" fxFlex="0 1 1024px"
-               noResultsMessage="Nie znaleziono ogłoszeń spełniających podane kryteria">
-  </app-ad-list>
+  <div fxFlex="0 1 1024px" class="ad-container" fxLayout="column" fxLayoutAlign="space-between">
+    <app-ad-list [adsWithChips$]="adsWithChips$"
+                 noResultsMessage="Nie znaleziono ogłoszeń spełniających podane kryteria">
+    </app-ad-list>
+    <mat-paginator [length]="adsLength"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20, 50]"
+                   (page)="onPageEvent($event)"
+                   class="paginator">
+    </mat-paginator>
+  </div>
   <div fxFlex="0 100 25%"></div>
 </div>

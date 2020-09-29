@@ -5,7 +5,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {BandService} from '../../../../core/services/band.service';
 import {Band} from '../../../../shared/models/band';
 import {AuthService} from '../../../../core/services/auth.service';
-import {FIELD_REQUIRED_MSG} from '../../../../shared/message-constants';
+import {FIELD_REQUIRED_MSG} from '../../../../shared/localization/message-constants';
 
 @Component({
   selector: 'app-band-basic-info',

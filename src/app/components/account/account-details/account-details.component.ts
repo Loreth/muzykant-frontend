@@ -53,7 +53,7 @@ export class AccountDetailsComponent implements OnInit {
     this.userService.getDto(AuthService.loggedUserId).subscribe(
       user => {
         this.user = user;
-        this.accountDetailsForm.setValue({genres: user.genres, instruments: user.instruments, description: user.description});
+        this.accountDetailsForm.patchValue(user);
       }
     );
 

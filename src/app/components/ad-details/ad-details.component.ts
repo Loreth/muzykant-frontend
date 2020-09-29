@@ -13,9 +13,9 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   templateUrl: './ad-details.component.html',
   styleUrls: ['./ad-details.component.css'],
   animations: [trigger('cardAnimation', [
-    state('void', style({opacity: 0, transform: 'translate3d(0, -2%, 0)'})),
-    state('*', style({opacity: 1, transform: 'translate3d(0, 0, 0)'})),
-    transition(':enter', animate(`0.5s 90ms ease-out`))
+    state('void', style({opacity: 0})),
+    state('*', style({opacity: 1})),
+    transition(':enter', animate(`0.33s 80ms ease-out`))
   ])]
 })
 export class AdDetailsComponent implements OnInit {

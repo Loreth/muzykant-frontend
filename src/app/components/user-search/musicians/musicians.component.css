@@ -3,3 +3,12 @@
 .filter-panel {
   margin-right: 10px;
 }
+
+.musicians-container {
+  min-height: calc(100vh - 162px);
+}
+
+:host ::ng-deep .paginator {
+  background-color: transparent;
+  margin-top: 6px;
+}

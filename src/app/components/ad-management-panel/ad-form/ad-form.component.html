@@ -1,30 +1,46 @@
 <div fxLayout="row" fxLayoutAlign="center start">
   <form [formGroup]="adForm" (ngSubmit)="onSubmit()" fxLayout="column" class="form-container"
         fxFlex="0 1 1024px" fxLayoutGap="10px">
-    <div class="header-bar">Nowe ogłoszenie</div>
+    <div class="header-bar" fxLayout="row" fxLayoutAlign="space-between center">
+      <div>{{getHeaderName()}}</div>
+      <button (click)="navigateBack()" mat-icon-button color="primary" aria-label="Wróć"
+              type="button">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
 
     <div class="app-card" fxLayout="column">
       <h2>Informacje podstawowe</h2>
       <mat-form-field appearance="outline" fxFlexAlign="start">
         <mat-label>Rodzaj ogłoszenia</mat-label>
         <mat-select [formControl]="adType">
-          <mat-option [value]="adTypEnum.MUSICIAN_WANTED">Szukam muzyka</mat-option>
-          <mat-option [value]="adTypEnum.BAND_WANTED">Szukam zespołu</mat-option>
-          <mat-option [value]="adTypEnum.JAM_SESSION">Jam session</mat-option>
+          <mat-option [value]="adTypeEnum.MUSICIAN_WANTED">Szukam muzyka</mat-option>
+          <mat-option [value]="adTypeEnum.BAND_WANTED">Szukam zespołu</mat-option>
+          <mat-option [value]="adTypeEnum.JAM_SESSION">Jam session</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
+        <mat-icon matPrefix class="ad-form-label-icon">domain</mat-icon>
         <mat-label>Województwo</mat-label>
-        <mat-select class="voivodeship-name" multiple formControlName="voivodeships">
+        <mat-select class="voivodeship-name" multiple formControlName="voivodeships"
+                    [compareWith]="compareById" required>
           <mat-option class="mat-accent voivodeship-name"
                       *ngFor="let voivodeship of voivodeships$ | async"
                       [value]="voivodeship">{{voivodeship.name | capitalize}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="voivodeships.errors?.required">
+          Województwo {{requiredMessage}}
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
+        <mat-icon matPrefix class="ad-form-label-icon">place</mat-icon>
         <mat-label>Lokalizacja</mat-label>
-        <input matInput placeholder="Lokalizacja" formControlName="location" name="location">
+        <input matInput placeholder="Lokalizacja" formControlName="location" name="location"
+               required>
+        <mat-error *ngIf="adLocation.errors?.required">
+          Lokalizacja {{requiredMessage}}
+        </mat-error>
       </mat-form-field>
       <section fxLayoutAlign="row">
         <span class="section-label">Oferta komercyjna</span>
@@ -36,14 +52,18 @@
       <h2>Cechy poszukiwanego</h2>
       <app-chip-autocomplete-input [items$]="genres$"
                                    label="Gatunki, których znajomości oczekujesz"
+                                   labelIcon="music_note"
+                                   labelIconClass="ad-form-label-icon"
                                    chipCssClass="genre-chip"
-                                   formControlName="genres">
+                                   formControlName="preferredGenres">
       </app-chip-autocomplete-input>
       <app-chip-autocomplete-input [items$]="instruments$"
                                    [class]="showPersonalSection() ? '' : 'remove-wrapper-padding'"
                                    label="Instrumenty, których znajomości oczekujesz"
+                                   labelIcon="mic"
+                                   labelIconClass="ad-form-label-icon"
                                    chipCssClass="instrument-chip"
-                                   formControlName="instruments">
+                                   formControlName="preferredInstruments">
       </app-chip-autocomplete-input>
 
       <section *ngIf="showPersonalSection()">
@@ -63,6 +83,7 @@
                 fxFlexAlign="center">{{sliderValues?.min}}
           </span>
           <app-mat-range-slider formControlName="ageRange" class="slider" fxFlex thumbLabel
+                                (ngModelChange)="sliderValues = $event"
                                 (input)="sliderValues = $event.value">
           </app-mat-range-slider>
           <span class="slider-value slider-max-value" fxFlexAlign="center">
@@ -85,7 +106,7 @@
     </div>
 
     <button type="submit" mat-raised-button color="accent" fxFlexAlign="end" class="submit-button">
-      Utwórz ogłoszenie
+      {{getSubmitButtonLabel()}}
     </button>
   </form>
 </div>

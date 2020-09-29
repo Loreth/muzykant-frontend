@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
-import {FIELD_REQUIRED_MSG} from '../../shared/message-constants';
+import {FIELD_REQUIRED_MSG} from '../../shared/localization/message-constants';
 import {AuthService} from '../../core/services/auth.service';
 import {SignUpRequest} from '../../shared/models/sign-up-request';
 import {MatSnackBar} from '@angular/material/snack-bar';

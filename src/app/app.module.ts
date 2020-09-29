@@ -54,6 +54,8 @@ import {OverlayscrollbarsModule} from 'overlayscrollbars-ngx';
 import {ErrorInterceptor} from './core/interceptors/error-interceptor';
 import {environment} from '../environments/environment';
 import {ClassifiedAdsModule} from './components/classified-ads/classified-ads.module';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorIntlPolish} from './shared/localization/MatPaginatorIntlPolish';
 
 @NgModule({
   declarations: [
@@ -115,9 +117,11 @@ import {ClassifiedAdsModule} from './components/classified-ads/classified-ads.mo
     MatCheckboxModule,
     OverlayscrollbarsModule,
     ClassifiedAdsModule,
+    MatPaginatorModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: MatPaginatorIntl, useClass: MatPaginatorIntlPolish},
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}},
     {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'},
     {

@@ -6,7 +6,9 @@
       <div class="ad-actions" fxLayout="column" fxLayoutAlign="start end">
         <mat-icon class="action-icon" (click)="deleteAd(adsWithChips, adWithChips)">delete
         </mat-icon>
-        <mat-icon class="action-icon" (click)="editAd(adWithChips)">edit</mat-icon>
+        <mat-icon class="action-icon" routerLink="edit/{{adWithChips.ad.id}}"
+                  [queryParams]="{adType: adWithChips.ad.adType}">edit
+        </mat-icon>
       </div>
     </mat-list-item>
   </mat-list>

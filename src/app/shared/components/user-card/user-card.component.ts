@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {User} from '../../models/user';
 import {Nameable} from '../../models/nameable';
 import {UserType} from '../../models/user-type';
-import {LocalizationUtils} from '../../localization-utils';
+import {LocalizationUtils} from '../../localization/localization-utils';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Musician} from '../../models/musician';

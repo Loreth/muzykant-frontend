@@ -4,7 +4,7 @@ import {Voivodeship} from '../../../shared/models/voivodeship';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {VoivodeshipService} from '../../../core/services/voivodeship.service';
 import {map} from 'rxjs/operators';
-import {FIELD_REQUIRED_MSG} from '../../../shared/message-constants';
+import {FIELD_REQUIRED_MSG} from '../../../shared/localization/message-constants';
 import {Router} from '@angular/router';
 import {BandService} from '../../../core/services/band.service';
 import {Band} from '../../../shared/models/band';

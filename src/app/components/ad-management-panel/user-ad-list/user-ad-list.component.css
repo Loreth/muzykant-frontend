@@ -23,7 +23,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  padding: 8px;
+  padding: 8px 6px;
   height: 100%;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -34,6 +34,7 @@
 }
 
 .action-icon {
+  padding: 2px;
   color: rgba(240, 240, 240, 0.92);
   transition: color linear .15s;
 }

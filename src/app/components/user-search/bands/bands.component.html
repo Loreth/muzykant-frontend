@@ -16,8 +16,15 @@
                                   fxFlex="0 1 340px" class="filter-panel">
     </app-user-search-filter-panel>
   </div>
-  <app-user-search-results [users$]="bands$"
-                           pluralUserTypeName="zespołów"
-                           fxFlex="0 1 1024px"></app-user-search-results>
+  <div fxFlex="0 1 1024px" class="bands-container" fxLayout="column" fxLayoutAlign="space-between">
+    <app-user-search-results [users$]="bands$"
+                             pluralUserTypeName="zespołów"></app-user-search-results>
+    <mat-paginator [length]="bandsLength"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20, 50]"
+                   (page)="onPageEvent($event)"
+                   class="paginator">
+    </mat-paginator>
+  </div>
   <div fxFlex="0 100 25%"></div>
 </div>

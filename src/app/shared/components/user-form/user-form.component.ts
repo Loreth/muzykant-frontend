@@ -9,12 +9,13 @@ import {
   ValidationErrors,
   Validators
 } from '@angular/forms';
-import {FIELD_REQUIRED_MSG} from '../../message-constants';
+import {FIELD_REQUIRED_MSG} from '../../localization/message-constants';
 import {merge, Observable, timer} from 'rxjs';
 import {Voivodeship} from '../../models/voivodeship';
 import {CustomAsyncValidators} from '../../../core/validators/custom-async-validators';
 import {UserService} from '../../../core/services/user.service';
 import {filter, map, startWith, take} from 'rxjs/operators';
+import {Comparators} from '../../comparators';
 
 @Component({
   selector: 'app-user-form',
@@ -47,6 +48,7 @@ export class UserFormComponent implements ControlValueAccessor, AsyncValidator, 
   @Input() parentSubmittedStatus: Observable<boolean>;
   @Input() disabledLinkName: boolean;
   @Input() disabledLinkNameHint: boolean;
+  compareById = Comparators.compareById;
 
   get voivodeship(): AbstractControl {
     return this.userForm.get('voivodeship');
@@ -106,9 +108,5 @@ export class UserFormComponent implements ControlValueAccessor, AsyncValidator, 
         return this.userForm.valid ? null : {invalid: true};
       })
     );
-  }
-
-  compareVoivodeshipObjects(voivo1: Voivodeship, voivo2: Voivodeship): boolean {
-    return voivo1 && voivo2 && voivo1.id === voivo2.id;
   }
 }

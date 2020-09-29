@@ -7,7 +7,7 @@ import {AdFormComponent} from './ad-form/ad-form.component';
 const routes: Routes = [
   {path: '', component: AdManagementPanelComponent, canActivate: [AuthGuard]},
   {path: 'new-ad', component: AdFormComponent, canActivate: [AuthGuard]},
-  {path: 'edit', component: AdFormComponent, canActivate: [AuthGuard]}
+  {path: 'edit/:id', component: AdFormComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

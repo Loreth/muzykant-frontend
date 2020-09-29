@@ -3,7 +3,7 @@ import {AdWithChips} from '../../../shared/models/ad-with-chips';
 import {AdType} from '../../../shared/models/ad-type';
 import {Genre} from '../../../shared/models/genre';
 import {UserType} from '../../../shared/models/user-type';
-import {LocalizationUtils} from '../../../shared/localization-utils';
+import {LocalizationUtils} from '../../../shared/localization/localization-utils';
 import {AdChip} from '../../../shared/models/ad-chip';
 
 @Component({

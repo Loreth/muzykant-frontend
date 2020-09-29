@@ -10,7 +10,7 @@ import {
   Validator,
   Validators
 } from '@angular/forms';
-import {FIELD_REQUIRED_MSG} from '../../message-constants';
+import {FIELD_REQUIRED_MSG} from '../../localization/message-constants';
 import {Observable} from 'rxjs';
 // @ts-ignore
 import moment, {Moment} from 'moment';

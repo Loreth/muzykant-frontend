@@ -365,9 +365,7 @@ export class MatRangeSliderComponent<T extends { min: number, max: number }>
           {...fv, min: tryValue} :
           {...fv, max: tryValue};
 
-
         this.formGroup.setValue(ans, {emitEvent: false});
-
       }
 
       return;

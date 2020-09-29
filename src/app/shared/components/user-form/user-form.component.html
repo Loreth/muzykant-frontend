@@ -1,7 +1,7 @@
 <ng-container [formGroup]="userForm">
   <mat-form-field appearance="outline">
     <mat-label>Województwo</mat-label>
-    <mat-select formControlName="voivodeship" required [compareWith]="compareVoivodeshipObjects">
+    <mat-select formControlName="voivodeship" required [compareWith]="compareById">
       <mat-option *ngFor="let voivo of voivodeships$ | async" [value]="voivo">
         {{voivo.name | capitalize}}
       </mat-option>

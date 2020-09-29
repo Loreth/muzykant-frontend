@@ -1,10 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {trigger} from '@angular/animations';
 import {Animations} from '../../../shared/animations/animations';
 import {AdWithChips} from '../../../shared/models/ad-with-chips';
 import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {ConfirmationDialogComponent} from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import {AdServiceFactoryService} from '../../../core/services/ad-service-factory.service';
 
@@ -18,11 +17,10 @@ import {AdServiceFactoryService} from '../../../core/services/ad-service-factory
 })
 export class UserAdListComponent {
   @Input() userAdsWithChips$: Observable<AdWithChips[]>;
+  @Output() messageEmit = new EventEmitter<string>();
   noResultsMessage = 'Nie masz aktualnie żadnego aktywnego ogłoszenia';
-  snackbarDurationInSeconds = 2.5;
 
   constructor(private dialog: MatDialog,
-              private snackBar: MatSnackBar,
               private adServiceFactoryService: AdServiceFactoryService) {
   }
 
@@ -37,25 +35,11 @@ export class UserAdListComponent {
           () => {
             const adIndex = userAdsWithChips.indexOf(adToDelete);
             userAdsWithChips.splice(adIndex, 1);
-            this.openSnackBar(true);
+            this.messageEmit.emit('Ogłoszenie zostało usunięte');
           },
-          () => this.openSnackBar(false)
+          () => this.messageEmit.emit(null)
         );
       }
     });
-  }
-
-  editAd(adWithChips: AdWithChips) {
-
-  }
-
-  openSnackBar(success: boolean): void {
-    let message = 'Coś poszło nie tak';
-    if (success) {
-      message = 'Ogłoszenie zostało usunięte';
-    }
-    this.snackBar.open(message,
-      '', {duration: this.snackbarDurationInSeconds * 1000, panelClass: ['snackbar']}
-    );
   }
 }
