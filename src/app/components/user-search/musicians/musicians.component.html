@@ -21,7 +21,7 @@
     <app-user-search-results [users$]="musicians$"
                              pluralUserTypeName="muzyków"></app-user-search-results>
     <mat-paginator [length]="musiciansLength"
-                   [pageSize]="10"
+                   [pageSize]="pageSize"
                    [pageSizeOptions]="[5, 10, 20, 50]"
                    (page)="onPageEvent($event)"
                    class="paginator">

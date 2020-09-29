@@ -9,7 +9,7 @@
                  noResultsMessage="Nie znaleziono ogłoszeń spełniających podane kryteria">
     </app-ad-list>
     <mat-paginator [length]="adsLength"
-                   [pageSize]="10"
+                   [pageSize]="pageSize"
                    [pageSizeOptions]="[5, 10, 20, 50]"
                    (page)="onPageEvent($event)"
                    class="paginator">
