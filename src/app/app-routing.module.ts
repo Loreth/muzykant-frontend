@@ -12,6 +12,7 @@ import {ConfirmEmailComponent} from './components/confirm-email/confirm-email.co
 import {CreateUserComponent} from './components/create-user/create-user.component';
 import {AuthGuard} from './core/guards/auth.guard';
 import {AlreadyLoggedGuard} from './core/guards/already-logged.guard';
+import {ChatComponent} from './components/chat/chat.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'ads', pathMatch: 'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'ads', loadChildren: () => import('./components/classified-ads/classified-ads.module').then(m => m.ClassifiedAdsModule)},
   {path: 'musicians', component: MusiciansComponent},
   {path: 'bands', component: BandsComponent},
+  {path: 'messages', component: ChatComponent},
   {
     path: 'my-ads',
     loadChildren: () => import('./components/ad-management-panel/ad-management-panel.module').then(m => m.AdManagementPanelModule)

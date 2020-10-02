@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080',
-  jwtAllowedDomain: 'localhost:8080'
+  apiDomain: 'localhost:8080'
 };
 
 /*

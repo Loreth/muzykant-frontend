@@ -1,0 +1,7 @@
+<overlay-scrollbars #osComponent (scroll)="onChatScroll()" [options]="{paddingAbsolute: true}"
+                    style="height: 100px">
+  <div (scroll)="onChatScroll()">
+    <div *ngIf="loading" class="loader">Loading...</div>
+    <div *ngFor="let message of messages">{{message.content}}</div>
+  </div>
+</overlay-scrollbars>

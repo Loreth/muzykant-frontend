@@ -10,6 +10,8 @@ import {TokenClaims} from '../../shared/models/token-claims';
 import {Router} from '@angular/router';
 import {Authority} from '../../shared/models/authority';
 import {PasswordChangeRequest} from '../../shared/models/password-change-request';
+import {InjectableRxStompConfig, RxStompService} from '@stomp/ng2-stompjs';
+import {rxStompConfig} from '../../config/rx-stomp.config';
 
 const DISPLAY_NAME_KEY = 'display-name';
 const PROFILE_IMAGE_LINK_KEY = 'profile-image-link';
@@ -20,17 +22,29 @@ const PROFILE_IMAGE_LINK_KEY = 'profile-image-link';
 export class AuthService {
   redirectUrl: string;
 
-  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService, private router: Router) {
+  constructor(private http: HttpClient,
+              private tokenStorageService: TokenStorageService,
+              private router: Router,
+              private rxStompService: RxStompService) {
   }
 
   login(loginRequest: LoginRequest): Observable<TokenClaims> {
     return this.http.post(getEndpointUrl(LOGIN), loginRequest).pipe(
-      map((response: any) => this.tokenStorageService.saveTokenAndClaims(response.token))
+      map((response: any) => this.tokenStorageService.saveTokenAndClaims(response.token)),
+      tap(() => {
+        const config: InjectableRxStompConfig = {
+          ...rxStompConfig,
+          connectHeaders: {Authorization: `Bearer ${TokenStorageService.getToken()}`}
+        };
+        this.rxStompService.configure(config);
+        this.rxStompService.activate();
+      })
     );
   }
 
   logout(): void {
     console.log('logging out');
+    this.rxStompService.deactivate();
     TokenStorageService.logout();
     localStorage.removeItem(DISPLAY_NAME_KEY);
     localStorage.removeItem(PROFILE_IMAGE_LINK_KEY);
@@ -77,6 +91,10 @@ export class AuthService {
 
   static get loggedUserEmail(): string {
     return TokenStorageService.getClaims()?.subject;
+  }
+
+  static get loggedUserLinkName(): string {
+    return TokenStorageService.getClaims()?.linkName;
   }
 
   static get userDisplayName(): string {
