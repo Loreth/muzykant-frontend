@@ -5,10 +5,10 @@
     </app-user-conversations>
   </div>
   <div fxFlex="0 1 1024px" class="app-card">
-    <app-conversation *ngIf="currentConversation" [conversation]="currentConversation"
+    <app-conversation *ngIf="currentConversation$ | async" [conversation$]="currentConversation$"
                       [newMessage$]="newMessage$">
     </app-conversation>
-    <div *ngIf="!currentConversation">
+    <div *ngIf="!(currentConversation$ | async)">
       Wybierz użytkownika, z którym chcesz rozmawiać
     </div>
   </div>

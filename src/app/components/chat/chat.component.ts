@@ -13,7 +13,7 @@ import {Conversation} from '../../shared/models/conversation';
 export class ChatComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   newMessage$ = new Subject<ChatMessage>();
-  currentConversation: Conversation;
+  currentConversation$ = new Subject<Conversation>();
 
   constructor(private rxStompService: RxStompService) {
   }
@@ -25,7 +25,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onConversationChange(newConversation: Conversation): void {
-    this.currentConversation = newConversation;
+    this.currentConversation$.next(newConversation);
   }
 
   ngOnDestroy(): void {

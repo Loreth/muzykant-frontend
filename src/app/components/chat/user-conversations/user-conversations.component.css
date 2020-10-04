@@ -1,0 +1,23 @@
+.fallback-participant-icon {
+  font-size: 70px;
+  width: auto;
+  height: auto;
+  margin-right: 5px;
+}
+
+.participant-image {
+  height: auto;
+  width: 60px;
+  border-radius: 50%;
+  padding: 5px;
+  margin-right: 5px;
+  display: block;
+}
+
+.last-message {
+  /*letter-spacing: 0.03em;*/
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

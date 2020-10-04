@@ -12,8 +12,9 @@ import {OverlayScrollbarsComponent} from 'overlayscrollbars-ngx';
 })
 export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
   private subscription: Subscription;
-  @Input() conversation: Conversation;
+  @Input() conversation$: Observable<Conversation>;
   @Input() newMessage$: Observable<ChatMessage>;
+  conversation: Conversation;
   messages: ChatMessage[] = [];
   loading: boolean;
 
@@ -24,8 +25,12 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.fetchMoreMessages();
-    this.subscription = this.newMessage$.subscribe(message => this.messages.push(message));
+    this.subscription = this.conversation$.subscribe(conversation => {
+      this.messages = [];
+      this.conversation = conversation;
+      this.fetchMoreMessages();
+    });
+    this.subscription.add(this.newMessage$.subscribe(message => this.messages.push(message)));
   }
 
   ngAfterViewInit(): void {
@@ -35,7 +40,7 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
   fetchMoreMessages(): void {
     this.loading = true;
     const lastMessageId = this.messages[this.messages.length - 1]?.id;
-    const pageToLoad = this.messages.length / 15;
+    const pageToLoad = Math.floor(this.messages.length / 15);
     this.chatMessageService.getLatestMessagesFromConversationWithUser(
       this.conversation.secondParticipantLinkName, pageToLoad, 15, lastMessageId).subscribe(
       page => {

@@ -1,5 +1,17 @@
-<div *ngFor="let conversation of conversations" (click)="selectConversation(conversation)">
-  <div>{{conversation.secondParticipantLinkName}}</div>
-  <div>{{conversation.secondParticipantProfileImageLink}}</div>
-  <div>{{conversation.lastMessage.content}}</div>
+<div *ngFor="let conversation of conversations" (click)="selectConversation(conversation)"
+     fxLayout="row">
+  <div>
+    <mat-icon *ngIf="!conversation.secondParticipantProfileImageLink" color="accent"
+              class="fallback-participant-icon">
+      account_circle
+    </mat-icon>
+    <img *ngIf="conversation.secondParticipantProfileImageLink"
+         [src]="conversation.secondParticipantProfileImageLink"
+         class="participant-image"
+         alt="profile image"/>
+  </div>
+  <div fxFlexAlign="center">
+    <div>{{conversation.secondParticipantLinkName}}</div>
+    <div class="last-message">{{conversation.lastMessage.content}}</div>
+  </div>
 </div>
