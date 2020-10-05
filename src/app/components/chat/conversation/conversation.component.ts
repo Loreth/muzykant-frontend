@@ -1,9 +1,11 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {ChatMessage} from '../../../shared/models/chat-message';
 import {Observable, Subscription} from 'rxjs';
 import {ChatMessageService} from '../../../core/services/chat-message.service';
 import {Conversation} from '../../../shared/models/conversation';
 import {OverlayScrollbarsComponent} from 'overlayscrollbars-ngx';
+import {AuthService} from '../../../core/services/auth.service';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-conversation',
@@ -14,9 +16,11 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
   private subscription: Subscription;
   @Input() conversation$: Observable<Conversation>;
   @Input() newMessage$: Observable<ChatMessage>;
+  @Output() messageSent = new EventEmitter<ChatMessage>();
   conversation: Conversation;
   messages: ChatMessage[] = [];
   loading: boolean;
+  inputField = new FormControl();
 
   @ViewChild('osComponent', {read: OverlayScrollbarsComponent})
   osComponent: OverlayScrollbarsComponent;
@@ -30,7 +34,13 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
       this.conversation = conversation;
       this.fetchMoreMessages();
     });
-    this.subscription.add(this.newMessage$.subscribe(message => this.messages.push(message)));
+    this.subscription.add(this.newMessage$.subscribe(message => {
+      if (this.conversation?.secondParticipantLinkName === message.senderLinkName ||
+        this.conversation?.firstParticipantLinkName === message.senderLinkName) {
+        this.messages.push(message);
+        setTimeout(() => this.osComponent.osInstance().scroll({top: '100%'}, 300));
+      }
+    }));
   }
 
   ngAfterViewInit(): void {
@@ -39,13 +49,18 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
 
   fetchMoreMessages(): void {
     this.loading = true;
-    const lastMessageId = this.messages[this.messages.length - 1]?.id;
-    const pageToLoad = Math.floor(this.messages.length / 15);
+    const lastMessageId = this.messages[0]?.id;
     this.chatMessageService.getLatestMessagesFromConversationWithUser(
-      this.conversation.secondParticipantLinkName, pageToLoad, 15, lastMessageId).subscribe(
+      this.conversation.secondParticipantLinkName, 0, 12, lastMessageId).subscribe(
       page => {
+        const osInstance = this.osComponent.osInstance();
         this.messages.unshift(...page.content.reverse());
         this.loading = false;
+        setTimeout(() => {
+          if (this.messages.length === 12) {
+            osInstance.scroll({top: '100%'});
+          }
+        });
       }
     );
   }
@@ -56,6 +71,29 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
       if (!this.loading) {
         this.fetchMoreMessages();
       }
+    }
+  }
+
+  getMessageClass(message: ChatMessage): string {
+    return message.senderLinkName === AuthService.loggedUserLinkName ? 'logged-user-message' : 'other-user-message';
+  }
+
+  sendMessage(conversation: Conversation): void {
+    if (this.inputField.value?.length) {
+      const message: ChatMessage = {
+        id: null,
+        sentAt: null,
+        senderLinkName: AuthService.loggedUserLinkName,
+        content: this.inputField.value,
+        recipientLinkName: conversation.secondParticipantLinkName
+      };
+      this.chatMessageService.sendMessage(message).subscribe(
+        sentMessage => {
+          this.messageSent.emit(sentMessage);
+          setTimeout(() => this.osComponent.osInstance().scroll({top: '100%'}, 300));
+        }
+      );
+      this.inputField.reset();
     }
   }
 

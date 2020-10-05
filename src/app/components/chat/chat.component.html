@@ -1,17 +1,15 @@
 <div fxLayout="row">
-  <div fxFlex="1 0 25%" fxLayout="row" fxLayoutAlign="end" class="user-conversations-container">
-    <app-user-conversations fxFlex="0 1 350px" class="app-card"
+  <div fxFlex="0 1 25%" fxLayout="row" fxLayoutAlign="end" class="user-conversations-container">
+    <app-user-conversations class="inner-conversations" [newMessage$]="newMessage$"
                             (selectedConversation)="onConversationChange($event)">
     </app-user-conversations>
   </div>
-  <div fxFlex="0 1 1024px" class="app-card">
-    <app-conversation *ngIf="currentConversation$ | async" [conversation$]="currentConversation$"
-                      [newMessage$]="newMessage$">
-    </app-conversation>
-    <div *ngIf="!(currentConversation$ | async)">
-      Wybierz użytkownika, z którym chcesz rozmawiać
-    </div>
-  </div>
+
+  <app-conversation fxFlex="0 1 1024px" class="app-card conversation"
+                    [conversation$]="currentConversation$" [newMessage$]="newMessage$"
+                    (messageSent)="onMessageSent($event)">
+  </app-conversation>
+
 
   <div fxFlex="0 1000 25%"></div>
 </div>

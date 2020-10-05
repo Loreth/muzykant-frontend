@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Subject, Subscription} from 'rxjs';
 import {ChatMessage} from '../../../shared/models/chat-message';
 import {ChatMessageService} from '../../../core/services/chat-message.service';
@@ -12,15 +12,20 @@ import {AuthService} from '../../../core/services/auth.service';
 })
 export class UserConversationsComponent implements OnInit, OnDestroy {
   @Output() selectedConversation = new EventEmitter<Conversation>();
+  currentConversation: Conversation;
   private subscription: Subscription;
-  newMessage$ = new Subject<ChatMessage>();
+  @Input() newMessage$ = new Subject<ChatMessage>();
   conversations: Conversation[];
 
   constructor(private chatMessageService: ChatMessageService) {
   }
 
   ngOnInit(): void {
-    this.subscription = this.newMessage$.subscribe();
+    this.subscription = this.newMessage$.subscribe(message => {
+      this.conversations.filter(conversation =>
+        conversation.secondParticipantLinkName === message.senderLinkName ||
+        conversation.firstParticipantLinkName === message.senderLinkName)[0].lastMessage = message;
+    });
     this.chatMessageService.getUserConversations(AuthService.loggedUserId).subscribe(
       conversations => this.conversations = conversations
     );
@@ -31,6 +36,11 @@ export class UserConversationsComponent implements OnInit, OnDestroy {
   }
 
   selectConversation(conversation: Conversation): void {
+    this.currentConversation = conversation;
     this.selectedConversation.emit(conversation);
+  }
+
+  getLoggedUserLinkName(): string {
+    return AuthService.loggedUserLinkName;
   }
 }

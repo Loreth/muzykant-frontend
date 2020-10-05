@@ -25,7 +25,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onConversationChange(newConversation: Conversation): void {
+    console.log('changing conversation');
     this.currentConversation$.next(newConversation);
+  }
+
+  onMessageSent(chatMessage: ChatMessage): void {
+    this.newMessage$.next(chatMessage);
   }
 
   ngOnDestroy(): void {

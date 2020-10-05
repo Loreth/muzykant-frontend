@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../core/services/user.service';
-import {MatIconRegistry} from '@angular/material/icon';
-import {DomSanitizer} from '@angular/platform-browser';
 import {AuthService} from '../../core/services/auth.service';
 import {Observable} from 'rxjs';
 import {User} from '../../shared/models/user';
@@ -21,11 +19,7 @@ export class AccountComponent implements OnInit {
 
   constructor(private userService: UserService,
               private userImageService: UserImageService,
-              private profileImageDialog: MatDialog,
-              iconRegistry: MatIconRegistry,
-              sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon('user_circle', sanitizer.bypassSecurityTrustResourceUrl('assets/img/account_circle-48dp.svg'));
-    iconRegistry.addSvgIcon('soundcloud', sanitizer.bypassSecurityTrustResourceUrl('assets/img/soundcloud-circle.svg'));
+              private profileImageDialog: MatDialog) {
   }
 
   ngOnInit(): void {
