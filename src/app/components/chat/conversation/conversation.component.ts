@@ -50,15 +50,22 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
   fetchMoreMessages(): void {
     this.loading = true;
     const lastMessageId = this.messages[0]?.id;
+    if (this.messages.length && !lastMessageId) {
+      return;
+    }
     this.chatMessageService.getLatestMessagesFromConversationWithUser(
       this.conversation.secondParticipantLinkName, 0, 12, lastMessageId).subscribe(
       page => {
         const osInstance = this.osComponent.osInstance();
+        const heightBeforeUnshift = osInstance.getState().contentScrollSize.height;
         this.messages.unshift(...page.content.reverse());
         this.loading = false;
         setTimeout(() => {
           if (this.messages.length === 12) {
             osInstance.scroll({top: '100%'});
+          } else {
+            const heightToScrollBack = osInstance.getState().contentScrollSize.height - heightBeforeUnshift;
+            osInstance.scroll({y: `+=${heightToScrollBack}px`});
           }
         });
       }
@@ -90,11 +97,24 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
       this.chatMessageService.sendMessage(message).subscribe(
         sentMessage => {
           this.messageSent.emit(sentMessage);
-          setTimeout(() => this.osComponent.osInstance().scroll({top: '100%'}, 300));
+          setTimeout(() => this.osComponent.osInstance().scroll({top: '100%'}, 220));
         }
       );
       this.inputField.reset();
     }
+  }
+
+  isMessageFromOtherUser(message: ChatMessage): boolean {
+    return message.senderLinkName !== AuthService.loggedUserLinkName;
+  }
+
+  showUserMessageImage(message: ChatMessage): boolean {
+    if (this.isMessageFromOtherUser(message)) {
+      const messageIndex = this.messages.indexOf(message);
+      return this.messages.length === 1 || messageIndex + 1 === this.messages.length ||
+        this.messages[messageIndex + 1].senderLinkName === AuthService.loggedUserLinkName;
+    }
+    return false;
   }
 
   ngOnDestroy(): void {

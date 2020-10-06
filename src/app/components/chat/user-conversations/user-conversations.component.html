@@ -1,7 +1,7 @@
 <div class="conversations-header">Wiadomości</div>
 <div *ngFor="let conversation of conversations" (click)="selectConversation(conversation)"
      fxLayout="row" class="app-card conversation-card"
-     appMaterialElevation [defaultElevation]="currentConversation == conversation ? 2 : 0"
+     appMaterialElevation [defaultElevation]="currentConversation == conversation ? 3 : 0"
      raisedElevation="4" matRipple
      [class]="currentConversation == conversation ? 'selected-conversation':''">
   <div>
@@ -15,7 +15,7 @@
   </div>
   <div fxFlexAlign="center" class="conversation-text-container">
     <div class="participant-display-name">{{conversation.secondParticipantDisplayName}}</div>
-    <div class="last-message">
+    <div class="last-message" *ngIf="conversation.lastMessage">
       <span *ngIf="conversation.lastMessage.senderLinkName === getLoggedUserLinkName()">
         Ty:
       </span>

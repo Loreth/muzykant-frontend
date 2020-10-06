@@ -38,14 +38,14 @@ export class ChatMessageService extends RestSearchService<ChatMessage, number> {
       httpParams = httpParams.set('sentBeforeMessageId', String(sentBeforeMessageId));
     }
 
-    return super.searchDtos(httpParams, page, pageSize, ['sentAt,DESC']);
+    return super.searchDtos(httpParams, page, pageSize, ['sentAt,DESC', 'id,DESC']);
   }
 
   getUserConversations(userId: number): Observable<Conversation[]> {
     const url = this.endpointUrl + CONVERSATIONS;
     const httpParams = new HttpParams().set('userId', String(userId));
     return this.http.get<Conversation[]>(url, {params: httpParams}).pipe(
-      tap(_ => console.log(`fetched User Conversations url: ${url}`)),
+      tap(conversations => console.log(`fetched ${conversations.length} User Conversations url: ${url}`)),
       catchError(this.handleError<Conversation[]>('getUserConversations'))
     );
   }

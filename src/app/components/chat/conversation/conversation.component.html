@@ -28,13 +28,31 @@
     </div>
   </div>
 
-  <overlay-scrollbars #osComponent [options]="{paddingAbsolute: true}" class="messages">
+  <overlay-scrollbars #osComponent [options]="{paddingAbsolute: false}" class="messages">
     <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
-      <div *ngFor="let message of messages" class="message" [class]="getMessageClass(message)">
-        {{message.content}}
+      <div *ngFor="let message of messages" class="message-container"
+           [class]="isMessageFromOtherUser(message) ? '':'other-user-message-container'">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div *ngIf="showUserMessageImage(message)">
+            <div class="message-image-container"
+                 *ngIf="!conversation.secondParticipantProfileImageLink">
+              <mat-icon color="accent"
+                        class="fallback-participant-icon" svgIcon="user_circle">
+              </mat-icon>
+            </div>
+            <div class="message-image-container"
+                 *ngIf="conversation.secondParticipantProfileImageLink">
+              <img [src]="conversation.secondParticipantProfileImageLink"
+                   class="participant-image"
+                   alt="profile image"/>
+            </div>
+          </div>
+          <div class="message" [class]="getMessageClass(message)">
+            {{message.content}}
+          </div>
+        </div>
       </div>
     </div>
-    <!--    <div *ngIf="loading" class="loader">Loading...</div>-->
   </overlay-scrollbars>
 
   <div *ngIf="conversation" fxLayout="row" fxLayoutAlign="space-between center"

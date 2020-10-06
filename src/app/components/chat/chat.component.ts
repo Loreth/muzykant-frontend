@@ -4,6 +4,7 @@ import {USER_CHAT_QUEUE} from '../../shared/websocket-destinations';
 import {Subject, Subscription} from 'rxjs';
 import {ChatMessage} from '../../shared/models/chat-message';
 import {Conversation} from '../../shared/models/conversation';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -14,8 +15,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   newMessage$ = new Subject<ChatMessage>();
   currentConversation$ = new Subject<Conversation>();
+  recipientLinkName: string;
 
-  constructor(private rxStompService: RxStompService) {
+  constructor(private rxStompService: RxStompService, route: ActivatedRoute) {
+    this.recipientLinkName = route.snapshot.paramMap.get('recipient');
   }
 
   ngOnInit(): void {
