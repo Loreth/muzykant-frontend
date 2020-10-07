@@ -1,1 +1,103 @@
-<p>users works!</p>
+<div fxLayout="row" fxLayoutAlign="center start">
+  <div fxFlex="0 1 1024px" class="user-container app-card" fxLayout="row"
+       *ngIf="user$ | async as user">
+    <div fxFlex="0 1 250px">
+      <div class="name-header">
+        <span>{{user.displayName}}</span>
+        <span *ngIf="user.userType != 'BAND'">
+          ({{localizeGender(user.person.gender)}}, {{getPersonAge(user.person)}})
+        </span>
+      </div>
+      <div *ngIf="userImages$ | async as userImages">
+        <mat-icon [svgIcon]="getFallbackIconName(user)" color="accent"
+                  *ngIf="!user.profileImageLink"
+                  class="profile-image fallback-profile-image">
+        </mat-icon>
+        <img *ngIf="user.profileImageLink"
+             [src]="user.profileImageLink"
+             alt="Zdjęcie profilowe użytkownika"
+             class="profile-image">
+        <ng-image-slider *ngIf="userImages.length" [images]="userImages" [animationSpeed]="0.4"
+                         [manageImageRatio]="true" [imageSize]="{width: '31%', height: 70}"
+                         [infinite]="true">
+        </ng-image-slider>
+      </div>
+    </div>
+
+    <div class="user-info" fxFlex>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div class="user-type">{{localizeUserType(user.userType)}}</div>
+          <a [href]="user.socialMediaLinks?.soundcloud ? user.socialMediaLinks.soundcloud : '//'"
+             target="_blank"
+             [disabled]="!user.socialMediaLinks?.soundcloud?.length" mat-icon-button
+             matTooltip="Soundcloud">
+            <mat-icon svgIcon="soundcloud"></mat-icon>
+          </a>
+          <a [href]="user.socialMediaLinks?.youtube ? user.socialMediaLinks.youtube : '//'"
+             target="_blank"
+             [disabled]="!user.socialMediaLinks?.youtube?.length" mat-icon-button
+             matTooltip="YouTube">
+            <mat-icon svgIcon="youtube"></mat-icon>
+          </a>
+          <a [href]="user.socialMediaLinks?.webpage ? user.socialMediaLinks.webpage : '//'"
+             target="_blank"
+             [disabled]="!user.socialMediaLinks?.webpage?.length" mat-icon-button
+             matTooltip="Strona internetowa">
+            <mat-icon>language</mat-icon>
+          </a>
+        </div>
+        <button (click)="navigateBack()" mat-icon-button color="primary" aria-label="Wróć">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+
+      <mat-list>
+        <mat-list-item>
+          <span class="row-name">Województwo</span>
+          {{user.voivodeship.name | capitalize}}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span class="row-name">Miasto</span>
+          {{user.city}}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <div *ngIf="genreChips?.length">
+          <mat-list-item><span class="row-name">Gatunki</span>
+            <mat-chip-list class="chip-list">
+              <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
+                              *ngFor="let chip of genreChips">
+                {{chip.label | capitalize}}
+              </mat-basic-chip>
+            </mat-chip-list>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="instrumentChips?.length">
+          <mat-list-item><span class="row-name">Instrumenty</span>
+            <mat-chip-list class="chip-list">
+              <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
+                              *ngFor="let chip of instrumentChips">
+                {{chip.label | capitalize}}
+              </mat-basic-chip>
+            </mat-chip-list>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-list>
+      <div *ngIf="user.description" class="description">
+        <p class="description-header">Opis</p>
+        <p>{{user.description}}</p>
+      </div>
+      <p *ngIf="!user.description" class="description no-description">
+        Brak opisu</p>
+      <button mat-raised-button color="primary" class="message-button"
+              [routerLink]="['/messages',{recipient: user.linkName}]"
+              *ngIf="!isLoggedUsersProfile(user)">
+        Wyślij wiadomość
+        <mat-icon>chat</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

@@ -5,4 +5,5 @@ export interface ChatMessage extends Identifiable<number> {
   senderLinkName: string;
   recipientLinkName: string;
   sentAt: string;
+  seen: boolean;
 }

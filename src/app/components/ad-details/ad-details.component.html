@@ -1,5 +1,4 @@
-<div fxLayout="row" *ngIf="(adWithChips$ | async) as adWithChips">
-  <div fxFlex="0 1000 25%"></div>
+<div fxLayout="row" *ngIf="(adWithChips$ | async) as adWithChips" fxLayoutAlign="center start">
   <div fxFlex="0 1 1024px" class="ad-details-container app-card" fxLayout="row">
     <app-user-card class="user-card" [user]="postingUser$ | async" @cardAnimation></app-user-card>
 
@@ -78,5 +77,4 @@
       </button>
     </div>
   </div>
-  <div fxFlex="0 1000 25%"></div>
 </div>

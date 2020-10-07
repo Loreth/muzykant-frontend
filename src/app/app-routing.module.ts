@@ -13,6 +13,7 @@ import {CreateUserComponent} from './components/create-user/create-user.componen
 import {AuthGuard} from './core/guards/auth.guard';
 import {AlreadyLoggedGuard} from './core/guards/already-logged.guard';
 import {ChatComponent} from './components/chat/chat.component';
+import {UsersComponent} from './components/users/users.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'ads', pathMatch: 'full'},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'musicians', component: MusiciansComponent},
   {path: 'bands', component: BandsComponent},
   {path: 'messages', component: ChatComponent, canActivate: [AuthGuard]},
+  {path: 'users/:link-name', component: UsersComponent},
   {
     path: 'my-ads',
     loadChildren: () => import('./components/ad-management-panel/ad-management-panel.module').then(m => m.AdManagementPanelModule)

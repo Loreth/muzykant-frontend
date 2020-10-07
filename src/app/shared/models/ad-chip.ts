@@ -1,6 +1,7 @@
 import {Ad} from './ad';
 import {MusicianWantedAd} from './musician-wanted-ad';
 import {AdType} from './ad-type';
+import {Nameable} from './nameable';
 
 export enum ChipCssClass {
   INSTRUMENT = 'instrument-chip',
@@ -50,6 +51,10 @@ export class AdChip {
     }
 
     return adChips;
+  }
+
+  static makeNameableChips(nameables: Nameable<any>[], cssClass: ChipCssClass): AdChip[] {
+    return nameables.map(nameable => new AdChip(nameable.name, cssClass));
   }
 
   getSortOrder(): number {

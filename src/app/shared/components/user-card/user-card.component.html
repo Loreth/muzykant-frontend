@@ -1,21 +1,23 @@
 <mat-card appMaterialElevation class="user-card app-card" fxFlex *ngIf="user">
-  <mat-card-header>
-    <mat-card-title>{{user.displayName}}</mat-card-title>
-    <mat-card-subtitle>
-      {{localizeUserType(user.userType)}}
-      <span *ngIf="userAsMusician(user) as musician">
+  <a [routerLink]="'/users/'+user.linkName">
+    <mat-card-header>
+      <mat-card-title>{{user.displayName}}</mat-card-title>
+      <mat-card-subtitle>
+        {{localizeUserType(user.userType)}}
+        <span *ngIf="userAsMusician(user) as musician">
         ({{localizeGender(musician.person.gender)}}, {{getPersonAge(musician.person)}})
       </span>
-    </mat-card-subtitle>
-  </mat-card-header>
+      </mat-card-subtitle>
+    </mat-card-header>
 
-  <mat-icon [svgIcon]="getFallbackIconName()" color="accent" *ngIf="!user.profileImageLink"
-            class="profile-image fallback-profile-image">
-  </mat-icon>
-  <img mat-card-image *ngIf="user.profileImageLink"
-       [src]="user.profileImageLink"
-       alt="Zdjęcie profilowe użytkownika"
-       class="profile-image">
+    <mat-icon [svgIcon]="getFallbackIconName()" color="accent" *ngIf="!user.profileImageLink"
+              class="profile-image fallback-profile-image">
+    </mat-icon>
+    <img mat-card-image *ngIf="user.profileImageLink"
+         [src]="user.profileImageLink"
+         alt="Zdjęcie profilowe użytkownika"
+         class="profile-image">
+  </a>
 
   <mat-card-content class="card-content">
     <p fxLayoutAlign="start center">

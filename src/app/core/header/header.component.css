@@ -36,6 +36,7 @@ header {
 }
 
 .user-dropdown-menu {
+  padding: 14px 0;
   vertical-align: middle;
   user-select: none;
 }

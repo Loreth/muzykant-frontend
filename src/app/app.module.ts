@@ -61,6 +61,8 @@ import {ChatComponent} from './components/chat/chat.component';
 import {UserConversationsComponent} from './components/chat/user-conversations/user-conversations.component';
 import {ConversationComponent} from './components/chat/conversation/conversation.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {NgImageSliderModule} from 'ng-image-slider';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -127,6 +129,8 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
     ClassifiedAdsModule,
     MatPaginatorModule,
     InfiniteScrollModule,
+    NgImageSliderModule,
+    MatBadgeModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

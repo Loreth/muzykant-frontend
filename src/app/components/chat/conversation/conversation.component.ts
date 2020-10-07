@@ -92,7 +92,8 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
         sentAt: null,
         senderLinkName: AuthService.loggedUserLinkName,
         content: this.inputField.value,
-        recipientLinkName: conversation.secondParticipantLinkName
+        recipientLinkName: conversation.secondParticipantLinkName,
+        seen: false
       };
       this.chatMessageService.sendMessage(message).subscribe(
         sentMessage => {
