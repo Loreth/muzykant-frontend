@@ -1,0 +1,16 @@
+<div fxLayout="row">
+  <div fxFlex="0 1 25%" fxLayout="row" fxLayoutAlign="end" class="user-conversations-container">
+    <app-user-conversations class="inner-conversations" [newMessage$]="newMessage$"
+                            [recipientLinkName]="recipientLinkName"
+                            (selectedConversation)="onConversationChange($event)">
+    </app-user-conversations>
+  </div>
+
+  <app-conversation fxFlex="0 1 1024px" class="app-card conversation"
+                    [conversation$]="currentConversation$" [newMessage$]="newMessage$"
+                    (messageSent)="onMessageSent($event)">
+  </app-conversation>
+
+
+  <div fxFlex="0 1000 25%"></div>
+</div>

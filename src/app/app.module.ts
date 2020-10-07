@@ -56,6 +56,13 @@ import {environment} from '../environments/environment';
 import {ClassifiedAdsModule} from './components/classified-ads/classified-ads.module';
 import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import {MatPaginatorIntlPolish} from './shared/localization/MatPaginatorIntlPolish';
+import {RxStompService} from '@stomp/ng2-stompjs';
+import {ChatComponent} from './components/chat/chat.component';
+import {UserConversationsComponent} from './components/chat/user-conversations/user-conversations.component';
+import {ConversationComponent} from './components/chat/conversation/conversation.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {NgImageSliderModule} from 'ng-image-slider';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -78,7 +85,10 @@ import {MatPaginatorIntlPolish} from './shared/localization/MatPaginatorIntlPoli
     CreateRegularUserComponent,
     UsersComponent,
     UserSearchFilterPanelComponent,
-    UserSearchResultsComponent
+    UserSearchResultsComponent,
+    ChatComponent,
+    UserConversationsComponent,
+    ConversationComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +106,7 @@ import {MatPaginatorIntlPolish} from './shared/localization/MatPaginatorIntlPoli
     JwtModule.forRoot({
       config: {
         tokenGetter: TokenStorageService.getToken,
-        allowedDomains: [environment.jwtAllowedDomain],
+        allowedDomains: [environment.apiDomain],
         disallowedRoutes: [environment.apiUrl + LOGIN]
       }
     }),
@@ -118,6 +128,9 @@ import {MatPaginatorIntlPolish} from './shared/localization/MatPaginatorIntlPoli
     OverlayscrollbarsModule,
     ClassifiedAdsModule,
     MatPaginatorModule,
+    InfiniteScrollModule,
+    NgImageSliderModule,
+    MatBadgeModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
@@ -136,7 +149,8 @@ import {MatPaginatorIntlPolish} from './shared/localization/MatPaginatorIntlPoli
           monthYearA11yLabel: 'MMMM YYYY',
         }
       }
-    }
+    },
+    RxStompService
   ],
   bootstrap: [AppComponent]
 })

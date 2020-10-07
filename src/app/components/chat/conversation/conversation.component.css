@@ -1,0 +1,131 @@
+.conversation {
+  height: 75vh;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.messages {
+  height: 100%;
+  padding-right: 16px;
+}
+
+.participant {
+  margin-bottom: 16px;
+}
+
+.participant-image-container {
+  padding-right: 7px;
+}
+
+.message-image-container {
+  padding-right: 10px;
+  margin-right: -55px;
+}
+
+.fallback-participant-icon {
+  width: 54px;
+  height: 54px;
+  margin: -4.5px;
+}
+
+.participant-image {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.fallback-participant-icon, .participant-image {
+  display: block;
+}
+
+.participant-name {
+  font-size: 18px;
+  padding-top: 4px;
+}
+
+.divider {
+  margin-top: 7px;
+  margin-left: -5px;
+  width: calc(100% + 140px);
+}
+
+.message {
+  padding: 13px;
+  border-radius: 14px;
+  word-break: break-word;
+}
+
+.message-container {
+  max-width: 66%;
+}
+
+.other-user-message-container {
+  align-self: flex-end;
+}
+
+.logged-user-message {
+  background-color: #e33543;
+  color: rgba(255, 255, 255, 1);
+}
+
+.other-user-message {
+  margin-left: 55px;
+  background-color: #f0f1f2;
+}
+
+.input-container {
+  padding-top: 16px;
+  padding-right: 8px;
+}
+
+.message-field {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+:host ::ng-deep .message-field .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+:host ::ng-deep .message-field .mat-form-field-infix {
+  border-top-width: 0;
+  padding: 0.7em;
+}
+
+.send-button {
+  padding: 8px;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
+.send-button:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+.send-icon {
+  display: block;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  font-size: 28px;
+}
+
+.conversation-placeholder {
+  margin-top: 120px;
+  font-size: 28px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.placeholder-icon {
+  font-size: 200px;
+  width: 1em;
+  height: 1em;
+}
+
+::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  opacity: 1; /* Firefox */
+}

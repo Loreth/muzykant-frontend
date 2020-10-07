@@ -1,0 +1,68 @@
+<div class="conversation" fxLayout="column">
+  <div *ngIf="!conversation" class="conversation-placeholder">
+    <div>
+      <mat-icon class="placeholder-icon">chat</mat-icon>
+    </div>
+    Wybierz użytkownika, z którym chcesz rozmawiać
+  </div>
+
+  <div *ngIf="conversation">
+    <div fxLayout="row" fxLayoutAlign="start center" class="participant">
+      <div class="participant-image-container"
+           *ngIf="!conversation.secondParticipantProfileImageLink">
+        <mat-icon color="accent"
+                  class="fallback-participant-icon" svgIcon="user_circle">
+        </mat-icon>
+      </div>
+      <div class="participant-image-container"
+           *ngIf="conversation.secondParticipantProfileImageLink">
+        <img [src]="conversation.secondParticipantProfileImageLink"
+             class="participant-image"
+             alt="profile image"/>
+      </div>
+
+      <div class="participant-name">
+        {{conversation.secondParticipantDisplayName}}
+        <mat-divider class="divider"></mat-divider>
+      </div>
+    </div>
+  </div>
+
+  <overlay-scrollbars #osComponent [options]="{paddingAbsolute: false}" class="messages">
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+      <div *ngFor="let message of messages" class="message-container"
+           [class]="isMessageFromOtherUser(message) ? '':'other-user-message-container'">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div *ngIf="showUserMessageImage(message)">
+            <div class="message-image-container"
+                 *ngIf="!conversation.secondParticipantProfileImageLink">
+              <mat-icon color="accent"
+                        class="fallback-participant-icon" svgIcon="user_circle">
+              </mat-icon>
+            </div>
+            <div class="message-image-container"
+                 *ngIf="conversation.secondParticipantProfileImageLink">
+              <img [src]="conversation.secondParticipantProfileImageLink"
+                   class="participant-image"
+                   alt="profile image"/>
+            </div>
+          </div>
+          <div class="message" [class]="getMessageClass(message)">
+            {{message.content}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </overlay-scrollbars>
+
+  <div *ngIf="conversation" fxLayout="row" fxLayoutAlign="space-between center"
+       class="input-container">
+    <mat-form-field appearance="none" class="message-field">
+      <input matInput placeholder="Wpisz tu swoją wiadomość" autocomplete="off"
+             [formControl]="inputField" (keyup.enter)="sendMessage(conversation)">
+    </mat-form-field>
+    <div class="send-button" matRipple (click)="sendMessage(conversation)">
+      <mat-icon color="accent" class="send-icon">send</mat-icon>
+    </div>
+  </div>
+</div>

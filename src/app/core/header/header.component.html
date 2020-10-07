@@ -28,12 +28,13 @@
           </button>
           <div matRipple [matMenuTriggerFor]="userMenu" class="user-dropdown-menu" fxLayout="row"
                fxLayoutAlign="space-around center">
-            <mat-icon class="md-36" color="accent" *ngIf="!getUserProfileImageLink()">
+            <mat-icon class="md-36" color="accent" *ngIf="!getUserProfileImageLink()" matBadge="7"
+                      matBadgeColor="warn" matBadgeSize="small">
               account_circle
             </mat-icon>
             <img *ngIf="getUserProfileImageLink()" [src]="getUserProfileImageLink()"
                  alt="zdjęcie profilowe"
-                 class="profile-image">
+                 class="profile-image" matBadge="7">
             <span class="profile-text">{{getUserDisplayName()}}</span>
             <mat-icon class="md-24 dropdown-icon">expand_more</mat-icon>
           </div>
@@ -41,6 +42,10 @@
             <a mat-menu-item routerLink="/my-ads">
               <mat-icon color="accent">view_list</mat-icon>
               <span>Ogłoszenia</span>
+            </a>
+            <a mat-menu-item routerLink="/messages">
+              <mat-icon color="accent">chat</mat-icon>
+              <span>Wiadomości</span>
             </a>
             <a mat-menu-item routerLink="/account">
               <mat-icon color="accent">account_circle</mat-icon>

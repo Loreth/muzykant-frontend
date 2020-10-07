@@ -1,0 +1,112 @@
+.user-container {
+  padding: 16px;
+}
+
+.name-header {
+  font-size: 21px;
+  padding-bottom: 16px;
+  line-height: 32px;
+  margin-top: 4px;
+}
+
+.user-type {
+  padding-top: 2px;
+  font-size: 20px;
+  margin-left: 16px;
+  margin-right: 8px;
+}
+
+.row-name {
+  min-width: 170px;
+}
+
+.profile-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+
+.ad-chip {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 13px;
+  padding: 0.07em 0.8em;
+  margin: 5px 8px 5px 0;
+  border-radius: 12px;
+}
+
+:host ::ng-deep .mat-chip-list-wrapper {
+  margin: 0;
+}
+
+.chip-list {
+  outline: none;
+}
+
+.description {
+  margin: 16px;
+  text-align: justify;
+}
+
+.description-header {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+:host .mat-list-item {
+  font-size: 15px;
+  height: auto;
+  padding: 6px 0;
+}
+
+.user-info {
+  margin-left: 16px;
+}
+
+.user-info h2 {
+  margin: 0 16px;
+}
+
+.commercial-icon {
+  vertical-align: middle;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.no-description {
+  opacity: 0.6;
+}
+
+.message-button {
+  margin-left: 16px;
+}
+
+:host ::ng-deep .ng-image-slider .ng-image-slider-container .main .prev,
+:host ::ng-deep .ng-image-slider .ng-image-slider-container .main .next {
+  background-color: rgba(255, 255, 255, 0.66);
+  color: rgba(0, 0, 0, 0.9);
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 18px;
+  margin-top: -12px;
+}
+
+:host ::ng-deep .ng-image-slider .ng-image-slider-container .main .next:hover,
+:host ::ng-deep .ng-image-slider .ng-image-slider-container .main .prev:hover {
+  background-color: #ffffff;
+}
+
+:host ::ng-deep .ng-image-slider .ng-image-slider-container .main .main-inner .img-div {
+  box-shadow: none;
+  background-color: rgba(41, 41, 48, 0.045);
+}
+
+:host ::ng-deep .ng-image-fullscreen-view .lightbox-wrapper .close {
+  background-image: url("/assets/img/cancel-white.svg");
+  background-color: transparent;
+  background-size: 38px;
+  right: 14px;
+}
+
+:host ::ng-deep .ng-image-fullscreen-view .lightbox-wrapper {
+  background-color: rgba(0, 0, 0, 0.4);
+}

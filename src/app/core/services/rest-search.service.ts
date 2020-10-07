@@ -16,7 +16,9 @@ export abstract class RestSearchService<T extends Identifiable<ID>, ID> extends 
     .set('size', pageSize.toString());
 
     if (sortFields) {
-      searchParams = searchParams.set('sort', sortFields.toString());
+      for (const sortField of sortFields) {
+        searchParams = searchParams.append('sort', sortField);
+      }
     }
 
     return this.http.get<Page<T>>(searchUrl, {params: searchParams}).pipe(
