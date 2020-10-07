@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'ads', loadChildren: () => import('./components/classified-ads/classified-ads.module').then(m => m.ClassifiedAdsModule)},
   {path: 'musicians', component: MusiciansComponent},
   {path: 'bands', component: BandsComponent},
-  {path: 'messages', component: ChatComponent},
+  {path: 'messages', component: ChatComponent, canActivate: [AuthGuard]},
   {
     path: 'my-ads',
     loadChildren: () => import('./components/ad-management-panel/ad-management-panel.module').then(m => m.AdManagementPanelModule)
