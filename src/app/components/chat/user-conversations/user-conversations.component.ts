@@ -105,4 +105,8 @@ export class UserConversationsComponent implements OnInit, OnDestroy {
       conversation.firstParticipantLinkName === otherUserLinkName ||
       conversation.secondParticipantLinkName === otherUserLinkName)[0];
   }
+
+  isLastMessageFromOtherUserAndUnseen(message: ChatMessage): boolean {
+    return message?.seen === false && message?.recipientLinkName === AuthService.loggedUserLinkName;
+  }
 }

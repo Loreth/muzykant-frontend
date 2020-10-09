@@ -12,6 +12,7 @@ import {Authority} from '../../shared/models/authority';
 import {PasswordChangeRequest} from '../../shared/models/password-change-request';
 import {InjectableRxStompConfig, RxStompService} from '@stomp/ng2-stompjs';
 import {rxStompConfig} from '../../config/rx-stomp.config';
+import {ChatMessageService} from './chat-message.service';
 
 const DISPLAY_NAME_KEY = 'display-name';
 const PROFILE_IMAGE_LINK_KEY = 'profile-image-link';
@@ -25,7 +26,8 @@ export class AuthService {
   constructor(private http: HttpClient,
               private tokenStorageService: TokenStorageService,
               private router: Router,
-              private rxStompService: RxStompService) {
+              private rxStompService: RxStompService,
+              private chatMessageService: ChatMessageService) {
   }
 
   login(loginRequest: LoginRequest): Observable<TokenClaims> {
@@ -38,6 +40,7 @@ export class AuthService {
         };
         this.rxStompService.configure(config);
         this.rxStompService.activate();
+        this.chatMessageService.initialize(AuthService.loggedUserId);
       })
     );
   }

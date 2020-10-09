@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {AppComponent} from './app.component';
@@ -63,6 +63,10 @@ import {ConversationComponent} from './components/chat/conversation/conversation
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {NgImageSliderModule} from 'ng-image-slider';
 import {MatBadgeModule} from '@angular/material/badge';
+import localePl from '@angular/common/locales/pl';
+import {registerLocaleData} from '@angular/common';
+
+registerLocaleData(localePl);
 
 @NgModule({
   declarations: [
@@ -137,6 +141,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     {provide: MatPaginatorIntl, useClass: MatPaginatorIntlPolish},
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}},
     {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'},
+    {provide: LOCALE_ID, useValue: 'pl-PL'},
     {
       provide: MAT_DATE_FORMATS, useValue: {
         parse: {

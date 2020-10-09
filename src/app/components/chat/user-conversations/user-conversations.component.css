@@ -51,3 +51,16 @@
   background: linear-gradient(90deg, rgb(248, 242, 242) 0%, white 100%);
   background-clip: padding-box;
 }
+
+.unseen-message {
+  font-weight: 600;
+  color: #d3061c;
+}
+
+.unseen-message-indicator {
+  margin-left: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(225, 43, 56, 0.9);
+}

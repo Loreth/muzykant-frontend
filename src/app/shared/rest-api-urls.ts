@@ -19,12 +19,9 @@ export const GENRE = '/genres';
 export const INSTRUMENT = '/instruments';
 export const EQUIPMENT = '/equipments';
 export const USER_IMAGE = '/user-images';
-export const PREDEFINED_VOCAL_RANGE = '/predefined-vocal-ranges';
-export const VOCAL_TECHNIQUE = '/vocal-techniques';
 export const VOIVODESHIP = '/voivodeships';
 export const SOCIAL_MEDIA_LINKS = '/social-media-links';
 export const CHAT_MESSAGE = '/chat-messages';
-export const LAST_MESSAGES = '/last-messages';
 export const CONVERSATIONS = '/conversations';
 
 export const USER_IMAGE_UPLOAD = '/user-images/upload';

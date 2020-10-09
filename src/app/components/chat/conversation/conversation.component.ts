@@ -6,6 +6,7 @@ import {Conversation} from '../../../shared/models/conversation';
 import {OverlayScrollbarsComponent} from 'overlayscrollbars-ngx';
 import {AuthService} from '../../../core/services/auth.service';
 import {FormControl} from '@angular/forms';
+import {TooltipPosition} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-conversation',
@@ -38,7 +39,7 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
       if (this.conversation?.secondParticipantLinkName === message.senderLinkName ||
         this.conversation?.firstParticipantLinkName === message.senderLinkName) {
         this.messages.push(message);
-        setTimeout(() => this.osComponent.osInstance().scroll({top: '100%'}, 300));
+        setTimeout(() => this.osComponent.osInstance().scroll({top: '100%'}, 220));
       }
     }));
   }
@@ -53,7 +54,7 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.messages.length && !lastMessageId) {
       return;
     }
-    this.chatMessageService.getLatestMessagesFromConversationWithUser(
+    this.chatMessageService.getLatestMessagesFromConversationWithUser(AuthService.loggedUserLinkName,
       this.conversation.secondParticipantLinkName, 0, 12, lastMessageId).subscribe(
       page => {
         const osInstance = this.osComponent.osInstance();
@@ -120,5 +121,17 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  onWindowClick(): void {
+    const unseenMessages = this.messages?.filter(message => message.seen === false);
+    if (unseenMessages.length) {
+      unseenMessages.forEach(message => message.seen = true);
+      this.chatMessageService.markMessagesFromUserAsSeen(this.conversation.secondParticipantLinkName);
+    }
+  }
+
+  getTooltipPosition(message: ChatMessage): TooltipPosition {
+    return message.senderLinkName === AuthService.loggedUserLinkName ? 'before' : 'after';
   }
 }

@@ -19,7 +19,13 @@
       <span *ngIf="conversation.lastMessage.senderLinkName === getLoggedUserLinkName()">
         Ty:
       </span>
-      {{conversation.lastMessage.content}}
+      <span
+        [class]="isLastMessageFromOtherUserAndUnseen(conversation.lastMessage)? 'unseen-message':''">
+        {{conversation.lastMessage.content}}
+      </span>
     </div>
+  </div>
+  <div fxFlexAlign="center" fxFlex="0 0 auto"
+       [class]="isLastMessageFromOtherUserAndUnseen(conversation.lastMessage)? 'unseen-message-indicator':''">
   </div>
 </div>

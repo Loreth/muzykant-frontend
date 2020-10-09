@@ -5,7 +5,7 @@ import {User} from '../../shared/models/user';
 import {UserService} from '../../core/services/user.service';
 import {HttpParams} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
+import {forkJoin, Observable} from 'rxjs';
 import {UserType} from '../../shared/models/user-type';
 import {AdChip, ChipCssClass} from '../../shared/models/ad-chip';
 import {map, tap} from 'rxjs/operators';
@@ -14,6 +14,11 @@ import {AuthService} from '../../core/services/auth.service';
 import {LocalizationUtils} from '../../shared/localization/localization-utils';
 import {Person} from '../../shared/models/person';
 import moment from 'moment';
+import {AdWithChips} from '../../shared/models/ad-with-chips';
+import {MusicianWantedAdService} from '../../core/services/musician-wanted-ad.service';
+import {BandWantedAdService} from '../../core/services/band-wanted-ad.service';
+import {JamSessionAdService} from '../../core/services/jam-session-ad.service';
+import {Ad} from '../../shared/models/ad';
 
 @Component({
   selector: 'app-users',
@@ -25,10 +30,14 @@ export class UsersComponent implements OnInit {
   genreChips: AdChip[];
   instrumentChips: AdChip[];
   userImages$: Observable<any[]>;
+  userAdsWithChips$: Observable<AdWithChips[]>;
 
   constructor(private userServiceFactoryService: UserServiceFactoryService,
               private userService: UserService,
               private userImageService: UserImageService,
+              private musicianWantedAdService: MusicianWantedAdService,
+              private bandWantedAdService: BandWantedAdService,
+              private jamSessionAdService: JamSessionAdService,
               private route: ActivatedRoute,
               private location: Location) {
   }
@@ -51,9 +60,21 @@ export class UsersComponent implements OnInit {
               return {image: image.link, thumbImage: image.link};
             })
           ));
+          this.fetchUserAdsWithChips(user.id);
         }
       );
     });
+  }
+
+  private fetchUserAdsWithChips(userId: number): void {
+    const httpParams = new HttpParams().set('userId', String(userId)).set('sort', 'publishedDate,DESC');
+    this.userAdsWithChips$ = forkJoin([
+      this.musicianWantedAdService.searchDtos(httpParams),
+      this.bandWantedAdService.searchDtos(httpParams),
+      this.jamSessionAdService.searchDtos(httpParams)]).pipe(
+      map(multipleTypeAds => multipleTypeAds.reduce((acc: Ad[], cur) => [...acc, ...cur.content], [])),
+      map(ads => AdWithChips.mapToAdsWithChips(ads))
+    );
   }
 
   navigateBack(): void {
@@ -97,8 +118,4 @@ export class UsersComponent implements OnInit {
   getPersonAge(person: Person): number {
     return moment().diff(person.birthdate, 'years');
   }
-
-  // userAsMusician(user: User): Musician {
-  //   return user.userType === UserType.MUSICIAN ? user as Musician : null;
-  // }
 }

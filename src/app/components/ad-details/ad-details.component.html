@@ -2,79 +2,84 @@
   <div fxFlex="0 1 1024px" class="ad-details-container app-card" fxLayout="row">
     <app-user-card class="user-card" [user]="postingUser$ | async" @cardAnimation></app-user-card>
 
-    <div class="ad-info" fxFlex>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <h2>{{getAdHeaderName(adWithChips.ad.adType)}}
-          <mat-icon class="commercial-icon" *ngIf="adWithChips.ad.commercial"
-                    matTooltip="Oferta komercyjna">
-            monetization_on
-          </mat-icon>
-        </h2>
-        <button (click)="navigateBack()" mat-icon-button color="primary" aria-label="Wróć">
-          <mat-icon>arrow_back</mat-icon>
+    <div fxLayout="column" fxFlex>
+      <div class="ad-info" fxFlex>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h2>{{getAdHeaderName(adWithChips.ad.adType)}}
+            <mat-icon class="commercial-icon" *ngIf="adWithChips.ad.commercial"
+                      matTooltip="Oferta komercyjna">
+              monetization_on
+            </mat-icon>
+          </h2>
+          <button (click)="navigateBack()" mat-icon-button color="primary" aria-label="Wróć">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+        <mat-list>
+          <mat-list-item>
+            <span class="row-name">Data publikacji</span>
+            {{adWithChips.ad.publishedDate | date: 'dd.MM.yyyy'}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <span class="row-name">Lokalizacja</span>
+            {{adWithChips.ad.location}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <div *ngIf="genreChips?.length">
+            <mat-list-item><span class="row-name">Gatunki</span>
+              <mat-chip-list class="chip-list">
+                <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
+                                *ngFor="let chip of genreChips">
+                  {{chip.label | capitalize}}
+                </mat-basic-chip>
+              </mat-chip-list>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </div>
+          <div *ngIf="instrumentChips?.length">
+            <mat-list-item><span class="row-name">Instrumenty</span>
+              <mat-chip-list class="chip-list">
+                <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
+                                *ngFor="let chip of instrumentChips">
+                  {{chip.label | capitalize}}
+                </mat-basic-chip>
+              </mat-chip-list>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </div>
+          <div *ngIf="genderChip">
+            <mat-list-item><span class="row-name">Płeć</span>
+              <mat-basic-chip disableRipple class="chip-list ad-chip"
+                              [ngClass]="genderChip.cssClass">
+                {{genderChip.label | capitalize}}
+              </mat-basic-chip>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </div>
+          <div *ngIf="ageChip">
+            <mat-list-item><span class="row-name">Wiek</span>
+              <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="ageChip.cssClass">
+                {{ageChip.label | capitalize}}
+              </mat-basic-chip>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-list>
+        <div *ngIf="adWithChips.ad.description" class="ad-description">
+          <p class="description-header">Treść ogłoszenia</p>
+          <p>{{adWithChips.ad.description}}</p>
+        </div>
+        <p *ngIf="!adWithChips.ad.description" class="ad-description ad-no-description">
+          Brak treści ogłoszenia</p>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end stretch">
+        <button mat-raised-button color="accent" class="message-button"
+                [routerLink]="['/messages',{recipient: adWithChips.ad.userLinkName}]">
+          Wyślij wiadomość
+          <mat-icon>chat</mat-icon>
         </button>
       </div>
-      <mat-list>
-        <mat-list-item>
-          <span class="row-name">Data publikacji</span>
-          {{adWithChips.ad.publishedDate | date: 'dd.MM.yyyy'}}
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <span class="row-name">Lokalizacja</span>
-          {{adWithChips.ad.location}}
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <div *ngIf="genreChips?.length">
-          <mat-list-item><span class="row-name">Gatunki</span>
-            <mat-chip-list class="chip-list">
-              <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
-                              *ngFor="let chip of genreChips">
-                {{chip.label | capitalize}}
-              </mat-basic-chip>
-            </mat-chip-list>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </div>
-        <div *ngIf="instrumentChips?.length">
-          <mat-list-item><span class="row-name">Instrumenty</span>
-            <mat-chip-list class="chip-list">
-              <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
-                              *ngFor="let chip of instrumentChips">
-                {{chip.label | capitalize}}
-              </mat-basic-chip>
-            </mat-chip-list>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </div>
-        <div *ngIf="genderChip">
-          <mat-list-item><span class="row-name">Płeć</span>
-            <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="genderChip.cssClass">
-              {{genderChip.label | capitalize}}
-            </mat-basic-chip>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </div>
-        <div *ngIf="ageChip">
-          <mat-list-item><span class="row-name">Wiek</span>
-            <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="ageChip.cssClass">
-              {{ageChip.label | capitalize}}
-            </mat-basic-chip>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </div>
-      </mat-list>
-      <div *ngIf="adWithChips.ad.description" class="ad-description">
-        <p class="description-header">Treść ogłoszenia</p>
-        <p>{{adWithChips.ad.description}}</p>
-      </div>
-      <p *ngIf="!adWithChips.ad.description" class="ad-description ad-no-description">
-        Brak treści ogłoszenia</p>
-      <button mat-raised-button color="primary" class="message-button"
-              [routerLink]="['/messages',{recipient: adWithChips.ad.userLinkName}]">
-        Wyślij wiadomość
-        <mat-icon>chat</mat-icon>
-      </button>
     </div>
   </div>
 </div>

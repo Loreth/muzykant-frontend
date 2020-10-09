@@ -1,4 +1,4 @@
-<div class="conversation" fxLayout="column">
+<div class="conversation" fxLayout="column" (click)="onWindowClick()">
   <div *ngIf="!conversation" class="conversation-placeholder">
     <div>
       <mat-icon class="placeholder-icon">chat</mat-icon>
@@ -47,7 +47,10 @@
                    alt="profile image"/>
             </div>
           </div>
-          <div class="message" [class]="getMessageClass(message)">
+          <div class="message" [class]="getMessageClass(message)"
+               [matTooltip]="message.sentAt | date: 'dd.MM.yyyy HH:mm'"
+               [matTooltipPosition]="getTooltipPosition(message)"
+               matTooltipClass="time-tooltip">
             {{message.content}}
           </div>
         </div>

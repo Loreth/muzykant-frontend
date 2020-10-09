@@ -4,6 +4,8 @@ import {TokenStorageService} from './core/services/token-storage.service';
 import {rxStompConfig} from './config/rx-stomp.config';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
+import {ChatMessageService} from './core/services/chat-message.service';
+import {AuthService} from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,7 @@ export class AppComponent implements OnInit {
   title = 'muzykant-frontend';
 
   constructor(private rxStompService: RxStompService,
+              private chatMessageService: ChatMessageService,
               iconRegistry: MatIconRegistry,
               sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon('soundcloud', sanitizer.bypassSecurityTrustResourceUrl('assets/img/soundcloud-fewer-stripes.svg'));
@@ -32,6 +35,7 @@ export class AppComponent implements OnInit {
       };
       this.rxStompService.configure(config);
       this.rxStompService.activate();
+      this.chatMessageService.initialize(AuthService.loggedUserId);
     }
   }
 }

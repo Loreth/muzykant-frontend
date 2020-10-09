@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {RxStompService} from '@stomp/ng2-stompjs';
-import {USER_CHAT_QUEUE} from '../../shared/websocket-destinations';
 import {Subject, Subscription} from 'rxjs';
 import {ChatMessage} from '../../shared/models/chat-message';
 import {Conversation} from '../../shared/models/conversation';
 import {ActivatedRoute} from '@angular/router';
+import {ChatMessageService} from '../../core/services/chat-message.service';
 
 @Component({
   selector: 'app-chat',
@@ -17,18 +16,22 @@ export class ChatComponent implements OnInit, OnDestroy {
   currentConversation$ = new Subject<Conversation>();
   recipientLinkName: string;
 
-  constructor(private rxStompService: RxStompService, route: ActivatedRoute) {
+  constructor(private chatMessageService: ChatMessageService, route: ActivatedRoute) {
     this.recipientLinkName = route.snapshot.paramMap.get('recipient');
   }
 
   ngOnInit(): void {
-    this.subscription = this.rxStompService.watch(USER_CHAT_QUEUE).subscribe(message => {
+    this.subscription = this.chatMessageService.getChatQueue().subscribe(message => {
       this.newMessage$.next(JSON.parse(message.body));
     });
   }
 
   onConversationChange(newConversation: Conversation): void {
     console.log('changing conversation');
+    if (newConversation.lastMessage) {
+      newConversation.lastMessage.seen = true;
+    }
+    this.chatMessageService.markMessagesFromUserAsSeen(newConversation.secondParticipantLinkName);
     this.currentConversation$.next(newConversation);
   }
 

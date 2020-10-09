@@ -4,7 +4,6 @@ import {Voivodeship} from './voivodeship';
 import {Instrument} from './instrument';
 import {Genre} from './genre';
 import {UserImage} from './user-image';
-import {VocalTechnique} from './vocal-technique';
 import {SocialMediaLinks} from './social-media-links';
 
 export interface User extends Identifiable<number> {
@@ -19,6 +18,5 @@ export interface User extends Identifiable<number> {
   userImages: UserImage[];
   genres: Genre[];
   instruments: Instrument[];
-  vocalTechniques: VocalTechnique[];
   socialMediaLinks: SocialMediaLinks;
 }

@@ -36,7 +36,7 @@ header {
 }
 
 .user-dropdown-menu {
-  padding: 14px 0;
+  padding: 13px 0;
   vertical-align: middle;
   user-select: none;
 }
@@ -83,4 +83,16 @@ header .mat-raised-button {
   height: 34px;
   padding: 2px;
   border-radius: 50%;
+}
+
+.user-fallback-icon {
+  display: block;
+  font-size: 38px;
+  width: 1em;
+  height: 1em;
+}
+
+.mat-badge-small.mat-badge-above .mat-badge-content {
+  right: -7px;
+  top: -4px;
 }

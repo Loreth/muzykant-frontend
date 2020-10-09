@@ -76,7 +76,18 @@
 }
 
 .message-button {
+  margin-top: 16px;
   margin-left: 16px;
+}
+
+.ad-list-header {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 22px;
+  line-height: normal;
+}
+
+.user-ads {
+  margin-top: 36px;
 }
 
 :host ::ng-deep .ng-image-slider .ng-image-slider-container .main .prev,
