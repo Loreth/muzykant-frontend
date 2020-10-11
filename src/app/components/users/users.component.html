@@ -1,7 +1,6 @@
-<div fxLayout="column">
+<div fxLayout="column" *ngIf="user$ | async as user">
   <div fxLayout="row" fxLayoutAlign="center start">
-    <div fxFlex="0 1 1024px" class="user-container app-card" fxLayout="row"
-         *ngIf="user$ | async as user">
+    <div fxFlex="0 1 1024px" class="user-container app-card" fxLayout="row">
       <div fxFlex="0 1 250px">
         <div class="name-header">
           <span>{{user.displayName}}</span>
@@ -105,6 +104,15 @@
       </div>
     </div>
   </div>
+
+  <div fxLayout="row" fxLayoutAlign="center start" class="soundcloud-card">
+    <div fxFlex="0 1 1024px">
+      <app-soundcloud-widget *ngIf="user.socialMediaLinks.soundcloud?.length"
+                             [soundcloudProfileLink]="user.socialMediaLinks.soundcloud">
+      </app-soundcloud-widget>
+    </div>
+  </div>
+
   <div fxLayout="row" fxLayoutAlign="center start" class="user-ads">
     <div fxFlex="0 1 1024px">
       <div class="ad-list-header">Ogłoszenia użytkownika</div>

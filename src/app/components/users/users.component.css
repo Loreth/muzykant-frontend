@@ -86,8 +86,8 @@
   line-height: normal;
 }
 
-.user-ads {
-  margin-top: 36px;
+.soundcloud-card, .user-ads {
+  margin-top: 12px;
 }
 
 :host ::ng-deep .ng-image-slider .ng-image-slider-container .main .prev,

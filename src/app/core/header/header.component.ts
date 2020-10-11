@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {TokenStorageService} from '../services/token-storage.service';
 import {UserService} from '../services/user.service';
@@ -12,7 +12,7 @@ import {ChatMessageService} from '../services/chat-message.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   navLinks = [
     {path: 'ads', label: 'Ogłoszenia'},
     {path: 'musicians', label: 'Muzycy'},
@@ -23,10 +23,6 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService,
               private userService: UserService,
               private chatMessageService: ChatMessageService) {
-  }
-
-  ngOnInit(): void {
-    this.chatMessageService.getChatQueue().subscribe();
   }
 
   isUserLoggedIn(): boolean {

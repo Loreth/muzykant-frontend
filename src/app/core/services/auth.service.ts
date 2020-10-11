@@ -41,6 +41,7 @@ export class AuthService {
         this.rxStompService.configure(config);
         this.rxStompService.activate();
         this.chatMessageService.initialize(AuthService.loggedUserId);
+        this.chatMessageService.getChatQueue().subscribe();
       })
     );
   }
