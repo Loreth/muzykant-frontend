@@ -107,7 +107,7 @@
 
   <div fxLayout="row" fxLayoutAlign="center start" class="soundcloud-card">
     <div fxFlex="0 1 1024px">
-      <app-soundcloud-widget *ngIf="user.socialMediaLinks.soundcloud?.length"
+      <app-soundcloud-widget *ngIf="user.socialMediaLinks?.soundcloud?.length"
                              [soundcloudProfileLink]="user.socialMediaLinks.soundcloud">
       </app-soundcloud-widget>
     </div>
