@@ -65,6 +65,7 @@ import {NgImageSliderModule} from 'ng-image-slider';
 import {MatBadgeModule} from '@angular/material/badge';
 import localePl from '@angular/common/locales/pl';
 import {registerLocaleData} from '@angular/common';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 registerLocaleData(localePl);
 
@@ -134,7 +135,8 @@ registerLocaleData(localePl);
     MatPaginatorModule,
     InfiniteScrollModule,
     NgImageSliderModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatExpansionModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

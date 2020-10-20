@@ -29,9 +29,12 @@ import {ImageCropDialogComponent} from './components/image-crop-dialog/image-cro
 import {MatDialogModule} from '@angular/material/dialog';
 import {AlertDialogComponent} from './components/alert-dialog/alert-dialog.component';
 import {ConfirmationDialogComponent} from './components/confirmation-dialog/confirmation-dialog.component';
+import {PhonePipe} from './pipes/phone.pipe';
 
 @NgModule({
-  declarations: [CapitalizePipe,
+  declarations: [
+    CapitalizePipe,
+    PhonePipe,
     MaterialElevationDirective,
     MatRangeSliderComponent,
     PersonFormComponent,
@@ -45,6 +48,7 @@ import {ConfirmationDialogComponent} from './components/confirmation-dialog/conf
     ConfirmationDialogComponent],
   exports: [
     CapitalizePipe,
+    PhonePipe,
     MaterialElevationDirective,
     MatRangeSliderComponent,
     PersonFormComponent,

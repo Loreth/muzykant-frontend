@@ -8,7 +8,10 @@
   </app-user-form>
   <mat-form-field appearance="outline">
     <mat-label>Numer telefonu</mat-label>
-    <input matInput formControlName="phone" name="phone">
+    <input matInput formControlName="phone" name="phone" maxlength="9">
+    <mat-error *ngIf="phone.errors?.pattern">
+      Telefon musi składać się wyłącznie z 9 cyfr
+    </mat-error>
   </mat-form-field>
   <app-person-form [parentSubmittedStatus]="formSubmittedStatus"
                    fxLayout="column"

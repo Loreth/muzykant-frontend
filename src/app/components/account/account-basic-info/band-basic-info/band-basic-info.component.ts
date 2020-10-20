@@ -22,7 +22,7 @@ export class BandBasicInfoComponent implements OnInit {
     name: new FormControl('', Validators.required),
     formationYear: new FormControl(null,
       [Validators.min(1900), Validators.max(this.currentYear), Validators.pattern('^[0-9]{4}$')]),
-    phone: new FormControl('')
+    phone: new FormControl('', Validators.pattern('^[0-9]{9}$'))
   });
   band: Band;
   formSubmittedStatus: Subject<boolean> = new Subject();

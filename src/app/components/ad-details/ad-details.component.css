@@ -62,3 +62,18 @@
 .message-button {
   margin-left: 16px;
 }
+
+.phone {
+  height: 36px;
+  color: rgba(0, 0, 0, 0.87);
+  margin-right: 20px;
+}
+
+.phone-number {
+  margin-left: 4px;
+}
+
+.show-number-button {
+  font-size: 16px;
+  padding: 0 6px;
+}

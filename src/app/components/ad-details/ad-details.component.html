@@ -74,6 +74,16 @@
           Brak treści ogłoszenia</p>
       </div>
       <div fxLayout="row" fxLayoutAlign="end stretch">
+        <div fxLayout="row" fxLayoutAlign="start center" class="phone"
+             *ngIf="adWithChips.ad.userPhone">
+          <mat-icon>call</mat-icon>
+          <span *ngIf="displayNumber"
+                class="phone-number">{{adWithChips.ad.userPhone | phone}}</span>
+          <button mat-button *ngIf="!displayNumber" (click)="displayNumber = true"
+                  class="show-number-button">
+            Wyświetl numer
+          </button>
+        </div>
         <button mat-raised-button color="accent" class="message-button"
                 [routerLink]="['/messages',{recipient: adWithChips.ad.userLinkName}]">
           Wyślij wiadomość

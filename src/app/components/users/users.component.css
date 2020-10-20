@@ -3,15 +3,17 @@
 }
 
 .name-header {
-  font-size: 21px;
-  padding-bottom: 16px;
-  line-height: 32px;
-  margin-top: 4px;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.user-type-header {
+  margin-top: -8px;
 }
 
 .user-type {
   padding-top: 2px;
-  font-size: 20px;
+  font-size: 18px;
   margin-left: 16px;
   margin-right: 8px;
 }
@@ -66,6 +68,10 @@
   margin: 0 16px;
 }
 
+.link-icons {
+  color: rgba(0, 0, 0, 0.8);
+}
+
 .commercial-icon {
   vertical-align: middle;
   color: rgba(0, 0, 0, 0.7);
@@ -75,9 +81,23 @@
   opacity: 0.6;
 }
 
-.message-button {
+.contact-actions {
   margin-top: 16px;
-  margin-left: 16px;
+}
+
+.phone {
+  height: 36px;
+  color: rgba(0, 0, 0, 0.87);
+  margin-right: 20px;
+}
+
+.phone-number {
+  margin-left: 4px;
+}
+
+.show-number-button {
+  font-size: 16px;
+  padding: 0 6px;
 }
 
 .ad-list-header {
@@ -120,4 +140,21 @@
 
 :host ::ng-deep .ng-image-fullscreen-view .lightbox-wrapper {
   background-color: rgba(0, 0, 0, 0.4);
+}
+
+.equipment-panel-header {
+  padding: 0 16px;
+}
+
+.equipment-item {
+  font-size: 14px;
+  padding-bottom: 1px;
+}
+
+:host ::ng-deep .mat-expansion-panel-body {
+  padding: 0 16px;
+}
+
+:host ::ng-deep .mat-list-base {
+  padding-top: 0;
 }

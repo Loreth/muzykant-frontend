@@ -26,7 +26,7 @@ export class ChatMessageService extends RestSearchService<ChatMessage, number> {
     this.getUserConversations(loggedUserId).subscribe(
       conversations => {
         this.senderLinkNamesOfUnseenMessages = conversations
-        .filter(x => !x.lastMessage.seen)
+        .filter(x => !x.lastMessage.seen && x.lastMessage.senderLinkName === x.secondParticipantLinkName)
         .map(conversation => conversation.secondParticipantLinkName);
 
         this.watchSeenChatMessagesQueue().subscribe(

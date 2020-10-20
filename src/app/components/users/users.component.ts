@@ -19,6 +19,8 @@ import {MusicianWantedAdService} from '../../core/services/musician-wanted-ad.se
 import {BandWantedAdService} from '../../core/services/band-wanted-ad.service';
 import {JamSessionAdService} from '../../core/services/jam-session-ad.service';
 import {Ad} from '../../shared/models/ad';
+import {Equipment} from '../../shared/models/equipment';
+import {EquipmentService} from '../../core/services/equipment.service';
 
 @Component({
   selector: 'app-users',
@@ -31,6 +33,8 @@ export class UsersComponent implements OnInit {
   instrumentChips: AdChip[];
   userImages$: Observable<any[]>;
   userAdsWithChips$: Observable<AdWithChips[]>;
+  musicianEquipment$: Observable<Equipment[]>;
+  displayNumber = false;
 
   constructor(private userServiceFactoryService: UserServiceFactoryService,
               private userService: UserService,
@@ -38,6 +42,7 @@ export class UsersComponent implements OnInit {
               private musicianWantedAdService: MusicianWantedAdService,
               private bandWantedAdService: BandWantedAdService,
               private jamSessionAdService: JamSessionAdService,
+              private equipmentService: EquipmentService,
               private route: ActivatedRoute,
               private location: Location) {
   }
@@ -52,6 +57,12 @@ export class UsersComponent implements OnInit {
             tap(typedUser => {
               this.makeGenreChips(typedUser);
               this.makeInstrumentChips(typedUser);
+              if (typedUser.userType === UserType.MUSICIAN) {
+                this.musicianEquipment$ =
+                  this.equipmentService.searchDtos(
+                    new HttpParams().set('musicianId', String(typedUser.id)), 0, 20, ['name'])
+                  .pipe(map(equipmentPage => equipmentPage.content));
+              }
             })
           );
           this.userImages$ = this.userImageService

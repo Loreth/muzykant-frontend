@@ -20,6 +20,26 @@
     </mat-form-field>
     <div class="remaining-characters">Pozostało znaków: {{remainingDescriptionCharacters()}}</div>
 
+    <div *ngIf="user?.userType === musicianType" formArrayName="musicianEquipment">
+      <div class="equipment-label">Sprzęt</div>
+      <div *ngFor="let item of musicianEquipmentArray.controls; let i = index"
+           class="equipment-line">
+        <mat-form-field appearance="outline" class="equipment-field">
+          <input matInput name="equipment" placeholder="Nazwa sprzętu"
+                 maxlength="60" [formControlName]="i" autocomplete="off">
+        </mat-form-field>
+        <button mat-icon-button type="button" (click)="deleteEquipmentItem(i)" class="delete-icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div>
+        <button mat-icon-button color="accent" type="button" (click)="addEquipmentItem()"
+                [disabled]="isLastEquipmentInputBlank()">
+          <mat-icon>add_box</mat-icon>
+        </button>
+      </div>
+    </div>
+
     <button type="submit" mat-raised-button color="accent" fxFlexAlign="end">
       Zapisz zmiany
     </button>

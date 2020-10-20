@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {Voivodeship} from '../../../../shared/models/voivodeship';
-import {AbstractControl, FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Person} from '../../../../shared/models/person';
 import {RegularUser} from '../../../../shared/models/regular-user';
 import {RegularUserService} from '../../../../core/services/regular-user.service';
@@ -17,7 +17,7 @@ export class RegularUserBasicInfoComponent implements OnInit {
   @Output() changesSavedEvent = new EventEmitter<boolean>();
   basicInfoForm = new FormGroup({
     user: new FormControl(),
-    phone: new FormControl(''),
+    phone: new FormControl('', Validators.pattern('^[0-9]{9}$')),
     person: new FormControl()
   });
   regularUser: RegularUser;

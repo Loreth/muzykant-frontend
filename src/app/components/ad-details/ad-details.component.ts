@@ -25,6 +25,7 @@ export class AdDetailsComponent implements OnInit {
   instrumentChips: AdChip[];
   ageChip: AdChip;
   genderChip: AdChip;
+  displayNumber = false;
 
   constructor(private location: Location,
               private userServiceFactoryService: UserServiceFactoryService) {

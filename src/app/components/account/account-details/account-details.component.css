@@ -11,3 +11,38 @@
 :host ::ng-deep .description .mat-form-field-wrapper {
   padding-bottom: 0;
 }
+
+.equipment-label {
+  color: rgba(0, 0, 0, 0.62);
+}
+
+.equipment-line {
+  max-width: calc(72ch + 40px);
+}
+
+.equipment-field {
+  font-size: 13px;
+  width: calc(100% - 40px);
+}
+
+:host ::ng-deep .equipment-field .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.6em 0;
+  border-top-width: 3px;
+}
+
+:host ::ng-deep .equipment-field .mat-form-field-label-wrapper {
+  top: -1.15em;
+}
+
+:host ::ng-deep .equipment-field .mat-form-field-wrapper {
+  padding-bottom: 2px;
+}
+
+.delete-icon {
+  color: rgba(0, 0, 0, 0.5);
+  transition: transform .135s cubic-bezier(0.0, 0.0, 0.2, 1), color linear .15s;
+}
+
+.delete-icon:hover {
+  color: #e12b38;
+}

@@ -20,4 +20,5 @@ export interface Ad extends Identifiable<number> {
   userGenres: Genre[];
   userProfileImageLink: string;
   userLinkName: string;
+  userPhone: string;
 }
