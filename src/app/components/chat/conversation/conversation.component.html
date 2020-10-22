@@ -49,8 +49,7 @@
           </div>
           <div class="message" [class]="getMessageClass(message)"
                [matTooltip]="message.sentAt | date: 'dd.MM.yyyy HH:mm'"
-               [matTooltipPosition]="getTooltipPosition(message)"
-               matTooltipClass="time-tooltip">
+               [matTooltipPosition]="getTooltipPosition(message)">
             {{message.content}}
           </div>
         </div>

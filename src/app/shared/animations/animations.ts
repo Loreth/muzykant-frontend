@@ -9,7 +9,7 @@ export class Animations {
   ], {optional: true});
 
   static leaveQuery = query(':leave',
-    animate('100ms', style({opacity: 0})),
+    animate('62ms', style({opacity: 0})),
     {optional: true});
 
   static enterTransition = transition('* => *', [Animations.enterQuery]);

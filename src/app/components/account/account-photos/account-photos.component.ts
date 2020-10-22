@@ -36,20 +36,24 @@ export class AccountPhotosComponent implements OnInit {
     for (const droppedFile of files) {
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+
         fileEntry.file((file: File) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-            const newUserImage: UserImage = {
-              id: null,
-              userId: AuthService.loggedUserId,
-              link: reader.result as string,
-              orderIndex: files.length,
-              filename: null
+          if (['image/jpeg', 'image/webp', 'image/png'].includes(file.type)) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+              const newUserImage: UserImage = {
+                id: null,
+                userId: AuthService.loggedUserId,
+                link: reader.result as string,
+                orderIndex: files.length,
+                filename: null
+              };
+
+              this.userImages.push(newUserImage);
+              this.newImageFiles.push({file, newUserImage});
             };
-            this.userImages.push(newUserImage);
-            this.newImageFiles.push({file, newUserImage});
-          };
+          }
         });
       }
     }
@@ -92,6 +96,10 @@ export class AccountPhotosComponent implements OnInit {
           })
         ));
       }
+    }
+
+    if (requests.length === 0) {
+      this.saveButtonDisabled = false;
     }
 
     forkJoin(requests).subscribe(() => {

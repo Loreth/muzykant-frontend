@@ -129,8 +129,3 @@
   color: rgba(0, 0, 0, 0.5);
   opacity: 1; /* Firefox */
 }
-
-::ng-deep .mat-tooltip {
-  padding: 3px;
-  font-size: 11px;
-}
