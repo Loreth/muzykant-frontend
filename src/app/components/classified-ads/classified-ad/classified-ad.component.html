@@ -22,7 +22,8 @@
         </mat-basic-chip>
       </mat-chip-list>
       <div fxFlexAlign="baseline" class="ad-opacity-element" fxLayoutAlign="center">
-        <mat-icon *ngIf="adWithChips.ad.commercial" matTooltip="Oferta komercyjna">
+        <mat-icon *ngIf="adWithChips.ad.commercial"
+                  matTooltip="Oferta komercyjna - za wynagrodzeniem">
           monetization_on
         </mat-icon>
         <span class="ad-posted-date">{{adWithChips.ad.publishedDate | date: 'dd.MM.yyyy'}}</span>

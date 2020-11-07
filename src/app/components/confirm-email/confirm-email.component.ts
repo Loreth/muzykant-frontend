@@ -55,9 +55,9 @@ export class ConfirmEmailComponent implements OnInit {
           if (error.status === 422) {
             this.message = WRONG_LINK_MESSAGE;
           } else if (error.status === 409) {
-            if (error.error.trace.includes('EmailConfirmationTokenExpiredException')) {
+            if (error.error.message.includes('Email confirmation token has expired')) {
               this.message = TOKEN_EXPIRED_MESSAGE;
-            } else if (error.error.trace.includes('EmailConfirmationTokenNotFound')) {
+            } else if (error.error.message.includes('There is no email tied to this token')) {
               this.message = TOKEN_NOT_FOUND_MESSAGE;
             }
           }
