@@ -12,7 +12,7 @@ import {
 import {FIELD_REQUIRED_MSG} from '../../localization/message-constants';
 import {merge, Observable, timer} from 'rxjs';
 import {Voivodeship} from '../../models/voivodeship';
-import {CustomAsyncValidators} from '../../../core/validators/custom-async-validators';
+import {CustomAsyncValidators} from '../../validators/custom-async-validators';
 import {UserService} from '../../../core/services/user.service';
 import {filter, map, startWith, take} from 'rxjs/operators';
 import {Comparators} from '../../comparators';

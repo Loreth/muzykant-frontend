@@ -5,7 +5,7 @@ import {AuthService} from '../../core/services/auth.service';
 import {SignUpRequest} from '../../shared/models/sign-up-request';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {HttpErrorResponse} from '@angular/common/http';
-import {CustomValidators} from '../../core/validators/custom-validators';
+import {CustomValidators} from '../../shared/validators/custom-validators';
 
 @Component({
   selector: 'app-sign-up',

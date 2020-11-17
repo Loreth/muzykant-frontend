@@ -1,5 +1,5 @@
 import {AbstractControl, AsyncValidatorFn, ValidationErrors} from '@angular/forms';
-import {UserService} from '../services/user.service';
+import {UserService} from '../../core/services/user.service';
 import {Observable, timer} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 

@@ -3,7 +3,7 @@ import {AbstractControl, FormControl, FormGroup, FormGroupDirective, Validators}
 import {FIELD_REQUIRED_MSG} from '../../../shared/localization/message-constants';
 import {AuthService} from '../../../core/services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {CustomValidators} from '../../../core/validators/custom-validators';
+import {CustomValidators} from '../../../shared/validators/custom-validators';
 import {PasswordChangeRequest} from '../../../shared/models/password-change-request';
 import {HttpErrorResponse} from '@angular/common/http';
 
