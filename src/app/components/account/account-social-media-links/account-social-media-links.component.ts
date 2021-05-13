@@ -83,8 +83,8 @@ export class AccountSocialMediaLinksComponent implements OnInit {
   }
 
   appendHttpIfNotPresent(value: string): string {
-    if (!value?.startsWith('http')) {
-      return value;
+    if (value != null && !value.startsWith('http://') && !value.startsWith('https://')) {
+      return 'http://' + value;
     }
 
     return value;
