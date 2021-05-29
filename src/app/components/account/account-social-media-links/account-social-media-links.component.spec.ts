@@ -8,13 +8,14 @@ import {of} from 'rxjs';
 import {SocialMediaLinks} from '../../../shared/models/social-media-links';
 import {SocialMediaLinksService} from '../../../core/services/social-media-links.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatError, MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {AccountComponent} from '../account.component';
 import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthService} from '../../../core/services/auth.service';
 import {MatFormFieldHarness} from '@angular/material/form-field/testing';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('AccountSocialMediaLinksComponent', () => {
   let component: AccountSocialMediaLinksComponent;
@@ -41,7 +42,8 @@ describe('AccountSocialMediaLinksComponent', () => {
       providers: [
         {provide: SocialMediaLinksService, useValue: socialMediaLinksServiceMock},
         {provide: MatSnackBar, useValue: snackBarMock},
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
 
@@ -92,12 +94,10 @@ describe('AccountSocialMediaLinksComponent', () => {
       placeholder: 'https://youtube.com/channel/nazwa-uzytkownika'
     }));
     await youtubeMatInput.setValue('definitelynotyoutube.com/smth');
-
     const soundcloudMatInput = await loader.getHarness<MatInputHarness>(MatInputHarness.with({
       placeholder: 'https://soundcloud.com/nazwa-uzytkownika'
     }));
     await soundcloudMatInput.setValue('isthissoundcloud?.com/a/b');
-
     const webpageMatInput = await loader.getHarness<MatInputHarness>(MatInputHarness.with({
       placeholder: 'https://moja.strona.pl'
     }));
@@ -109,15 +109,17 @@ describe('AccountSocialMediaLinksComponent', () => {
     await saveButton.click();
 
     const youtubecloudMatFormFieldHarness = await loader.getHarness<MatFormFieldHarness>(MatFormFieldHarness.with({
-      floatingLabelText: 'Link do kanału Youtube'})
+        floatingLabelText: 'Link do kanału Youtube'
+      })
     );
     const soundcloudMatFormFieldHarness = await loader.getHarness<MatFormFieldHarness>(MatFormFieldHarness.with({
-      floatingLabelText: 'Link do profilu Soundcloud'})
+        floatingLabelText: 'Link do profilu Soundcloud'
+      })
     );
     const webpageMatFormFieldHarness = await loader.getHarness<MatFormFieldHarness>(MatFormFieldHarness.with({
-      floatingLabelText: 'Link do strony internetowej'})
+        floatingLabelText: 'Link do strony internetowej'
+      })
     );
-
 
     youtubecloudMatFormFieldHarness.hasErrors().then(hasErrors => expect(hasErrors).toBeTrue());
     youtubecloudMatFormFieldHarness.getTextErrors().then(value => expect(value[0]).not.toBe(''));
@@ -150,5 +152,19 @@ describe('AccountSocialMediaLinksComponent', () => {
     await saveButton.click();
 
     expect(snackBarMock.open).not.toHaveBeenCalled();
+  });
+
+  it('renderSoundcloudWidget should be true after saving correct soundcloud link', async () => {
+    const soundcloudMatInput = await loader.getHarness<MatInputHarness>(MatInputHarness.with({
+      placeholder: 'https://soundcloud.com/nazwa-uzytkownika'
+    }));
+    await soundcloudMatInput.setValue('https://soundcloud.com/musicfan');
+
+    const saveButton = await loader.getHarness<MatButtonHarness>(MatButtonHarness.with({
+      text: 'Zapisz zmiany'
+    }));
+    await saveButton.click();
+
+    expect(component.renderSoundcloudWidget).toBeTrue();
   });
 });

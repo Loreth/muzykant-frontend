@@ -69,7 +69,7 @@
           <mat-divider></mat-divider>
           <div *ngIf="genreChips?.length">
             <mat-list-item><span class="row-name">Gatunki</span>
-              <mat-chip-list class="chip-list">
+              <mat-chip-list class="chip-list genre-chip-list">
                 <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
                                 *ngFor="let chip of genreChips">
                   {{chip.label | capitalize}}
@@ -80,7 +80,7 @@
           </div>
           <div *ngIf="instrumentChips?.length">
             <mat-list-item><span class="row-name">Instrumenty</span>
-              <mat-chip-list class="chip-list">
+              <mat-chip-list class="chip-list instrument-chip-list">
                 <mat-basic-chip disableRipple class="chip-list ad-chip" [ngClass]="chip.cssClass"
                                 *ngFor="let chip of instrumentChips">
                   {{chip.label | capitalize}}
@@ -120,7 +120,7 @@
               Wyświetl numer
             </button>
           </div>
-          <button mat-raised-button color="accent"
+          <button mat-raised-button color="accent" id="message-button"
                   [routerLink]="['/messages',{recipient: user.linkName}]"
                   *ngIf="!isLoggedUsersProfile(user)">
             Wyślij wiadomość

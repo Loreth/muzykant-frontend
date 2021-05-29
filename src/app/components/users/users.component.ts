@@ -53,33 +53,41 @@ export class UsersComponent implements OnInit {
       this.userService.searchDtos(new HttpParams().set('linkName', userLinkName)).subscribe(
         page => {
           const user = page.content[0];
-          this.user$ = this.userServiceFactoryService.getUserService(user.userType).getDto(user.id).pipe(
-            tap(typedUser => {
-              this.makeGenreChips(typedUser);
-              this.makeInstrumentChips(typedUser);
-              if (typedUser.userType === UserType.MUSICIAN) {
-                this.musicianEquipment$ =
-                  this.equipmentService.searchDtos(
-                    new HttpParams().set('musicianId', String(typedUser.id)), 0, 20, ['name'])
-                  .pipe(map(equipmentPage => equipmentPage.content));
-              }
-            })
-          );
-          this.userImages$ = this.userImageService
-          .searchDtos(new HttpParams().set('userId', String(user.id)), 0, 50, ['orderIndex,ASC'])
-          .pipe(map(imagePage => imagePage.content.map(image => {
-              return {image: image.link, thumbImage: image.link};
-            })
-          ));
-          this.fetchUserAdsWithChips(user.id);
+          this.user$ = this.fetchTypedUserAndMakeChips(user);
+          this.userImages$ = this.fetchUserImages(user);
+          this.userAdsWithChips$ = this.fetchUserAdsWithChips(user);
         }
       );
     });
   }
 
-  private fetchUserAdsWithChips(userId: number): void {
-    const httpParams = new HttpParams().set('userId', String(userId)).set('sort', 'publishedDate,DESC');
-    this.userAdsWithChips$ = forkJoin([
+  private fetchTypedUserAndMakeChips(user: User): Observable<User> {
+    return this.userServiceFactoryService.getUserService(user.userType).getDto(user.id).pipe(
+      tap(typedUser => {
+        this.makeGenreChips(typedUser);
+        this.makeInstrumentChips(typedUser);
+        if (typedUser.userType === UserType.MUSICIAN) {
+          this.musicianEquipment$ =
+            this.equipmentService.searchDtos(
+              new HttpParams().set('musicianId', String(typedUser.id)), 0, 20, ['name'])
+            .pipe(map(equipmentPage => equipmentPage.content));
+        }
+      })
+    );
+  }
+
+  private fetchUserImages(user: User): Observable<any[]> {
+    return this.userImageService
+    .searchDtos(new HttpParams().set('userId', String(user.id)), 0, 50, ['orderIndex,ASC'])
+    .pipe(map(imagePage => imagePage.content.map(image => {
+        return {image: image.link, thumbImage: image.link};
+      })
+    ));
+  }
+
+  private fetchUserAdsWithChips(user: User): Observable<AdWithChips[]> {
+    const httpParams = new HttpParams().set('userId', String(user.id)).set('sort', 'publishedDate,DESC');
+    return forkJoin([
       this.musicianWantedAdService.searchDtos(httpParams),
       this.bandWantedAdService.searchDtos(httpParams),
       this.jamSessionAdService.searchDtos(httpParams)]).pipe(
