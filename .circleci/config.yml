@@ -8,15 +8,17 @@ orbs:
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
   node: circleci/node@4.1
 
-
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
   build-and-test:  
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
+    working_directory: ~/angularcli
     docker:
-      - image: cimg/node:15.1
+      - image: cimg/node:15.1-browsers
+        environment:
+                  CHROME_BIN: "/usr/bin/google-chrome"
     # Then run your tests!
     # CircleCI will report the results back to your VCS provider.
     steps:
@@ -27,10 +29,13 @@ jobs:
       - node/install-packages
       # If you are using yarn instead npm, remove the line above and uncomment the two lines below.
       # - node/install-packages:
-      #     pkg-manager: yarn 
+      #     pkg-manager: yarn
       - run:
-          name: Run tests
-          command: npm test
+          name: Install angularcli
+          command: sudo npm install -g @angular/cli@latest
+      - run:
+          name: Run unit tests with karma
+          command: ng test 
 
 workflows:
   # Below is the definition of your workflow.
