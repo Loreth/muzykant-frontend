@@ -12,6 +12,7 @@ jobs:
       - restore_cache:
           key: muzykant-frontend-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: npm install
+      - run: npm audit fix
       - save_cache:
           key: muzykant-frontend-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
